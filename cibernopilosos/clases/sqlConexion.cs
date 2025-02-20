@@ -107,6 +107,7 @@ namespace cibernopilosos
             return true;
         }
 
+        //completar mas funciones
 
         public bool DevuelveValorBooleano(string consulta)
         {
