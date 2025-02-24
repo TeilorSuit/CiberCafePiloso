@@ -23,10 +23,13 @@ namespace cibernopilosos.formularios
             sqlConexion conexion = new sqlConexion();
             if (txtUserName.Text != ""&& txtPassword.Text !="")
             {
-                if (conexion.Login(txtUserName.Text.ToString(), txtPassword.Text.ToString()))
+                string username = txtUserName.Text.ToString();
+                string password = txtPassword.Text.ToString();
+                if (conexion.Login(username, password))
                 {
+                    DataTable tablita = conexion.retornaRegistros($"Select UserID from Users Where Username='{username}' and Password='{password}'");
+                    frmMenu menu = new frmMenu(tablita.Rows[0][0].ToString());
                     this.Hide();
-                    frmMenu menu = new frmMenu(txtUserName.Text);
                     menu.Show();
                 }
                 else lblIncorrectPassword.Text = "Contraseña o Usuario Incorreto";
@@ -36,7 +39,6 @@ namespace cibernopilosos.formularios
                 lblIncorrectPassword.Text = "Rellene todos los campos";
             }
         }
-
         private void btnLogin_MouseEnter(object sender, EventArgs e)
         {
             btnLogin.Image = imgListLogin.Images[0];

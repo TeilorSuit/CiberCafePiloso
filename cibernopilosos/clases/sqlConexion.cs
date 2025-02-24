@@ -107,9 +107,34 @@ namespace cibernopilosos
             return true;
         }
 
+        public int DevuelveValorEntero(string consulta)//sin usar
+        {
+            int aux = 0;
+            try
+            {
+                abrirConexion();
+                ComandoSql = new SqlCommand(consulta, ConexionSql);
+                DataReader = ComandoSql.ExecuteReader();
+                if (DataReader.Read())
+                {
+                    if (DataReader[0] != DBNull.Value)
+                    {
+                        aux = (int)DataReader[0];
+                    }
+                }
+                DataReader.Close();
+                cerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Algo anda mal. " + ex.Message);
+                cerrarConexion();
+            }
+            return aux;
+        }
         //completar mas funciones
 
-        public bool DevuelveValorBooleano(string consulta)
+        public bool DevuelveValorBooleano(string consulta)//sin usar
         {
             bool aux = false;
             try

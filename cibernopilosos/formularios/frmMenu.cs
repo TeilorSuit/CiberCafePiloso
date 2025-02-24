@@ -108,7 +108,7 @@ namespace cibernopilosos.formularios
 
         private void checkUser(string user)
         {
-            if (user != "admin")
+            if (user != "1")
             {
                 btnAdministrarPcs.Hide();
                 btnUsuarios.Hide();
