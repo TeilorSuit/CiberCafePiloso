@@ -80,7 +80,7 @@ namespace cibernopilosos.formularios
             }
 
         }
-        private bool validacionDatos(string Dato)
+        private bool validacionDatos(string Dato)//pepe
         {
             if (Dato.Length != 0)
             {
