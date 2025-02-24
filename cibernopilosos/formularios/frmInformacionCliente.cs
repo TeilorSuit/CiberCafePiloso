@@ -76,7 +76,6 @@ namespace cibernopilosos.formularios
             }
             else
             {
-                //clientMemStatus = obtenerStatusMembresia(clientID);
                 ActualizarCliente(clientID, clientName, clientBirthdate, clientPhone, clientAddress);
             }
 
@@ -92,12 +91,7 @@ namespace cibernopilosos.formularios
                 return false;
             }
         }
-        //private bool obtenerStatusMembresia(string ClientID)
-        //{
-        //    string consuta = $"select clientMemStatus from Clients where ClientID='{aux_id}'";
-        //    bool memStatus = conexionsql.DevuelveValorBooleano(consuta);
-        //    return memStatus;
-        //}
+   
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
