@@ -12,12 +12,21 @@ namespace cibernopilosos.formularios
 {
     public partial class frmMenu : Form
     {
-        public frmMenu(string modo)
+        public frmMenu(bool modo)
         {
             InitializeComponent();
             checkUser(modo);
         }
-
+        private void checkUser(bool admin)
+        {
+            if (!admin)
+            {
+                btnAdministrarPcs.Hide();
+                btnUsuarios.Hide();
+                btnReportes.Hide();
+                pnlSeparador.Hide();
+            }
+        }
         #region Formularios Activos
 
         private Form FormulariosAbierto = null;
@@ -106,14 +115,6 @@ namespace cibernopilosos.formularios
             Application.Exit();
         }
 
-        private void checkUser(string user)
-        {
-            if (user != "1")
-            {
-                btnAdministrarPcs.Hide();
-                btnUsuarios.Hide();
-                btnReportes.Hide();
-            }
-        }
+
     }
 }

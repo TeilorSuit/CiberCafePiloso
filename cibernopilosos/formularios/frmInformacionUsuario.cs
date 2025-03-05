@@ -23,6 +23,7 @@ namespace cibernopilosos.formularios
             string username, password;
             username = txtUsername.Text;
             password = txtPassword.Text;
+
             if (ValidacionDatos(username) == false)//Validar casillas vacías
             {
                 MessageBox.Show("Rellene todos los campos");
@@ -45,8 +46,8 @@ namespace cibernopilosos.formularios
         }
         private void AgregarUsuario(string username, string password)
         {
-            sqlConexion conexionsql = new sqlConexion();
-            string consulta = $"Insert into Users (Username,Password) values ('{username}','{password}')";
+            int Admin = checkAdmin();
+            string consulta = $"Insert into Users (Username,Password,Admin) values ('{username}','{password}',{Admin})";
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("Usuario creado exitosamente");
@@ -58,7 +59,8 @@ namespace cibernopilosos.formularios
         }
         private void ActualizarUsuario(string username, string password)
         {
-            string consulta = $"Update Users set Username='{username}', Password='{password}' where UserID='{userID}'";
+            int Admin = checkAdmin();
+            string consulta = $"Update Users set Username='{username}', Password='{password}', Admin={Admin} where UserID='{userID}'";
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("Cliente actualizado exitosamente");
@@ -80,6 +82,19 @@ namespace cibernopilosos.formularios
             }
         }
 
+        private int checkAdmin()
+        {
+            int Admin;
+            if (chkAdmin.Checked)
+            {
+                Admin = 1;
+            }
+            else
+            {
+                Admin = 0;
+            }
+            return Admin;
+        }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

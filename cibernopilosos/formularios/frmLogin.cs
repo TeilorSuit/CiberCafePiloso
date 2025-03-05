@@ -13,22 +13,31 @@ namespace cibernopilosos.formularios
 {
     public partial class frmLogin : Form
     {
+        public static int IDactual;
+
         public frmLogin()
         {
             InitializeComponent();
         }
 
-        private void comprobarContra()
+        sqlConexion conexion = new sqlConexion();
+        private void fn_ProcedimientodeLogin()
         {
-            sqlConexion conexion = new sqlConexion();
-            if (txtUserName.Text != ""&& txtPassword.Text !="")
+            string username = txtUserName.Text.ToString();
+            string password = txtPassword.Text.ToString();
+            IDactual = conexion.DevuelveValorEntero(
+                $"Select UserID from Users Where Username='{username}' and Password='{password}'");
+            comprobarAcceso(username, password);
+        }
+
+        private void comprobarAcceso(string username, string password)
+        {
+            if (username!= ""&& password!="")
             {
-                string username = txtUserName.Text.ToString();
-                string password = txtPassword.Text.ToString();
                 if (conexion.Login(username, password))
                 {
-                    DataTable tablita = conexion.retornaRegistros($"Select UserID from Users Where Username='{username}' and Password='{password}'");
-                    frmMenu menu = new frmMenu(tablita.Rows[0][0].ToString());
+                    bool admin = conexion.DevuelveValorBooleano($"Select Admin from Users Where Username='{username}' and Password='{password}'");
+                    frmMenu menu = new frmMenu(admin);
                     this.Hide();
                     menu.Show();
                 }
@@ -47,24 +56,13 @@ namespace cibernopilosos.formularios
         {
             btnLogin.Image = imgListLogin.Images[1];
         }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            comprobarContra();
+            fn_ProcedimientodeLogin();
         }
 
-        private void btnShowPassword_Click(object sender, EventArgs e)
-        {
-            if (txtPassword.UseSystemPasswordChar == true)
-            {
-                txtPassword.UseSystemPasswordChar = false;
-                btnShowPassword.Image = imgListLogin.Images[3];
-            }
-            else
-            {
-                txtPassword.UseSystemPasswordChar = true;
-                btnShowPassword.Image = imgListLogin.Images[2];
-            }
-        }
+        
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
@@ -77,13 +75,15 @@ namespace cibernopilosos.formularios
         private void frmLogin_Load(object sender, EventArgs e)
         {
             btnLogin.Image = imgListLogin.Images[1];
+            btnShowPassword.Image = imgListLogin.Images[3];
         }
 
         private void txtUserName_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                comprobarContra();
+                fn_ProcedimientodeLogin();
+
             }
         }
 
@@ -91,17 +91,26 @@ namespace cibernopilosos.formularios
         {
             if (e.KeyCode == Keys.Enter)
             {
-                comprobarContra();
+                fn_ProcedimientodeLogin();
             }
         }
 
-        private void btnInfo_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
-            DialogResult pepa;
-            pepa = MessageBox.Show("Creador: Marlon", "El Creador", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign, displayHelpButton: false);
-            if (pepa == DialogResult.No)
+            Application.Exit();
+        }
+
+        private void btnShowPassword_Click(object sender, EventArgs e)
+        {
+            if (txtPassword.UseSystemPasswordChar == true)
             {
-                MessageBox.Show("Sí es");
+                txtPassword.UseSystemPasswordChar = false;
+                btnShowPassword.Image = imgListLogin.Images[2];
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+                btnShowPassword.Image = imgListLogin.Images[3];
             }
         }
     }

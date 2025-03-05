@@ -28,10 +28,10 @@ namespace cibernopilosos
 
         public sqlConexion()
         {
-            Server = "DESKTOP-5IV4VE8\\SQLEXPRESS";
-            Database = "ciberpilososdatabase";
-            Usuario = "sa";
-            Clave = "123456";
+            Server = "TEILOR\\SQLEXPRESS";
+            Database = "CiberCafeDB";
+            Usuario = "teilor";
+            Clave = "teilor";
         }
         public bool abrirConexion()
         {
@@ -54,9 +54,10 @@ namespace cibernopilosos
             ConexionSql.Close();
             return true;
         }
+
         public bool Login(string username, string password)
         {
-            string consulta = $"Select Username,PassWord from Users Where Password='{password}'";
+            string consulta = $"Select Username,PassWord from Users Where Username='{username}'";
             DataTable dt = retornaRegistros(consulta);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -135,7 +136,7 @@ namespace cibernopilosos
 
         //completar mas funciones
 
-        public bool DevuelveValorBooleano(string consulta)//sin usar
+        public bool DevuelveValorBooleano(string consulta)//pal admin
         {
             bool aux = false;
             try

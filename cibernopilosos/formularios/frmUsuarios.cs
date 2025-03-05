@@ -55,6 +55,13 @@ namespace cibernopilosos.formularios
 
         private void btnBorrarUsuario_Click(object sender, EventArgs e)
         {
+            string idactual = frmLogin.IDactual.ToString();
+            if(dgvUsers.CurrentRow.Cells[0].Value.ToString() == idactual.ToString())
+            {
+                MessageBox.Show("No puedes eliminar tu propio usuario");
+                return;
+            }
+
             DialogResult confirmacion;
             confirmacion = MessageBox.Show("Está acción no se puede deshacer. ¿Desea continuar?", "ADVERTENCIA",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
