@@ -20,9 +20,10 @@ namespace cibernopilosos.formularios
             InitializeComponent();
             dtClientBirthDate.MaxDate = DateTime.Today.AddYears(-18);
         }
-        private void AgregarCliente(string clientId, string clientName, DateTime clientBirthDate,string clientPhone, string clientAddress)
+        private void AgregarCliente(string clientId, string clientName, DateTime clientBirthDate, string clientPhone, string clientAddress)
         {
-            string consulta = $"Insert into Clients (ClientID,ClientMemStatus, ClientName, ClientBirthDate, ClientPhone, ClientAddress) values ('{clientId}','0','{clientName}','{clientBirthDate}','{clientPhone}','{clientAddress}')";
+            string fechaFormateada = clientBirthDate.ToString("yyyy-MM-dd");
+            string consulta = $"Insert into Clients (ClientID,ClientMemStatus, ClientName, ClientBirthDate, ClientPhone, ClientAddress) values ('{clientId}','0','{clientName}','{fechaFormateada}','{clientPhone}','{clientAddress}')";
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("Cliente registrado exitosamente");
@@ -32,9 +33,11 @@ namespace cibernopilosos.formularios
                 MessageBox.Show("Error al registrar cliente");
             }
         }
+
         private void ActualizarCliente(string clientId, string clientName, DateTime clientBirthDate, string clientPhone, string clientAddress)
         {
-            string consulta = $"Update Clients set ClientID='{clientId}',ClientName='{clientName}',ClientBirthDate='{clientBirthDate}',ClientPhone='{clientPhone}',ClientAddress='{clientAddress}' where ClientID='{aux_id}'";
+            string fechaFormateada = clientBirthDate.ToString("yyyy-MM-dd");
+            string consulta = $"Update Clients set ClientID='{clientId}',ClientName='{clientName}',ClientBirthDate='{fechaFormateada}',ClientPhone='{clientPhone}',ClientAddress='{clientAddress}' where ClientID='{aux_id}'";
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("Cliente actualizado exitosamente");
@@ -44,6 +47,7 @@ namespace cibernopilosos.formularios
                 MessageBox.Show("Error al actualizar cliente");
             }
         }
+
 
         public string modo = "add", aux_id = "";
         private void btnConfirmacion_Click(object sender, EventArgs e)

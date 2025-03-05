@@ -28,10 +28,10 @@ namespace cibernopilosos
 
         public sqlConexion()
         {
-            Server = "Teilor\\SQLEXPRESS";
-            Database = "CiberCafeDB";
-            Usuario = "teilor";
-            Clave = "teilor";
+            Server = "DESKTOP-5IV4VE8\\SQLEXPRESS";
+            Database = "ciberpilososdatabase";
+            Usuario = "sa";
+            Clave = "123456";
         }
         public bool abrirConexion()
         {
@@ -132,6 +132,7 @@ namespace cibernopilosos
             }
             return aux;
         }
+
         //completar mas funciones
 
         public bool DevuelveValorBooleano(string consulta)//sin usar

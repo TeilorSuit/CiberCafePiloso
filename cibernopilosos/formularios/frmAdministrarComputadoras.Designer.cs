@@ -48,11 +48,11 @@
             this.flwPanelCuadro.Controls.Add(this.btnBorrarPC);
             this.flwPanelCuadro.Controls.Add(this.btnAjustarPrecios);
             this.flwPanelCuadro.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flwPanelCuadro.Location = new System.Drawing.Point(808, 0);
-            this.flwPanelCuadro.Margin = new System.Windows.Forms.Padding(4);
+            this.flwPanelCuadro.Location = new System.Drawing.Point(606, 0);
             this.flwPanelCuadro.Name = "flwPanelCuadro";
-            this.flwPanelCuadro.Size = new System.Drawing.Size(289, 690);
+            this.flwPanelCuadro.Size = new System.Drawing.Size(217, 561);
             this.flwPanelCuadro.TabIndex = 0;
+            this.flwPanelCuadro.Paint += new System.Windows.Forms.PaintEventHandler(this.flwPanelCuadro_Paint);
             // 
             // btnAgregarPC
             // 
@@ -61,10 +61,9 @@
             this.btnAgregarPC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarPC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarPC.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregarPC.Location = new System.Drawing.Point(4, 4);
-            this.btnAgregarPC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAgregarPC.Location = new System.Drawing.Point(3, 3);
             this.btnAgregarPC.Name = "btnAgregarPC";
-            this.btnAgregarPC.Size = new System.Drawing.Size(285, 74);
+            this.btnAgregarPC.Size = new System.Drawing.Size(214, 60);
             this.btnAgregarPC.TabIndex = 0;
             this.btnAgregarPC.Text = "Agregar Computadora";
             this.btnAgregarPC.UseVisualStyleBackColor = false;
@@ -77,13 +76,13 @@
             this.btnEditarPC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarPC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarPC.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditarPC.Location = new System.Drawing.Point(4, 86);
-            this.btnEditarPC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditarPC.Location = new System.Drawing.Point(3, 69);
             this.btnEditarPC.Name = "btnEditarPC";
-            this.btnEditarPC.Size = new System.Drawing.Size(285, 74);
+            this.btnEditarPC.Size = new System.Drawing.Size(214, 60);
             this.btnEditarPC.TabIndex = 1;
             this.btnEditarPC.Text = "Editar Selección";
             this.btnEditarPC.UseVisualStyleBackColor = false;
+            this.btnEditarPC.Click += new System.EventHandler(this.btnEditarPC_Click);
             // 
             // btnBorrarPC
             // 
@@ -92,14 +91,14 @@
             this.btnBorrarPC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarPC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrarPC.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnBorrarPC.Location = new System.Drawing.Point(4, 168);
-            this.btnBorrarPC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBorrarPC.Location = new System.Drawing.Point(3, 135);
             this.btnBorrarPC.Name = "btnBorrarPC";
             this.btnBorrarPC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnBorrarPC.Size = new System.Drawing.Size(285, 74);
+            this.btnBorrarPC.Size = new System.Drawing.Size(214, 60);
             this.btnBorrarPC.TabIndex = 2;
             this.btnBorrarPC.Text = "Borrar Computadora";
             this.btnBorrarPC.UseVisualStyleBackColor = false;
+            this.btnBorrarPC.Click += new System.EventHandler(this.btnBorrarPC_Click);
             // 
             // btnAjustarPrecios
             // 
@@ -108,11 +107,10 @@
             this.btnAjustarPrecios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAjustarPrecios.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjustarPrecios.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAjustarPrecios.Location = new System.Drawing.Point(4, 250);
-            this.btnAjustarPrecios.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAjustarPrecios.Location = new System.Drawing.Point(3, 201);
             this.btnAjustarPrecios.Name = "btnAjustarPrecios";
             this.btnAjustarPrecios.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnAjustarPrecios.Size = new System.Drawing.Size(285, 74);
+            this.btnAjustarPrecios.Size = new System.Drawing.Size(214, 60);
             this.btnAjustarPrecios.TabIndex = 3;
             this.btnAjustarPrecios.Text = "Editar precio";
             this.btnAjustarPrecios.UseVisualStyleBackColor = false;
@@ -131,13 +129,12 @@
             this.dgvAdmiPCs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAdmiPCs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(70)))), ((int)(((byte)(21)))));
             this.dgvAdmiPCs.Location = new System.Drawing.Point(0, 0);
-            this.dgvAdmiPCs.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAdmiPCs.MultiSelect = false;
             this.dgvAdmiPCs.Name = "dgvAdmiPCs";
             this.dgvAdmiPCs.ReadOnly = true;
             this.dgvAdmiPCs.RowHeadersVisible = false;
             this.dgvAdmiPCs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAdmiPCs.Size = new System.Drawing.Size(808, 690);
+            this.dgvAdmiPCs.Size = new System.Drawing.Size(606, 561);
             this.dgvAdmiPCs.TabIndex = 0;
             // 
             // pnlDgv
@@ -146,21 +143,19 @@
             this.pnlDgv.Controls.Add(this.dgvAdmiPCs);
             this.pnlDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDgv.Location = new System.Drawing.Point(0, 0);
-            this.pnlDgv.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDgv.Name = "pnlDgv";
-            this.pnlDgv.Size = new System.Drawing.Size(808, 690);
+            this.pnlDgv.Size = new System.Drawing.Size(606, 561);
             this.pnlDgv.TabIndex = 1;
             // 
             // frmAdministrarComputadoras
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1097, 690);
+            this.ClientSize = new System.Drawing.Size(823, 561);
             this.Controls.Add(this.pnlDgv);
             this.Controls.Add(this.flwPanelCuadro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAdministrarComputadoras";
             this.Text = "frmAdministrarComputadoras";
             this.flwPanelCuadro.ResumeLayout(false);
@@ -171,13 +166,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flwPanelCuadro;
         private System.Windows.Forms.DataGridView dgvAdmiPCs;
         private System.Windows.Forms.Button btnAgregarPC;
-        private System.Windows.Forms.Button btnEditarPC;
         private System.Windows.Forms.Button btnBorrarPC;
         private System.Windows.Forms.Panel pnlDgv;
         private System.Windows.Forms.Button btnAjustarPrecios;
+        public System.Windows.Forms.Button btnEditarPC;
+        public System.Windows.Forms.FlowLayoutPanel flwPanelCuadro;
     }
 }

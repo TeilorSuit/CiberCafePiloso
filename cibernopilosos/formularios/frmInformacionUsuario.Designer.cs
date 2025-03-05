@@ -40,10 +40,9 @@
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(262, 204);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalir.Location = new System.Drawing.Point(196, 166);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(221, 32);
+            this.btnSalir.Size = new System.Drawing.Size(166, 26);
             this.btnSalir.TabIndex = 17;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -52,10 +51,9 @@
             // btnConfirmacion
             // 
             this.btnConfirmacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmacion.Location = new System.Drawing.Point(44, 204);
-            this.btnConfirmacion.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfirmacion.Location = new System.Drawing.Point(33, 166);
             this.btnConfirmacion.Name = "btnConfirmacion";
-            this.btnConfirmacion.Size = new System.Drawing.Size(221, 32);
+            this.btnConfirmacion.Size = new System.Drawing.Size(166, 26);
             this.btnConfirmacion.TabIndex = 16;
             this.btnConfirmacion.Text = "Agregar";
             this.btnConfirmacion.UseVisualStyleBackColor = true;
@@ -63,20 +61,18 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(43, 156);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword.Location = new System.Drawing.Point(32, 127);
             this.txtPassword.MaxLength = 40;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(440, 22);
+            this.txtPassword.Size = new System.Drawing.Size(331, 20);
             this.txtPassword.TabIndex = 15;
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(43, 67);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUsername.Location = new System.Drawing.Point(32, 54);
             this.txtUsername.MaxLength = 20;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(440, 22);
+            this.txtUsername.Size = new System.Drawing.Size(331, 20);
             this.txtUsername.TabIndex = 14;
             // 
             // lblPassword
@@ -84,8 +80,7 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblPassword.Location = new System.Drawing.Point(39, 116);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Location = new System.Drawing.Point(29, 94);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(133, 25);
             this.lblPassword.TabIndex = 13;
@@ -96,8 +91,7 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblUsername.Location = new System.Drawing.Point(41, 33);
-            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUsername.Location = new System.Drawing.Point(31, 27);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(214, 25);
             this.lblUsername.TabIndex = 12;
@@ -105,10 +99,10 @@
             // 
             // frmInformacionUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(153)))), ((int)(((byte)(120)))));
-            this.ClientSize = new System.Drawing.Size(537, 276);
+            this.ClientSize = new System.Drawing.Size(403, 224);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnConfirmacion);
             this.Controls.Add(this.txtPassword);
@@ -116,10 +110,11 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(553, 315);
+            this.MaximumSize = new System.Drawing.Size(419, 263);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(553, 315);
+            this.MinimumSize = new System.Drawing.Size(419, 263);
             this.Name = "frmInformacionUsuario";
             this.Text = "frmInformacionUsuario";
             this.ResumeLayout(false);
