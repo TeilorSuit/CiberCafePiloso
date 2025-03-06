@@ -33,31 +33,31 @@
             this.pnlCaja = new System.Windows.Forms.Panel();
             this.lblCaja = new System.Windows.Forms.Label();
             this.pnlChildForms = new System.Windows.Forms.Panel();
+            this.pctMainLogo = new System.Windows.Forms.PictureBox();
             this.flwSideBar = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlAmpliarMenu = new System.Windows.Forms.Panel();
-            this.imgList = new System.Windows.Forms.ImageList(this.components);
-            this.pnlComputadoras = new System.Windows.Forms.Panel();
-            this.pnlClientes = new System.Windows.Forms.Panel();
-            this.btnAdministrarPcs = new System.Windows.Forms.Button();
-            this.btnUsuarios = new System.Windows.Forms.Button();
-            this.btnReportes = new System.Windows.Forms.Button();
-            this.tmrSideBar = new System.Windows.Forms.Timer(this.components);
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.pctMainLogo = new System.Windows.Forms.PictureBox();
             this.btnAmpliarMenu = new System.Windows.Forms.Button();
+            this.imgList = new System.Windows.Forms.ImageList(this.components);
             this.pctLogo = new System.Windows.Forms.PictureBox();
+            this.pnlComputadoras = new System.Windows.Forms.Panel();
             this.btnComputadoras = new System.Windows.Forms.Button();
+            this.pnlClientes = new System.Windows.Forms.Panel();
             this.btnClientes = new System.Windows.Forms.Button();
             this.pnlSeparador = new System.Windows.Forms.Panel();
+            this.btnReportes = new System.Windows.Forms.Button();
+            this.btnUsuarios = new System.Windows.Forms.Button();
+            this.btnAdministrarPcs = new System.Windows.Forms.Button();
+            this.tmrSideBar = new System.Windows.Forms.Timer(this.components);
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.pnlCaja.SuspendLayout();
             this.pnlChildForms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).BeginInit();
             this.flwSideBar.SuspendLayout();
             this.pnlAmpliarMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.pnlComputadoras.SuspendLayout();
             this.pnlClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlCaja
@@ -93,6 +93,18 @@
             this.pnlChildForms.Size = new System.Drawing.Size(1084, 561);
             this.pnlChildForms.TabIndex = 1;
             // 
+            // pctMainLogo
+            // 
+            this.pctMainLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.pctMainLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pctMainLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoNegro;
+            this.pctMainLogo.Location = new System.Drawing.Point(261, 0);
+            this.pctMainLogo.Name = "pctMainLogo";
+            this.pctMainLogo.Size = new System.Drawing.Size(823, 561);
+            this.pctMainLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctMainLogo.TabIndex = 3;
+            this.pctMainLogo.TabStop = false;
+            // 
             // flwSideBar
             // 
             this.flwSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
@@ -101,9 +113,9 @@
             this.flwSideBar.Controls.Add(this.pnlClientes);
             this.flwSideBar.Controls.Add(this.pnlCaja);
             this.flwSideBar.Controls.Add(this.pnlSeparador);
-            this.flwSideBar.Controls.Add(this.btnReportes);
             this.flwSideBar.Controls.Add(this.btnUsuarios);
             this.flwSideBar.Controls.Add(this.btnAdministrarPcs);
+            this.flwSideBar.Controls.Add(this.btnReportes);
             this.flwSideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.flwSideBar.Location = new System.Drawing.Point(0, 0);
             this.flwSideBar.MaximumSize = new System.Drawing.Size(261, 1625);
@@ -121,103 +133,6 @@
             this.pnlAmpliarMenu.Name = "pnlAmpliarMenu";
             this.pnlAmpliarMenu.Size = new System.Drawing.Size(200, 74);
             this.pnlAmpliarMenu.TabIndex = 2;
-            // 
-            // imgList
-            // 
-            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
-            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgList.Images.SetKeyName(0, "CiberPilosoLogoBlanco.png");
-            this.imgList.Images.SetKeyName(1, "monitorMini.png");
-            this.imgList.Images.SetKeyName(2, "clientesmini.png");
-            this.imgList.Images.SetKeyName(3, "menu.png");
-            // 
-            // pnlComputadoras
-            // 
-            this.pnlComputadoras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(50)))));
-            this.pnlComputadoras.Controls.Add(this.btnComputadoras);
-            this.pnlComputadoras.Location = new System.Drawing.Point(3, 83);
-            this.pnlComputadoras.Name = "pnlComputadoras";
-            this.pnlComputadoras.Size = new System.Drawing.Size(261, 66);
-            this.pnlComputadoras.TabIndex = 5;
-            // 
-            // pnlClientes
-            // 
-            this.pnlClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(50)))));
-            this.pnlClientes.Controls.Add(this.btnClientes);
-            this.pnlClientes.Location = new System.Drawing.Point(3, 155);
-            this.pnlClientes.Name = "pnlClientes";
-            this.pnlClientes.Size = new System.Drawing.Size(261, 66);
-            this.pnlClientes.TabIndex = 5;
-            // 
-            // btnAdministrarPcs
-            // 
-            this.btnAdministrarPcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.btnAdministrarPcs.FlatAppearance.BorderSize = 0;
-            this.btnAdministrarPcs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.btnAdministrarPcs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdministrarPcs.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdministrarPcs.ForeColor = System.Drawing.Color.White;
-            this.btnAdministrarPcs.Location = new System.Drawing.Point(3, 382);
-            this.btnAdministrarPcs.Name = "btnAdministrarPcs";
-            this.btnAdministrarPcs.Size = new System.Drawing.Size(258, 28);
-            this.btnAdministrarPcs.TabIndex = 6;
-            this.btnAdministrarPcs.Text = "Administrar PCs";
-            this.btnAdministrarPcs.UseVisualStyleBackColor = false;
-            this.btnAdministrarPcs.Click += new System.EventHandler(this.btnAdministrarPcs_Click);
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.btnUsuarios.FlatAppearance.BorderSize = 0;
-            this.btnUsuarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuarios.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 348);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(258, 28);
-            this.btnUsuarios.TabIndex = 8;
-            this.btnUsuarios.Text = "Administrar Usuarios";
-            this.btnUsuarios.UseVisualStyleBackColor = false;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
-            // 
-            // btnReportes
-            // 
-            this.btnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.btnReportes.FlatAppearance.BorderSize = 0;
-            this.btnReportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportes.ForeColor = System.Drawing.Color.White;
-            this.btnReportes.Location = new System.Drawing.Point(3, 314);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(258, 28);
-            this.btnReportes.TabIndex = 7;
-            this.btnReportes.Text = "Reportes";
-            this.btnReportes.UseVisualStyleBackColor = false;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
-            // 
-            // tmrSideBar
-            // 
-            this.tmrSideBar.Interval = 10;
-            this.tmrSideBar.Tick += new System.EventHandler(this.tmrSideBar_Tick);
-            // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // pctMainLogo
-            // 
-            this.pctMainLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.pctMainLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pctMainLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoNegro;
-            this.pctMainLogo.Location = new System.Drawing.Point(261, 0);
-            this.pctMainLogo.Name = "pctMainLogo";
-            this.pctMainLogo.Size = new System.Drawing.Size(823, 561);
-            this.pctMainLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pctMainLogo.TabIndex = 3;
-            this.pctMainLogo.TabStop = false;
             // 
             // btnAmpliarMenu
             // 
@@ -237,6 +152,15 @@
             this.btnAmpliarMenu.UseVisualStyleBackColor = true;
             this.btnAmpliarMenu.Click += new System.EventHandler(this.btnAmpliarMenu_Click);
             // 
+            // imgList
+            // 
+            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgList.Images.SetKeyName(0, "CiberPilosoLogoBlanco.png");
+            this.imgList.Images.SetKeyName(1, "monitorMini.png");
+            this.imgList.Images.SetKeyName(2, "clientesmini.png");
+            this.imgList.Images.SetKeyName(3, "menu.png");
+            // 
             // pctLogo
             // 
             this.pctLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoBlanco;
@@ -246,6 +170,15 @@
             this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pctLogo.TabIndex = 0;
             this.pctLogo.TabStop = false;
+            // 
+            // pnlComputadoras
+            // 
+            this.pnlComputadoras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(50)))));
+            this.pnlComputadoras.Controls.Add(this.btnComputadoras);
+            this.pnlComputadoras.Location = new System.Drawing.Point(3, 83);
+            this.pnlComputadoras.Name = "pnlComputadoras";
+            this.pnlComputadoras.Size = new System.Drawing.Size(261, 66);
+            this.pnlComputadoras.TabIndex = 5;
             // 
             // btnComputadoras
             // 
@@ -266,6 +199,15 @@
             this.btnComputadoras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnComputadoras.UseVisualStyleBackColor = false;
             this.btnComputadoras.Click += new System.EventHandler(this.btnComputadoras_Click);
+            // 
+            // pnlClientes
+            // 
+            this.pnlClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(50)))));
+            this.pnlClientes.Controls.Add(this.btnClientes);
+            this.pnlClientes.Location = new System.Drawing.Point(3, 155);
+            this.pnlClientes.Name = "pnlClientes";
+            this.pnlClientes.Size = new System.Drawing.Size(261, 66);
+            this.pnlClientes.TabIndex = 5;
             // 
             // btnClientes
             // 
@@ -295,6 +237,64 @@
             this.pnlSeparador.Size = new System.Drawing.Size(261, 2);
             this.pnlSeparador.TabIndex = 5;
             // 
+            // btnReportes
+            // 
+            this.btnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.ForeColor = System.Drawing.Color.White;
+            this.btnReportes.Location = new System.Drawing.Point(3, 382);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(258, 28);
+            this.btnReportes.TabIndex = 7;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.UseVisualStyleBackColor = false;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.btnUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnUsuarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarios.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
+            this.btnUsuarios.Location = new System.Drawing.Point(3, 314);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(258, 28);
+            this.btnUsuarios.TabIndex = 8;
+            this.btnUsuarios.Text = "Administrar Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+            // 
+            // btnAdministrarPcs
+            // 
+            this.btnAdministrarPcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.btnAdministrarPcs.FlatAppearance.BorderSize = 0;
+            this.btnAdministrarPcs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnAdministrarPcs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdministrarPcs.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdministrarPcs.ForeColor = System.Drawing.Color.White;
+            this.btnAdministrarPcs.Location = new System.Drawing.Point(3, 348);
+            this.btnAdministrarPcs.Name = "btnAdministrarPcs";
+            this.btnAdministrarPcs.Size = new System.Drawing.Size(258, 28);
+            this.btnAdministrarPcs.TabIndex = 6;
+            this.btnAdministrarPcs.Text = "Administrar PCs";
+            this.btnAdministrarPcs.UseVisualStyleBackColor = false;
+            this.btnAdministrarPcs.Click += new System.EventHandler(this.btnAdministrarPcs_Click);
+            // 
+            // tmrSideBar
+            // 
+            this.tmrSideBar.Interval = 10;
+            this.tmrSideBar.Tick += new System.EventHandler(this.tmrSideBar_Tick);
+            // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,13 +309,13 @@
             this.pnlCaja.ResumeLayout(false);
             this.pnlCaja.PerformLayout();
             this.pnlChildForms.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).EndInit();
             this.flwSideBar.ResumeLayout(false);
             this.pnlAmpliarMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.pnlComputadoras.ResumeLayout(false);
             this.pnlClientes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

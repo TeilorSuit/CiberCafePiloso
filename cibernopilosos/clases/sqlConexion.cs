@@ -136,7 +136,7 @@ namespace cibernopilosos
 
         //completar mas funciones
 
-        public bool DevuelveValorBooleano(string consulta)//pal admin
+        public bool DevuelveValorBooleano(string consulta)
         {
             bool aux = false;
             try
@@ -149,6 +149,32 @@ namespace cibernopilosos
                     if (DataReader[0] != DBNull.Value)
                     {
                         aux = (bool)DataReader[0];
+                    }
+                }
+                DataReader.Close();
+                cerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Algo anda mal. " + ex.Message);
+                cerrarConexion();
+            }
+            return aux;
+        }
+
+        public string DevuelveString(string consulta)//pal admin
+        {
+            string aux = "";
+            try
+            {
+                abrirConexion();
+                ComandoSql = new SqlCommand(consulta, ConexionSql);
+                DataReader = ComandoSql.ExecuteReader();
+                if (DataReader.Read())
+                {
+                    if (DataReader[0] != DBNull.Value)
+                    {
+                        aux = (string)DataReader[0];
                     }
                 }
                 DataReader.Close();

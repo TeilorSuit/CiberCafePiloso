@@ -32,7 +32,7 @@ namespace cibernopilosos.formularios
             frmInformacionUsuario frm = new frmInformacionUsuario();
             frm.modo = "edit";
             frm.btnConfirmacion.Text = "Editar";
-            frm.userID = dgvUsers.CurrentRow.Cells[0].Value.ToString();
+            frm.AuxUsername = dgvUsers.CurrentRow.Cells[0].Value.ToString();
             PrecargarDatos(frm);
             frm.ShowDialog();
             llenarTabla();
@@ -41,8 +41,8 @@ namespace cibernopilosos.formularios
 
         private void PrecargarDatos(frmInformacionUsuario UserInfo)
         {
-            UserInfo.txtUsername.Text = dgvUsers.CurrentRow.Cells[1].Value.ToString();
-            UserInfo.txtPassword.Text = dgvUsers.CurrentRow.Cells[2].Value.ToString();
+            UserInfo.txtUsername.Text = dgvUsers.CurrentRow.Cells[0].Value.ToString();
+            UserInfo.txtPassword.Text = dgvUsers.CurrentRow.Cells[1].Value.ToString();
         }
         private void llenarTabla()
         {
@@ -55,8 +55,8 @@ namespace cibernopilosos.formularios
 
         private void btnBorrarUsuario_Click(object sender, EventArgs e)
         {
-            string idactual = frmLogin.IDactual.ToString();
-            if(dgvUsers.CurrentRow.Cells[0].Value.ToString() == idactual.ToString())
+            string useractual = frmLogin.UserActual.ToString();
+            if(dgvUsers.CurrentRow.Cells[0].Value.ToString() == useractual.ToString())
             {
                 MessageBox.Show("No puedes eliminar tu propio usuario");
                 return;
@@ -68,7 +68,7 @@ namespace cibernopilosos.formularios
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
-                string comando = $"delete from Users where UserID='{dgvUsers.CurrentRow.Cells[0].Value.ToString()}'";
+                string comando = $"delete from Users where Username='{dgvUsers.CurrentRow.Cells[0].Value.ToString()}'";
                 if (ConexionSql.EjecutarAccion(comando))
                 {
                     MessageBox.Show("Cliente eliminado exitosamente");

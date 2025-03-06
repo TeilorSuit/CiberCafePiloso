@@ -13,7 +13,7 @@ namespace cibernopilosos.formularios
 {
     public partial class frmLogin : Form
     {
-        public static int IDactual;
+        public static string UserActual;
 
         public frmLogin()
         {
@@ -21,18 +21,22 @@ namespace cibernopilosos.formularios
         }
 
         sqlConexion conexion = new sqlConexion();
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            fn_ProcedimientodeLogin();
+        }
         private void fn_ProcedimientodeLogin()
         {
             string username = txtUserName.Text.ToString();
             string password = txtPassword.Text.ToString();
-            IDactual = conexion.DevuelveValorEntero(
-                $"Select UserID from Users Where Username='{username}' and Password='{password}'");
+            UserActual = username;
             comprobarAcceso(username, password);
         }
 
         private void comprobarAcceso(string username, string password)
         {
-            if (username!= ""&& password!="")
+            if (username!= "" && password!="")
             {
                 if (conexion.Login(username, password))
                 {
@@ -57,13 +61,6 @@ namespace cibernopilosos.formularios
             btnLogin.Image = imgListLogin.Images[1];
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            fn_ProcedimientodeLogin();
-        }
-
-        
-
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             if (lblIncorrectPassword.Text.Length > 0)
@@ -83,7 +80,6 @@ namespace cibernopilosos.formularios
             if (e.KeyCode == Keys.Enter)
             {
                 fn_ProcedimientodeLogin();
-
             }
         }
 

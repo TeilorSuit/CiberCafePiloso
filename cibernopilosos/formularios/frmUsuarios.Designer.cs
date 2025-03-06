@@ -39,28 +39,26 @@
             // 
             // flwPanelCuadro
             // 
-            this.flwPanelCuadro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(227)))));
+            this.flwPanelCuadro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
             this.flwPanelCuadro.Controls.Add(this.btnAgregarUsuario);
             this.flwPanelCuadro.Controls.Add(this.btnEditarUsuario);
             this.flwPanelCuadro.Controls.Add(this.btnBorrarUsuario);
             this.flwPanelCuadro.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flwPanelCuadro.Location = new System.Drawing.Point(808, 0);
-            this.flwPanelCuadro.Margin = new System.Windows.Forms.Padding(4);
+            this.flwPanelCuadro.Location = new System.Drawing.Point(606, 0);
             this.flwPanelCuadro.Name = "flwPanelCuadro";
-            this.flwPanelCuadro.Size = new System.Drawing.Size(289, 690);
+            this.flwPanelCuadro.Size = new System.Drawing.Size(217, 561);
             this.flwPanelCuadro.TabIndex = 1;
             // 
             // btnAgregarUsuario
             // 
-            this.btnAgregarUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(153)))), ((int)(((byte)(120)))));
+            this.btnAgregarUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
             this.btnAgregarUsuario.FlatAppearance.BorderSize = 0;
             this.btnAgregarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarUsuario.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregarUsuario.Location = new System.Drawing.Point(4, 4);
-            this.btnAgregarUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAgregarUsuario.Location = new System.Drawing.Point(3, 3);
             this.btnAgregarUsuario.Name = "btnAgregarUsuario";
-            this.btnAgregarUsuario.Size = new System.Drawing.Size(285, 74);
+            this.btnAgregarUsuario.Size = new System.Drawing.Size(214, 60);
             this.btnAgregarUsuario.TabIndex = 0;
             this.btnAgregarUsuario.Text = "Agregar Usuario";
             this.btnAgregarUsuario.UseVisualStyleBackColor = false;
@@ -68,15 +66,14 @@
             // 
             // btnEditarUsuario
             // 
-            this.btnEditarUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(153)))), ((int)(((byte)(120)))));
+            this.btnEditarUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
             this.btnEditarUsuario.FlatAppearance.BorderSize = 0;
             this.btnEditarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarUsuario.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditarUsuario.Location = new System.Drawing.Point(4, 86);
-            this.btnEditarUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditarUsuario.Location = new System.Drawing.Point(3, 69);
             this.btnEditarUsuario.Name = "btnEditarUsuario";
-            this.btnEditarUsuario.Size = new System.Drawing.Size(285, 74);
+            this.btnEditarUsuario.Size = new System.Drawing.Size(214, 60);
             this.btnEditarUsuario.TabIndex = 1;
             this.btnEditarUsuario.Text = "Editar Usuario";
             this.btnEditarUsuario.UseVisualStyleBackColor = false;
@@ -84,16 +81,15 @@
             // 
             // btnBorrarUsuario
             // 
-            this.btnBorrarUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(153)))), ((int)(((byte)(120)))));
+            this.btnBorrarUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
             this.btnBorrarUsuario.FlatAppearance.BorderSize = 0;
             this.btnBorrarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrarUsuario.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnBorrarUsuario.Location = new System.Drawing.Point(4, 168);
-            this.btnBorrarUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBorrarUsuario.Location = new System.Drawing.Point(3, 135);
             this.btnBorrarUsuario.Name = "btnBorrarUsuario";
             this.btnBorrarUsuario.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnBorrarUsuario.Size = new System.Drawing.Size(285, 74);
+            this.btnBorrarUsuario.Size = new System.Drawing.Size(214, 60);
             this.btnBorrarUsuario.TabIndex = 2;
             this.btnBorrarUsuario.Text = "Borrar Usuario";
             this.btnBorrarUsuario.UseVisualStyleBackColor = false;
@@ -105,33 +101,31 @@
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.AllowUserToResizeColumns = false;
             this.dgvUsers.AllowUserToResizeRows = false;
-            this.dgvUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(227)))));
+            this.dgvUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(70)))), ((int)(((byte)(21)))));
+            this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvUsers.Location = new System.Drawing.Point(0, 0);
-            this.dgvUsers.Margin = new System.Windows.Forms.Padding(4);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersVisible = false;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(1097, 690);
+            this.dgvUsers.Size = new System.Drawing.Size(823, 561);
             this.dgvUsers.TabIndex = 2;
             // 
             // frmUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(1097, 690);
+            this.ClientSize = new System.Drawing.Size(823, 561);
             this.Controls.Add(this.flwPanelCuadro);
             this.Controls.Add(this.dgvUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmUsuarios";
             this.Text = "frmEmpleados";
             this.flwPanelCuadro.ResumeLayout(false);

@@ -38,17 +38,15 @@
             this.lblIncorrectPassword = new System.Windows.Forms.Label();
             this.pnlSeparador1 = new System.Windows.Forms.Panel();
             this.pnlSeparador = new System.Windows.Forms.Panel();
-            this.pctLogo = new System.Windows.Forms.PictureBox();
-            this.btnLogin = new System.Windows.Forms.PictureBox();
-            this.pctBack = new System.Windows.Forms.PictureBox();
             this.pnlBarraSuperior = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnShowPassword = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLogin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctBack)).BeginInit();
+            this.btnLogin = new System.Windows.Forms.PictureBox();
+            this.pctBack = new System.Windows.Forms.PictureBox();
             this.pnlBarraSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBack)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUserName
@@ -131,42 +129,6 @@
             this.pnlSeparador.Size = new System.Drawing.Size(299, 2);
             this.pnlSeparador.TabIndex = 13;
             // 
-            // pctLogo
-            // 
-            this.pctLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pctLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pctLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoNegro;
-            this.pctLogo.Location = new System.Drawing.Point(121, 80);
-            this.pctLogo.Name = "pctLogo";
-            this.pctLogo.Size = new System.Drawing.Size(136, 110);
-            this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pctLogo.TabIndex = 7;
-            this.pctLogo.TabStop = false;
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogin.Location = new System.Drawing.Point(135, 416);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(108, 61);
-            this.btnLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnLogin.TabIndex = 6;
-            this.btnLogin.TabStop = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            this.btnLogin.MouseEnter += new System.EventHandler(this.btnLogin_MouseEnter);
-            this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
-            // 
-            // pctBack
-            // 
-            this.pctBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pctBack.Image = global::cibernopilosos.Properties.Resources.whitebackgroundlogin;
-            this.pctBack.Location = new System.Drawing.Point(-12, 12);
-            this.pctBack.Name = "pctBack";
-            this.pctBack.Size = new System.Drawing.Size(393, 269);
-            this.pctBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pctBack.TabIndex = 11;
-            this.pctBack.TabStop = false;
-            // 
             // pnlBarraSuperior
             // 
             this.pnlBarraSuperior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
@@ -204,6 +166,30 @@
             this.btnShowPassword.TabStop = false;
             this.btnShowPassword.Click += new System.EventHandler(this.btnShowPassword_Click);
             // 
+            // btnLogin
+            // 
+            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogin.Location = new System.Drawing.Point(135, 416);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(108, 61);
+            this.btnLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.TabStop = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.MouseEnter += new System.EventHandler(this.btnLogin_MouseEnter);
+            this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
+            // 
+            // pctBack
+            // 
+            this.pctBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pctBack.Image = global::cibernopilosos.Properties.Resources.whitebackgroundlogin;
+            this.pctBack.Location = new System.Drawing.Point(-12, 12);
+            this.pctBack.Name = "pctBack";
+            this.pctBack.Size = new System.Drawing.Size(393, 269);
+            this.pctBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctBack.TabIndex = 11;
+            this.pctBack.TabStop = false;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,7 +201,6 @@
             this.Controls.Add(this.pnlSeparador);
             this.Controls.Add(this.pnlSeparador1);
             this.Controls.Add(this.lblIncorrectPassword);
-            this.Controls.Add(this.pctLogo);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
@@ -231,11 +216,10 @@
             this.MinimumSize = new System.Drawing.Size(378, 512);
             this.Name = "frmLogin";
             this.Load += new System.EventHandler(this.frmLogin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLogin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctBack)).EndInit();
             this.pnlBarraSuperior.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBack)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,7 +233,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.PictureBox btnLogin;
         private System.Windows.Forms.ImageList imgListLogin;
-        private System.Windows.Forms.PictureBox pctLogo;
         private System.Windows.Forms.Label lblIncorrectPassword;
         private System.Windows.Forms.PictureBox pctBack;
         private System.Windows.Forms.Panel pnlSeparador1;

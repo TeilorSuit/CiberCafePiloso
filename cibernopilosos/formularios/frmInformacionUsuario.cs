@@ -17,7 +17,7 @@ namespace cibernopilosos.formularios
             InitializeComponent();
         }
         sqlConexion conexionsql = new sqlConexion();
-        public string modo = "add", userID = "";
+        public string modo = "add";
         private void btnConfirmacion_Click(object sender, EventArgs e)
         {
             string username, password;
@@ -38,10 +38,12 @@ namespace cibernopilosos.formularios
             if (modo == "add")
             {
                 AgregarUsuario(username, password);
+                this.Close();
             }
             else
             {
                 ActualizarUsuario(username, password);
+                this.Close();
             }
         }
         private void AgregarUsuario(string username, string password)
@@ -57,10 +59,12 @@ namespace cibernopilosos.formularios
                 MessageBox.Show("Error al agregar usuario");
             }
         }
+
+        public string AuxUsername;
         private void ActualizarUsuario(string username, string password)
         {
             int Admin = checkAdmin();
-            string consulta = $"Update Users set Username='{username}', Password='{password}', Admin={Admin} where UserID='{userID}'";
+            string consulta = $"Update Users set Username='{username}', Password='{password}', Admin={Admin} where Username='{AuxUsername}'";
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("Cliente actualizado exitosamente");
