@@ -35,6 +35,10 @@
             this.txtPcInfo = new System.Windows.Forms.TextBox();
             this.btnConfirmacion = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.txtPcIP = new System.Windows.Forms.TextBox();
+            this.lblPCIP = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnValidar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblPcNumber
@@ -53,7 +57,7 @@
             this.lblPcInfo.AutoSize = true;
             this.lblPcInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPcInfo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblPcInfo.Location = new System.Drawing.Point(31, 97);
+            this.lblPcInfo.Location = new System.Drawing.Point(32, 153);
             this.lblPcInfo.Name = "lblPcInfo";
             this.lblPcInfo.Size = new System.Drawing.Size(317, 25);
             this.lblPcInfo.TabIndex = 1;
@@ -66,11 +70,11 @@
             this.txtPcNumber.Name = "txtPcNumber";
             this.txtPcNumber.Size = new System.Drawing.Size(331, 20);
             this.txtPcNumber.TabIndex = 5;
-            this.txtPcNumber.TextChanged += new System.EventHandler(this.txtPcNumber_TextChanged);
+            this.txtPcNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPcNumber_KeyPress);
             // 
             // txtPcInfo
             // 
-            this.txtPcInfo.Location = new System.Drawing.Point(34, 129);
+            this.txtPcInfo.Location = new System.Drawing.Point(35, 185);
             this.txtPcInfo.MaxLength = 100;
             this.txtPcInfo.Multiline = true;
             this.txtPcInfo.Name = "txtPcInfo";
@@ -79,8 +83,9 @@
             // 
             // btnConfirmacion
             // 
+            this.btnConfirmacion.Enabled = false;
             this.btnConfirmacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmacion.Location = new System.Drawing.Point(34, 201);
+            this.btnConfirmacion.Location = new System.Drawing.Point(35, 300);
             this.btnConfirmacion.Name = "btnConfirmacion";
             this.btnConfirmacion.Size = new System.Drawing.Size(166, 26);
             this.btnConfirmacion.TabIndex = 10;
@@ -91,7 +96,7 @@
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(198, 201);
+            this.btnSalir.Location = new System.Drawing.Point(199, 300);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(166, 26);
             this.btnSalir.TabIndex = 11;
@@ -99,12 +104,45 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // txtPcIP
+            // 
+            this.txtPcIP.Location = new System.Drawing.Point(34, 119);
+            this.txtPcIP.MaxLength = 15;
+            this.txtPcIP.Name = "txtPcIP";
+            this.txtPcIP.Size = new System.Drawing.Size(331, 20);
+            this.txtPcIP.TabIndex = 13;
+            // 
+            // lblPCIP
+            // 
+            this.lblPCIP.AutoSize = true;
+            this.lblPCIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPCIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblPCIP.Location = new System.Drawing.Point(32, 91);
+            this.lblPCIP.Name = "lblPCIP";
+            this.lblPCIP.Size = new System.Drawing.Size(312, 25);
+            this.lblPCIP.TabIndex = 12;
+            this.lblPCIP.Text = "Dirección IP del Computador";
+            // 
+            // btnValidar
+            // 
+            this.btnValidar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValidar.Location = new System.Drawing.Point(34, 259);
+            this.btnValidar.Name = "btnValidar";
+            this.btnValidar.Size = new System.Drawing.Size(332, 35);
+            this.btnValidar.TabIndex = 14;
+            this.btnValidar.Text = "Probar";
+            this.btnValidar.UseVisualStyleBackColor = true;
+            this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
+            // 
             // frmInformacionPC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(153)))), ((int)(((byte)(120)))));
-            this.ClientSize = new System.Drawing.Size(403, 267);
+            this.ClientSize = new System.Drawing.Size(403, 354);
+            this.Controls.Add(this.btnValidar);
+            this.Controls.Add(this.txtPcIP);
+            this.Controls.Add(this.lblPCIP);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnConfirmacion);
             this.Controls.Add(this.txtPcInfo);
@@ -113,11 +151,12 @@
             this.Controls.Add(this.lblPcNumber);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(419, 306);
+            this.MaximumSize = new System.Drawing.Size(419, 393);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(419, 306);
+            this.MinimumSize = new System.Drawing.Size(419, 393);
             this.Name = "frmInformacionPC";
             this.Text = "Administrar";
+            this.Load += new System.EventHandler(this.frmInformacionPC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,5 +170,9 @@
         public System.Windows.Forms.TextBox txtPcNumber;
         public System.Windows.Forms.TextBox txtPcInfo;
         public System.Windows.Forms.Button btnSalir;
+        public System.Windows.Forms.TextBox txtPcIP;
+        private System.Windows.Forms.Label lblPCIP;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        public System.Windows.Forms.Button btnValidar;
     }
 }

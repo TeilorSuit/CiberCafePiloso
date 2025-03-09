@@ -10,16 +10,13 @@ using System.Windows.Forms;
 
 namespace cibernopilosos.formularios
 {
-    public partial class frmAdministrarComputadoras : Form
+    public partial class frmAdminPcs : Form
     {
-        public frmAdministrarComputadoras()
+        public frmAdminPcs()
         {
             InitializeComponent();
             llenarTabla();
         }
-        //Agregar PCS
-        //Editar PCS
-        //Borrar PCS
 
         private void llenarTabla()
         {
@@ -44,7 +41,7 @@ namespace cibernopilosos.formularios
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
-                string comando = $"delete from Computers where PcID='{dgvAdmiPCs.CurrentRow.Cells[0].Value.ToString()}'";
+                string comando = $"delete from Computers where PcIP='{dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString()}'";
                 if (ConexionSql.EjecutarAccion(comando))
                 {
                     MessageBox.Show("Computadora eliminada");
@@ -64,8 +61,7 @@ namespace cibernopilosos.formularios
                 frmInformacionPC frm = new frmInformacionPC();
                 frm.modo = "edit";
                 frm.btnConfirmacion.Text = "Editar";
-                // Se asume que la columna del ID de la PC se llama "PcID"
-                frm.pcID = dgvAdmiPCs.CurrentRow.Cells["PcID"].Value.ToString();
+                frm.pcIPOG = dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString();
                 PrecargarDatos(frm);
                 frm.ShowDialog();
                 llenarTabla();
@@ -78,14 +74,9 @@ namespace cibernopilosos.formularios
 
         private void PrecargarDatos(frmInformacionPC PCInfo)
         {
-            // Se asume que en el DataGridView las columnas se llaman "pcNumber" y "pcInfo"
             PCInfo.txtPcNumber.Text = dgvAdmiPCs.CurrentRow.Cells["pcNumber"].Value.ToString();
             PCInfo.txtPcInfo.Text = dgvAdmiPCs.CurrentRow.Cells["PcInfo"].Value.ToString();
-        }
-
-        private void flwPanelCuadro_Paint(object sender, PaintEventArgs e)
-        {
-
+            PCInfo.txtPcIP.Text = dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString();
         }
     }
 }

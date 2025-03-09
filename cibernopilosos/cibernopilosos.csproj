@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>cibernopilosos</RootNamespace>
     <AssemblyName>cibernopilosos</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="formularios\frmAdministrarComputadoras.cs">
+    <Compile Include="formularios\frmAdminPcs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmAdministrarComputadoras.Designer.cs">
-      <DependentUpon>frmAdministrarComputadoras.cs</DependentUpon>
+    <Compile Include="formularios\frmAdminPcs.Designer.cs">
+      <DependentUpon>frmAdminPcs.cs</DependentUpon>
     </Compile>
     <Compile Include="formularios\frmClientes.cs">
       <SubType>Form</SubType>
@@ -75,6 +76,12 @@
     </Compile>
     <Compile Include="formularios\frmInformacionUsuario.Designer.cs">
       <DependentUpon>frmInformacionUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formularios\Computadoras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formularios\Computadoras.Designer.cs">
+      <DependentUpon>Computadoras.cs</DependentUpon>
     </Compile>
     <Compile Include="formularios\frmReportes.cs">
       <SubType>Form</SubType>
@@ -109,8 +116,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="clases\sqlConexion.cs" />
-    <EmbeddedResource Include="formularios\frmAdministrarComputadoras.resx">
-      <DependentUpon>frmAdministrarComputadoras.cs</DependentUpon>
+    <EmbeddedResource Include="formularios\frmAdminPcs.resx">
+      <DependentUpon>frmAdminPcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formularios\frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
@@ -123,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formularios\frmInformacionUsuario.resx">
       <DependentUpon>frmInformacionUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formularios\Computadoras.resx">
+      <DependentUpon>Computadoras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formularios\frmReportes.resx">
       <DependentUpon>frmReportes.cs</DependentUpon>

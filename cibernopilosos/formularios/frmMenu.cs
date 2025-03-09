@@ -84,13 +84,13 @@ namespace cibernopilosos.formularios
 
         private void btnComputadoras_Click(object sender, EventArgs e)
         {
-            frmComputadoras computadoras = new frmComputadoras();
-            abrirFormularioHijo(computadoras);
+            Computadoras pcs = new Computadoras();
+            abrirFormularioHijo(pcs);
         }
 
         private void btnAdministrarPcs_Click(object sender, EventArgs e)
         {
-            frmAdministrarComputadoras administrarmComputadoras = new frmAdministrarComputadoras();
+            frmAdminPcs administrarmComputadoras = new frmAdminPcs();
             abrirFormularioHijo(administrarmComputadoras);
         }
         private void btnClientes_Click(object sender, EventArgs e)
@@ -114,7 +114,5 @@ namespace cibernopilosos.formularios
         {
             Application.Exit();
         }
-
-
     }
 }

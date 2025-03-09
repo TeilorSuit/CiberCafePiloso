@@ -1,6 +1,6 @@
 ﻿namespace cibernopilosos.formularios
 {
-    partial class frmAdministrarComputadoras
+    partial class frmAdminPcs
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,6 @@
             this.flwPanelCuadro.Name = "flwPanelCuadro";
             this.flwPanelCuadro.Size = new System.Drawing.Size(217, 561);
             this.flwPanelCuadro.TabIndex = 0;
-            this.flwPanelCuadro.Paint += new System.Windows.Forms.PaintEventHandler(this.flwPanelCuadro_Paint);
             // 
             // btnAgregarPC
             // 
@@ -147,7 +146,7 @@
             this.pnlDgv.Size = new System.Drawing.Size(606, 561);
             this.pnlDgv.TabIndex = 1;
             // 
-            // frmAdministrarComputadoras
+            // frmAdminPcs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,7 +155,7 @@
             this.Controls.Add(this.pnlDgv);
             this.Controls.Add(this.flwPanelCuadro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmAdministrarComputadoras";
+            this.Name = "frmAdminPcs";
             this.Text = "frmAdministrarComputadoras";
             this.flwPanelCuadro.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiPCs)).EndInit();

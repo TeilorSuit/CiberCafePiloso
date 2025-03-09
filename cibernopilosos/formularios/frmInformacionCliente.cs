@@ -95,7 +95,24 @@ namespace cibernopilosos.formularios
                 return false;
             }
         }
-   
+
+        private void txtClientID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //trozo robado
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtClientPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

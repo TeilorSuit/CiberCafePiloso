@@ -28,8 +28,8 @@ namespace cibernopilosos
 
         public sqlConexion()
         {
-            Server = "TEILOR\\SQLEXPRESS";
-            Database = "CiberCafeDB";
+            Server = "(local)";
+            Database = "cibercafedb";
             Usuario = "teilor";
             Clave = "teilor";
         }
