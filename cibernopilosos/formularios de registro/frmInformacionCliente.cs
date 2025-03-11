@@ -19,6 +19,7 @@ namespace cibernopilosos.formularios
         {
             InitializeComponent();
             dtClientBirthDate.MaxDate = DateTime.Today.AddYears(-18);
+            btnConfirmacion.Enabled = false;
         }
         private void AgregarCliente(string clientId, string clientName, DateTime clientBirthDate, string clientPhone, string clientAddress)
         {
@@ -82,7 +83,7 @@ namespace cibernopilosos.formularios
             {
                 ActualizarCliente(clientID, clientName, clientBirthdate, clientPhone, clientAddress);
             }
-
+            this.Close();
         }
         private bool validacionDatos(string Dato)//pepe
         {
@@ -110,6 +111,37 @@ namespace cibernopilosos.formularios
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtClientID_TextChanged(object sender, EventArgs e)
+        {
+            if (txtClientID.Text.Length < 10)
+            {
+                btnConfirmacion.Enabled = false;
+            }
+            else
+            {
+                btnConfirmacion.Enabled = true;
+            }
+        }
+
+        private void txtClientPhone_TextChanged(object sender, EventArgs e)
+        {
+            if (txtClientPhone.Text.Length < 10 && txtClientPhone.Text.Length !=0)
+            {
+                btnConfirmacion.Enabled = false;
+            }
+            else
+            {
+                if (txtClientID.Text.Length == 10)
+                {
+                    btnConfirmacion.Enabled = true;
+                }
+                else
+                {
+                    btnConfirmacion.Enabled = false;
+                }
             }
         }
 

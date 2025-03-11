@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace cibernopilosos.formularios
 {
@@ -25,6 +26,23 @@ namespace cibernopilosos.formularios
             DataTable tabla = ConexionSql.retornaRegistros(consulta);
             dgvAdmiClientes.DataSource = "";
             dgvAdmiClientes.DataSource = tabla;
+            cambiarNombreColumnas(tabla);
+        }
+
+        private void cambiarNombreColumnas(DataTable tabla)
+        {
+            if (tabla.Columns.Contains("ClientID"))
+                dgvAdmiClientes.Columns["ClientID"].HeaderText = "ID";
+            if (tabla.Columns.Contains("ClientMemStatus"))
+                dgvAdmiClientes.Columns["ClientMemStatus"].HeaderText = "Membresía";
+            if (tabla.Columns.Contains("ClientName"))
+                dgvAdmiClientes.Columns["ClientName"].HeaderText = "Nombre";
+            if (tabla.Columns.Contains("ClientBirthDate"))
+                dgvAdmiClientes.Columns["ClientBirthDate"].HeaderText = "Fecha de Nacimiento";
+            if (tabla.Columns.Contains("ClientPhone"))
+                dgvAdmiClientes.Columns["ClientPhone"].HeaderText = "Teléfono";
+            if (tabla.Columns.Contains("ClientAddress"))
+                dgvAdmiClientes.Columns["ClientAddress"].HeaderText = "Dirección";
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
@@ -48,14 +66,17 @@ namespace cibernopilosos.formularios
         }
         private void btnBorrarCliente_Click(object sender, EventArgs e)
         {
+            string clienteId = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
+            string clienteName = dgvAdmiClientes.CurrentRow.Cells["ClientName"].Value.ToString();
             DialogResult confirmacion;
-            confirmacion= MessageBox.Show("Está acción no se puede deshacer. ¿Desea continuar?", "ADVERTENCIA",
+            confirmacion= MessageBox.Show($"Está acción borrará absolutamente todos los registros existentes del cliente {clienteName}. ¿Desea continuar?", "ADVERTENCIA",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
-                string comando = $"delete from Clients where ClientID='{dgvAdmiClientes.CurrentRow.Cells[0].Value.ToString()}'";
-                if(ConexionSql.EjecutarAccion(comando))
+                //string comando = $"delete from Clients where ClientID='{clienteId}'";
+                string comando = $"delete from ClientMembership where CMClientID = '{clienteId}';delete from ClientComputer where CC_ClientID = '{clienteId}';delete from Transactions where TransClientID = '{clienteId}'; delete from Clients where ClientID = '{clienteId}';";
+                if (ConexionSql.EjecutarAccion(comando))
                 {
                     MessageBox.Show("Cliente eliminado");
                 }

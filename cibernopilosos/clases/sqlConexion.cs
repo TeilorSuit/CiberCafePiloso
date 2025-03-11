@@ -133,7 +133,31 @@ namespace cibernopilosos
             }
             return aux;
         }
-
+        public decimal DevuelveValorDecimal(string consulta)
+        {
+            decimal aux = 0;
+            try
+            {
+                abrirConexion();
+                ComandoSql = new SqlCommand(consulta, ConexionSql);
+                DataReader = ComandoSql.ExecuteReader();
+                if (DataReader.Read())
+                {
+                    if (DataReader[0] != DBNull.Value)
+                    {
+                        aux = (decimal)DataReader[0];
+                    }
+                }
+                DataReader.Close();
+                cerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Algo anda mal. " + ex.Message);
+                cerrarConexion();
+            }
+            return aux;
+        }
         //completar mas funciones
 
         public bool DevuelveValorBooleano(string consulta)

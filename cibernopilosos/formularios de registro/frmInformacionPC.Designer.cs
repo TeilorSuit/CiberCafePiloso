@@ -44,27 +44,28 @@
             // lblPcNumber
             // 
             this.lblPcNumber.AutoSize = true;
-            this.lblPcNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPcNumber.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPcNumber.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblPcNumber.Location = new System.Drawing.Point(32, 29);
+            this.lblPcNumber.Location = new System.Drawing.Point(32, 35);
             this.lblPcNumber.Name = "lblPcNumber";
-            this.lblPcNumber.Size = new System.Drawing.Size(256, 25);
+            this.lblPcNumber.Size = new System.Drawing.Size(220, 20);
             this.lblPcNumber.TabIndex = 0;
             this.lblPcNumber.Text = "Número de computador";
             // 
             // lblPcInfo
             // 
             this.lblPcInfo.AutoSize = true;
-            this.lblPcInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPcInfo.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPcInfo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblPcInfo.Location = new System.Drawing.Point(32, 153);
+            this.lblPcInfo.Location = new System.Drawing.Point(32, 159);
             this.lblPcInfo.Name = "lblPcInfo";
-            this.lblPcInfo.Size = new System.Drawing.Size(317, 25);
+            this.lblPcInfo.Size = new System.Drawing.Size(179, 20);
             this.lblPcInfo.TabIndex = 1;
-            this.lblPcInfo.Text = "Información del pc (opcional)";
+            this.lblPcInfo.Text = "Información del pc";
             // 
             // txtPcNumber
             // 
+            this.txtPcNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtPcNumber.Location = new System.Drawing.Point(34, 57);
             this.txtPcNumber.MaxLength = 3;
             this.txtPcNumber.Name = "txtPcNumber";
@@ -74,6 +75,7 @@
             // 
             // txtPcInfo
             // 
+            this.txtPcInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtPcInfo.Location = new System.Drawing.Point(35, 185);
             this.txtPcInfo.MaxLength = 100;
             this.txtPcInfo.Multiline = true;
@@ -83,29 +85,36 @@
             // 
             // btnConfirmacion
             // 
+            this.btnConfirmacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnConfirmacion.Enabled = false;
+            this.btnConfirmacion.FlatAppearance.BorderSize = 0;
+            this.btnConfirmacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmacion.Location = new System.Drawing.Point(35, 300);
             this.btnConfirmacion.Name = "btnConfirmacion";
             this.btnConfirmacion.Size = new System.Drawing.Size(166, 26);
             this.btnConfirmacion.TabIndex = 10;
             this.btnConfirmacion.Text = "Agregar";
-            this.btnConfirmacion.UseVisualStyleBackColor = true;
+            this.btnConfirmacion.UseVisualStyleBackColor = false;
             this.btnConfirmacion.Click += new System.EventHandler(this.btnConfirmacion_Click);
             // 
             // btnSalir
             // 
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnSalir.FlatAppearance.BorderSize = 0;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.Location = new System.Drawing.Point(199, 300);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(166, 26);
             this.btnSalir.TabIndex = 11;
             this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // txtPcIP
             // 
+            this.txtPcIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtPcIP.Location = new System.Drawing.Point(34, 119);
             this.txtPcIP.MaxLength = 15;
             this.txtPcIP.Name = "txtPcIP";
@@ -115,30 +124,33 @@
             // lblPCIP
             // 
             this.lblPCIP.AutoSize = true;
-            this.lblPCIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPCIP.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPCIP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblPCIP.Location = new System.Drawing.Point(32, 91);
+            this.lblPCIP.Location = new System.Drawing.Point(32, 97);
             this.lblPCIP.Name = "lblPCIP";
-            this.lblPCIP.Size = new System.Drawing.Size(312, 25);
+            this.lblPCIP.Size = new System.Drawing.Size(269, 20);
             this.lblPCIP.TabIndex = 12;
             this.lblPCIP.Text = "Dirección IP del Computador";
             // 
             // btnValidar
             // 
+            this.btnValidar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnValidar.FlatAppearance.BorderSize = 0;
+            this.btnValidar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValidar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValidar.Location = new System.Drawing.Point(34, 259);
             this.btnValidar.Name = "btnValidar";
             this.btnValidar.Size = new System.Drawing.Size(332, 35);
             this.btnValidar.TabIndex = 14;
             this.btnValidar.Text = "Probar";
-            this.btnValidar.UseVisualStyleBackColor = true;
+            this.btnValidar.UseVisualStyleBackColor = false;
             this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
             // 
             // frmInformacionPC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(153)))), ((int)(((byte)(120)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(403, 354);
             this.Controls.Add(this.btnValidar);
             this.Controls.Add(this.txtPcIP);

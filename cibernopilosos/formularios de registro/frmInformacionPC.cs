@@ -16,7 +16,7 @@ namespace cibernopilosos.formularios
     {
         private TcpClient Tester;
         private IPAddress ipAddress;
-        private int puerto = 12345;
+        private int puerto = 12346;
 
         public frmInformacionPC()
         {

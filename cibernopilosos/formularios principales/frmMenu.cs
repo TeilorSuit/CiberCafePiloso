@@ -108,11 +108,19 @@ namespace cibernopilosos.formularios
             frmReportes Reportes = new frmReportes();
             abrirFormularioHijo(Reportes);
         }
+        private void btnTransacciones_Click(object sender, EventArgs e)
+        {
+            frmTrans Trans = new frmTrans();
+            abrirFormularioHijo(Trans);
+        }
+
         #endregion
 
         private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
+
     }
 }

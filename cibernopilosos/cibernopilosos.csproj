@@ -47,106 +47,106 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="formularios\frmAdminPcs.cs">
+    <Compile Include="formularios principales\frmAdminPcs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmAdminPcs.Designer.cs">
+    <Compile Include="formularios principales\frmAdminPcs.Designer.cs">
       <DependentUpon>frmAdminPcs.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmClientes.cs">
+    <Compile Include="formularios principales\frmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmClientes.Designer.cs">
+    <Compile Include="formularios principales\frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmComputadoras.cs">
+    <Compile Include="formularios de registro\frmInformacionCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmComputadoras.Designer.cs">
-      <DependentUpon>frmComputadoras.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formularios\frmInformacionCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formularios\frmInformacionCliente.Designer.cs">
+    <Compile Include="formularios de registro\frmInformacionCliente.Designer.cs">
       <DependentUpon>frmInformacionCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmInformacionUsuario.cs">
+    <Compile Include="formularios de registro\frmInformacionUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmInformacionUsuario.Designer.cs">
+    <Compile Include="formularios de registro\frmInformacionUsuario.Designer.cs">
       <DependentUpon>frmInformacionUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\Computadoras.cs">
+    <Compile Include="formularios principales\Computadoras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\Computadoras.Designer.cs">
+    <Compile Include="formularios principales\Computadoras.Designer.cs">
       <DependentUpon>Computadoras.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmReportes.cs">
+    <Compile Include="formularios principales\frmReportes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmReportes.Designer.cs">
+    <Compile Include="formularios principales\frmReportes.Designer.cs">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmUsuarios.cs">
+    <Compile Include="formularios principales\frmTrans.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmUsuarios.Designer.cs">
+    <Compile Include="formularios principales\frmTrans.Designer.cs">
+      <DependentUpon>frmTrans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formularios principales\frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formularios principales\frmUsuarios.Designer.cs">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmInformacionPC.cs">
+    <Compile Include="formularios de registro\frmInformacionPC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmInformacionPC.Designer.cs">
+    <Compile Include="formularios de registro\frmInformacionPC.Designer.cs">
       <DependentUpon>frmInformacionPC.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmLogin.cs">
+    <Compile Include="formularios principales\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmLogin.Designer.cs">
+    <Compile Include="formularios principales\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\frmMenu.cs">
+    <Compile Include="formularios principales\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\frmMenu.Designer.cs">
+    <Compile Include="formularios principales\frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="clases\sqlConexion.cs" />
-    <EmbeddedResource Include="formularios\frmAdminPcs.resx">
+    <EmbeddedResource Include="formularios principales\frmAdminPcs.resx">
       <DependentUpon>frmAdminPcs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmClientes.resx">
+    <EmbeddedResource Include="formularios principales\frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmComputadoras.resx">
-      <DependentUpon>frmComputadoras.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmInformacionCliente.resx">
+    <EmbeddedResource Include="formularios de registro\frmInformacionCliente.resx">
       <DependentUpon>frmInformacionCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmInformacionUsuario.resx">
+    <EmbeddedResource Include="formularios de registro\frmInformacionUsuario.resx">
       <DependentUpon>frmInformacionUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\Computadoras.resx">
+    <EmbeddedResource Include="formularios principales\Computadoras.resx">
       <DependentUpon>Computadoras.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmReportes.resx">
+    <EmbeddedResource Include="formularios principales\frmReportes.resx">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmUsuarios.resx">
+    <EmbeddedResource Include="formularios principales\frmTrans.resx">
+      <DependentUpon>frmTrans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formularios principales\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmInformacionPC.resx">
+    <EmbeddedResource Include="formularios de registro\frmInformacionPC.resx">
       <DependentUpon>frmInformacionPC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmLogin.resx">
+    <EmbeddedResource Include="formularios principales\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\frmMenu.resx">
+    <EmbeddedResource Include="formularios principales\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -208,5 +208,6 @@
   <ItemGroup>
     <None Include="ImagenesRecursos\whitebackgroundlogin.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

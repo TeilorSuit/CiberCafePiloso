@@ -12,6 +12,7 @@ namespace cibernopilosos.formularios
 {
     public partial class frmAdminPcs : Form
     {
+        sqlConexion ConexionSql = new sqlConexion();
         public frmAdminPcs()
         {
             InitializeComponent();
@@ -20,7 +21,6 @@ namespace cibernopilosos.formularios
 
         private void llenarTabla()
         {
-            sqlConexion ConexionSql = new sqlConexion();
             string consulta = "select * from Computers";
             DataTable tabla = ConexionSql.retornaRegistros(consulta);
             dgvAdmiPCs.DataSource = "";
@@ -40,7 +40,6 @@ namespace cibernopilosos.formularios
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             if (confirmacion == DialogResult.OK)
             {
-                sqlConexion ConexionSql = new sqlConexion();
                 string comando = $"delete from Computers where PcIP='{dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString()}'";
                 if (ConexionSql.EjecutarAccion(comando))
                 {
@@ -77,6 +76,29 @@ namespace cibernopilosos.formularios
             PCInfo.txtPcNumber.Text = dgvAdmiPCs.CurrentRow.Cells["pcNumber"].Value.ToString();
             PCInfo.txtPcInfo.Text = dgvAdmiPCs.CurrentRow.Cells["PcInfo"].Value.ToString();
             PCInfo.txtPcIP.Text = dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString();
+        }
+
+        private void btnNuevoPrecio_Click(object sender, EventArgs e)
+        {
+            decimal dolares = numDolares.Value;
+            decimal centavos = numCentavos.Value;
+            string consulta = $"update Services_Products set ServicePrice = {dolares}.{centavos} where ServiceID = 2";
+            if (ConexionSql.EjecutarAccion(consulta))
+            {
+                MessageBox.Show("Precio actualizado");
+                lblPrecioActual.Text = $"${dolares}.{centavos}";
+            }
+            else
+            {
+                MessageBox.Show("Error al actualizar precio");
+            }
+        }
+
+        private void frmAdminPcs_Load(object sender, EventArgs e)
+        {
+            string consulta = "select ServicePrice from Services_Products where ServiceID = 2";
+            decimal valor = ConexionSql.DevuelveValorDecimal(consulta);
+            lblPrecioActual.Text = Math.Round(valor,2).ToString();
         }
     }
 }

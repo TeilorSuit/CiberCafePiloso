@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
-            this.pnlCaja = new System.Windows.Forms.Panel();
-            this.lblCaja = new System.Windows.Forms.Label();
             this.pnlChildForms = new System.Windows.Forms.Panel();
             this.pctMainLogo = new System.Windows.Forms.PictureBox();
             this.flwSideBar = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,12 +42,12 @@
             this.pnlClientes = new System.Windows.Forms.Panel();
             this.btnClientes = new System.Windows.Forms.Button();
             this.pnlSeparador = new System.Windows.Forms.Panel();
-            this.btnReportes = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnAdministrarPcs = new System.Windows.Forms.Button();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.tmrSideBar = new System.Windows.Forms.Timer(this.components);
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.pnlCaja.SuspendLayout();
+            this.pnlTransacciones = new System.Windows.Forms.Panel();
+            this.btnTransacciones = new System.Windows.Forms.Button();
             this.pnlChildForms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).BeginInit();
             this.flwSideBar.SuspendLayout();
@@ -57,30 +55,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.pnlComputadoras.SuspendLayout();
             this.pnlClientes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            this.pnlTransacciones.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlCaja
-            // 
-            this.pnlCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
-            this.pnlCaja.Controls.Add(this.lblCaja);
-            this.pnlCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlCaja.Location = new System.Drawing.Point(3, 227);
-            this.pnlCaja.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.pnlCaja.Name = "pnlCaja";
-            this.pnlCaja.Size = new System.Drawing.Size(261, 66);
-            this.pnlCaja.TabIndex = 4;
-            // 
-            // lblCaja
-            // 
-            this.lblCaja.AutoSize = true;
-            this.lblCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaja.ForeColor = System.Drawing.Color.White;
-            this.lblCaja.Location = new System.Drawing.Point(86, 20);
-            this.lblCaja.Name = "lblCaja";
-            this.lblCaja.Size = new System.Drawing.Size(88, 31);
-            this.lblCaja.TabIndex = 0;
-            this.lblCaja.Text = "CAJA";
             // 
             // pnlChildForms
             // 
@@ -111,7 +87,7 @@
             this.flwSideBar.Controls.Add(this.pnlAmpliarMenu);
             this.flwSideBar.Controls.Add(this.pnlComputadoras);
             this.flwSideBar.Controls.Add(this.pnlClientes);
-            this.flwSideBar.Controls.Add(this.pnlCaja);
+            this.flwSideBar.Controls.Add(this.pnlTransacciones);
             this.flwSideBar.Controls.Add(this.pnlSeparador);
             this.flwSideBar.Controls.Add(this.btnUsuarios);
             this.flwSideBar.Controls.Add(this.btnAdministrarPcs);
@@ -160,6 +136,7 @@
             this.imgList.Images.SetKeyName(1, "monitorMini.png");
             this.imgList.Images.SetKeyName(2, "clientesmini.png");
             this.imgList.Images.SetKeyName(3, "menu.png");
+            this.imgList.Images.SetKeyName(4, "transmoney.png");
             // 
             // pctLogo
             // 
@@ -237,22 +214,6 @@
             this.pnlSeparador.Size = new System.Drawing.Size(261, 2);
             this.pnlSeparador.TabIndex = 5;
             // 
-            // btnReportes
-            // 
-            this.btnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.btnReportes.FlatAppearance.BorderSize = 0;
-            this.btnReportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportes.ForeColor = System.Drawing.Color.White;
-            this.btnReportes.Location = new System.Drawing.Point(3, 382);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(258, 28);
-            this.btnReportes.TabIndex = 7;
-            this.btnReportes.Text = "Reportes";
-            this.btnReportes.UseVisualStyleBackColor = false;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
-            // 
             // btnUsuarios
             // 
             this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
@@ -285,15 +246,57 @@
             this.btnAdministrarPcs.UseVisualStyleBackColor = false;
             this.btnAdministrarPcs.Click += new System.EventHandler(this.btnAdministrarPcs_Click);
             // 
+            // btnReportes
+            // 
+            this.btnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.ForeColor = System.Drawing.Color.White;
+            this.btnReportes.Location = new System.Drawing.Point(3, 382);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(258, 28);
+            this.btnReportes.TabIndex = 7;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.UseVisualStyleBackColor = false;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            // 
             // tmrSideBar
             // 
             this.tmrSideBar.Interval = 10;
             this.tmrSideBar.Tick += new System.EventHandler(this.tmrSideBar_Tick);
             // 
-            // fileSystemWatcher1
+            // pnlTransacciones
             // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
+            this.pnlTransacciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
+            this.pnlTransacciones.Controls.Add(this.btnTransacciones);
+            this.pnlTransacciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlTransacciones.Location = new System.Drawing.Point(3, 227);
+            this.pnlTransacciones.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.pnlTransacciones.Name = "pnlTransacciones";
+            this.pnlTransacciones.Size = new System.Drawing.Size(261, 66);
+            this.pnlTransacciones.TabIndex = 4;
+            // 
+            // btnTransacciones
+            // 
+            this.btnTransacciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
+            this.btnTransacciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnTransacciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransacciones.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransacciones.ForeColor = System.Drawing.Color.White;
+            this.btnTransacciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransacciones.ImageIndex = 4;
+            this.btnTransacciones.ImageList = this.imgList;
+            this.btnTransacciones.Location = new System.Drawing.Point(-10, -9);
+            this.btnTransacciones.Name = "btnTransacciones";
+            this.btnTransacciones.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnTransacciones.Size = new System.Drawing.Size(281, 85);
+            this.btnTransacciones.TabIndex = 1;
+            this.btnTransacciones.Text = "             Transacciones";
+            this.btnTransacciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransacciones.UseVisualStyleBackColor = false;
+            this.btnTransacciones.Click += new System.EventHandler(this.btnTransacciones_Click);
             // 
             // frmMenu
             // 
@@ -306,8 +309,6 @@
             this.Name = "frmMenu";
             this.Text = "CiberCafe";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMenu_FormClosed);
-            this.pnlCaja.ResumeLayout(false);
-            this.pnlCaja.PerformLayout();
             this.pnlChildForms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).EndInit();
             this.flwSideBar.ResumeLayout(false);
@@ -315,14 +316,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.pnlComputadoras.ResumeLayout(false);
             this.pnlClientes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            this.pnlTransacciones.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel pnlChildForms;
-        private System.Windows.Forms.Panel pnlCaja;
         private System.Windows.Forms.FlowLayoutPanel flwSideBar;
         private System.Windows.Forms.Panel pnlAmpliarMenu;
         private System.Windows.Forms.PictureBox pctLogo;
@@ -334,11 +334,11 @@
         private System.Windows.Forms.Timer tmrSideBar;
         private System.Windows.Forms.Button btnAdministrarPcs;
         private System.Windows.Forms.Button btnReportes;
-        private System.Windows.Forms.Label lblCaja;
         private System.Windows.Forms.ImageList imgList;
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.PictureBox pctMainLogo;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.Panel pnlSeparador;
+        private System.Windows.Forms.Panel pnlTransacciones;
+        private System.Windows.Forms.Button btnTransacciones;
     }
 }
