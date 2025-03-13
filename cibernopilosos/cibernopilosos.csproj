@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="formularios de registro\frmMemberShip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formularios de registro\frmMemberShip.Designer.cs">
+      <DependentUpon>frmMemberShip.cs</DependentUpon>
+    </Compile>
     <Compile Include="formularios principales\frmAdminPcs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="clases\sqlConexion.cs" />
+    <EmbeddedResource Include="formularios de registro\frmMemberShip.resx">
+      <DependentUpon>frmMemberShip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formularios principales\frmAdminPcs.resx">
       <DependentUpon>frmAdminPcs.cs</DependentUpon>
     </EmbeddedResource>

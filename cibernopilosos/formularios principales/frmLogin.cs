@@ -38,7 +38,7 @@ namespace cibernopilosos.formularios
         {
             if (username!= "" && password!="")
             {
-                if (conexion.Login(username, password))
+                if (conexion.Login(username.Trim(), password.Trim()))
                 {
                     bool admin = conexion.DevuelveValorBooleano($"Select Admin from Users Where Username='{username}' and Password='{password}'");
                     frmMenu menu = new frmMenu(admin);

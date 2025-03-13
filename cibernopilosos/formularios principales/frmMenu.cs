@@ -16,7 +16,17 @@ namespace cibernopilosos.formularios
         {
             InitializeComponent();
             checkUser(modo);
+            Saludito(frmLogin.UserActual.Trim());
         }
+
+        private void Saludito(string user = "mundo")
+        {
+            string capitalizado;
+            if (string.IsNullOrEmpty(user)) capitalizado = "Mundo:D"; 
+            else capitalizado = char.ToUpper(user[0]) + user.Substring(1).ToLower();
+            lblUsuariologin.Text = capitalizado + "!";
+        }
+
         private void checkUser(bool admin)
         {
             if (!admin)
@@ -60,6 +70,8 @@ namespace cibernopilosos.formularios
         {
             if (MenuTamanoMaximo)
             {
+                lblUsuariologin.Hide();
+                lblHola.Hide();                
                 flwSideBar.Width -= 10;
                 if (flwSideBar.MinimumSize.Width == flwSideBar.Width)
                 {
@@ -69,6 +81,8 @@ namespace cibernopilosos.formularios
             }
             else
             {
+                lblUsuariologin.Show();
+                lblHola.Show();
                 flwSideBar.Width += 10;
                 if (flwSideBar.MaximumSize.Width == flwSideBar.Width)
                 {
@@ -120,7 +134,5 @@ namespace cibernopilosos.formularios
         {
             Application.Exit();
         }
-
-
     }
 }

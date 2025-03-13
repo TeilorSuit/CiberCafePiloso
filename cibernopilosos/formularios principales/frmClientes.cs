@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cibernopilosos.formularios_de_registro;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace cibernopilosos.formularios
@@ -122,7 +123,6 @@ namespace cibernopilosos.formularios
                 btnAgregarCliente.Visible = false;
                 btnEditarCliente.Visible = false;
                 btnBorrarCliente.Visible = false;
-                btnAdminSubs.Visible = false;
                 btnVincularPc.Visible = true;
             }
             else
@@ -171,6 +171,47 @@ namespace cibernopilosos.formularios
             {
                 MessageBox.Show("Seleccione un cliente para vincular.");
             }
+        }
+
+        private void btnAddMembership_Click(object sender, EventArgs e)
+        {
+            frmMemberShip Membership = new frmMemberShip("");
+            Membership.idcliente = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
+            Membership.ShowDialog();
+            llenarTabla();
+        }
+
+        private void btnDeleteMembership_Click(object sender, EventArgs e)
+        {
+
+            string idcliente = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
+            string clienteName = dgvAdmiClientes.CurrentRow.Cells["ClientName"].Value.ToString();
+            DialogResult confirmacion;
+            confirmacion = MessageBox.Show($"¿Está seguro que desea inhabilitar la membresía del cliente {clienteName}.?", "ADVERTENCIA",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            if (confirmacion == DialogResult.OK)
+            {
+                sqlConexion ConexionSql = new sqlConexion();
+                string comando = "update Clients set ClientMemStatus = 0 where ClientID = " + idcliente+
+                    "update ClientMembership set CMEndDate=GETDATE() where CMClientID =" + idcliente;
+
+                if (ConexionSql.EjecutarAccion(comando))
+                {
+                    MessageBox.Show("Membresía inhabilitada");
+                }
+                else
+                {
+                    MessageBox.Show("Error al inhabilitar la membresía");
+                }
+            }
+            llenarTabla();
+        }
+
+        private void btnVisorMembresias_Click(object sender, EventArgs e)
+        {
+            frmMemberShip Membership = new frmMemberShip("1");
+            Membership.ShowDialog();
+            llenarTabla();
         }
     }
 }

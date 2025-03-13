@@ -17,7 +17,7 @@ namespace cibernopilosos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMenu(true));
+            Application.Run(new frmLogin());
         }
     }
 }
