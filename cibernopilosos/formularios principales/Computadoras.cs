@@ -429,6 +429,9 @@ namespace cibernopilosos
                 cibernopilosos.formularios.frmClientes frmCli = new cibernopilosos.formularios.frmClientes();
                 frmCli.VinculacionMode = true;
                 frmCli.SelectedPcIp = pcIp;
+                // esto para cambiar los valores y asi
+                frmCli.TiempoHorasCalculados = (int)numHoras.Value;
+                frmCli.TiempoMinutosCalculados = (int)numMinutos.Value;
                 frmCli.ShowDialog();
             }
             else

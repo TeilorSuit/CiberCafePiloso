@@ -15,7 +15,8 @@ namespace cibernopilosos.formularios
 {
     public partial class frmClientes : Form
     {
-        // Propiedades para controlar el modo de vinculación y almacenar la IP de la PC seleccionada
+        public int TiempoHorasCalculados { get; set; }
+        public int TiempoMinutosCalculados { get; set; }
         public bool VinculacionMode { get; set; } = false;
         public string SelectedPcIp { get; set; } = "";
 
@@ -137,26 +138,34 @@ namespace cibernopilosos.formularios
         {
             if (dgvAdmiClientes.CurrentRow != null)
             {
-                // Obtener datos del cliente seleccionado
+                // aquí sacamos lo del clientee
                 string clientId = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
                 string clientName = dgvAdmiClientes.CurrentRow.Cells["ClientName"].Value.ToString();
 
-                // Verificar que la IP de la PC se haya asignado
+                // Verificar lo de  la IP 
                 if (string.IsNullOrEmpty(SelectedPcIp))
                 {
                     MessageBox.Show("No se ha seleccionado una computadora.");
                     return;
                 }
 
-                // Crear una descripción para la transacción
+                // descripcion trans
                 string descripcion = $"Vinculación de PC {SelectedPcIp} con Cliente {clientName}";
 
-                // Construir la consulta INSERT
-                // Se asume que el ServiceID para precio de PC es 2, TransPaidMoney y TransDiscount se inician en 0, y la cantidad es 1.
-                string query = $"INSERT INTO Transactions (TransClientID, TransServicesID, TransDescrip, TransPaidMoney, TransDiscount, TransQuantity, TransDateTime, TransUsername) " +
-                               $"VALUES ('{clientId}', 2, '{descripcion}', 0, 0, 1, '{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")}', 'admin')";
-
+                // Consulta el precio por hora de la PC
                 sqlConexion ConexionSql = new sqlConexion();
+                string consultaPrecio = "SELECT ServicePrice FROM Services_Products WHERE ServiceID = 2";
+                decimal precioHora = ConexionSql.DevuelveValorDecimal(consultaPrecio);
+
+                // tiempo total en horas 
+                decimal tiempoTotal = TiempoHorasCalculados + ((decimal)TiempoMinutosCalculados / 60m);
+                //  precio final
+                decimal totalPrice = tiempoTotal * precioHora;
+
+                // Construir la consultaaaa
+                string query = $"INSERT INTO Transactions (TransClientID, TransServicesID, TransDescrip, TransPaidMoney, TransDiscount, TransQuantity, TransDateTime, TransUsername) " +
+                               $"VALUES ('{clientId}', 2, '{descripcion}', {totalPrice}, 0, 1, '{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")}', 'admin')";
+
                 if (ConexionSql.EjecutarAccion(query))
                 {
                     MessageBox.Show("Vinculación exitosa. Transacción registrada.");
