@@ -11,8 +11,8 @@ namespace cibernopilosos
     public partial class Computadoras : Form
     {
         private sqlConexion conexionsql = new sqlConexion();
-        private int puertoServidor = 12345; //puerto donde el servidor escucha mensajes de los clientes
-        private int puertoCliente = 12346;  //uerto donde los clientes escuchan comandos del servidor
+        private int puertoServidor = 12345; //uerto donde el servidor escucha mensajes de los clientes
+        private int puertoCliente = 12346;  //puerto donde los clientes escuchan comandos del servidor
         private System.Windows.Forms.Timer actualizacionTimer;
         private bool escuchando = true;
 
@@ -28,7 +28,7 @@ namespace cibernopilosos
         {
             LlenarTabla();
             actualizacionTimer.Start();
-            _ = IniciarEscuchaAsync(); //pa no reciba el task(pq nunca va acabar)
+            _ = IniciarEscuchaAsync(); //para que no reciba el task (nunca va a acabar)
         }
 
         private void Computadoras_FormClosing(object sender, FormClosingEventArgs e)
@@ -38,15 +38,17 @@ namespace cibernopilosos
 
         #region Actualización y conexiones
 
-        private async void ActualizacionTimer_Tick(object sender, EventArgs e)
+        private void ActualizacionTimer_Tick(object sender, EventArgs e)
         {
-            await ActualizarEstadoComputadorasAsync();
+            _ = ActualizarEstadoComputadorasAsync();
         }
 
         private async Task ActualizarEstadoComputadorasAsync()
         {
-            string consulta = "select PcIp, PcStatus from Computers";
+            // Solo seleccionamos computadoras que NO estén en uso
+            string consulta = "select PcIp, PcStatus from Computers where PcStatus != 'En uso'";
             DataTable tabla = conexionsql.retornaRegistros(consulta);
+
             foreach (DataRow row in tabla.Rows)
             {
                 string ipString = row["PcIp"].ToString();
@@ -75,29 +77,32 @@ namespace cibernopilosos
                 }
             }
 
+            //guardar ip para restaurar selección
             string selectedPcIp = "";
-            int selectedRowIndex = -1;
-
             if (dgvComputadoras.CurrentRow != null)
             {
                 selectedPcIp = dgvComputadoras.CurrentRow.Cells["PcIp"].Value.ToString();
-                selectedRowIndex = dgvComputadoras.CurrentCell.RowIndex;
             }
 
+            //dewshabilitar el evento SelectionChanged para q no interfiera cuando se actualice la tabla
             dgvComputadoras.SelectionChanged -= dgvComputadoras_SelectionChanged;
             LlenarTabla();
 
-            if (selectedPcIp != "" && selectedRowIndex != -1)
+            //restaurar selección
+            if (selectedPcIp != "")
             {
                 foreach (DataGridViewRow row in dgvComputadoras.Rows)
                 {
                     if (row.Cells["PcIp"].Value.ToString() == selectedPcIp)
                     {
+                        row.Selected = true;
                         dgvComputadoras.CurrentCell = row.Cells[0];
                         break;
                     }
                 }
             }
+
+            //habilitar el evento SelectionChanged
             dgvComputadoras.SelectionChanged += dgvComputadoras_SelectionChanged;
         }
 
@@ -107,13 +112,15 @@ namespace cibernopilosos
             {
                 using (TcpClient client = new TcpClient())
                 {
-                    var connectTask = client.ConnectAsync(ipAddress, puertoCliente);
-                    var timeoutTask = Task.Delay(2000);
-                    var completedTask = await Task.WhenAny(connectTask, timeoutTask);
+                    Task connectTask = client.ConnectAsync(ipAddress, puertoCliente);
+                    Task timeoutTask = Task.Delay(2000);
+                    Task completedTask = await Task.WhenAny(connectTask, timeoutTask);
+
                     if (completedTask == timeoutTask)
                     {
                         return false;
                     }
+
                     await connectTask;
                     return true;
                 }
@@ -128,35 +135,44 @@ namespace cibernopilosos
         {
             try
             {
-                string ipString = dgvComputadoras.CurrentRow.Cells["PcIp"].Value.ToString();
-                if (IPAddress.TryParse(ipString, out IPAddress ipAddress))
+                if (dgvComputadoras.CurrentRow == null)
                 {
-                    TcpClient client = new TcpClient();
-                    await client.ConnectAsync(ipAddress, puertoCliente);
-                    NetworkStream stream = client.GetStream();
-                    string mensaje;
-                    if (string.IsNullOrEmpty(mensajeAdicional))
-                    {
-                        mensaje = $"{comando}:{horas}:{minutos}";
-                    }
-                    else
-                    {
-                        mensaje = $"{comando}:{mensajeAdicional}";
-                    }
-                    byte[] mensajeBytes = Encoding.UTF8.GetBytes(mensaje);
-
-                    await stream.WriteAsync(mensajeBytes, 0, mensajeBytes.Length);
-
-                    stream.Close();
-                    client.Close();
+                    MessageBox.Show("No hay ninguna computadora seleccionada.");
+                    return;
                 }
+
+                string ipString = dgvComputadoras.CurrentRow.Cells["PcIp"].Value.ToString();
+                if (!IPAddress.TryParse(ipString, out IPAddress ipAddress))
+                {
+                    MessageBox.Show($"La IP '{ipString}' no es válida.");
+                    return;
+                }
+
+                TcpClient client = new TcpClient();
+                await client.ConnectAsync(ipAddress, puertoCliente);
+                NetworkStream stream = client.GetStream();
+                string mensaje;
+
+                if (string.IsNullOrEmpty(mensajeAdicional))
+                {
+                    mensaje = $"{comando}:{horas}:{minutos}";
+                }
+                else
+                {
+                    mensaje = $"{comando}:{mensajeAdicional}";
+                }
+
+                byte[] mensajeBytes = Encoding.UTF8.GetBytes(mensaje);
+                await stream.WriteAsync(mensajeBytes, 0, mensajeBytes.Length);
+
+                stream.Close();
+                client.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al enviar comando: {ex.Message}");
             }
         }
-
 
         private async Task IniciarEscuchaAsync()
         {
@@ -189,11 +205,12 @@ namespace cibernopilosos
                     byte[] buffer = new byte[client.ReceiveBufferSize];
                     int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                     string mensaje = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
+
                     if (mensaje == "TIEMPO_ACABADO")
                     {
                         string ipString = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
                         conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'");
-                        //RealizaTransaccion(ipString);
+                        // RealizaTransaccion(ipString); // Descomentar si es necesario
                     }
                 }
             }
@@ -224,6 +241,7 @@ namespace cibernopilosos
             {
                 string consulta = $"select PcStatus from Computers where PcIp='{dgvComputadoras.CurrentRow.Cells["PcIp"].Value.ToString()}'";
                 string estadopc = conexionsql.DevuelveString(consulta);
+
                 if (estadopc == "En uso")
                 {
                     habilitarTodo();
@@ -293,7 +311,19 @@ namespace cibernopilosos
 
         private async void btnIniciar_Click(object sender, EventArgs e)
         {
+            if (dgvComputadoras.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una computadora primero.");
+                return;
+            }
+
             string ipString = dgvComputadoras.CurrentRow.Cells["PcIp"].Value.ToString();
+            if (!IPAddress.TryParse(ipString, out IPAddress ipAddress))
+            {
+                MessageBox.Show($"La IP '{ipString}' no es válida.");
+                return;
+            }
+
             if (btnIniciar.Text == "Iniciar")
             {
                 if (numHoras.Value == 0 && numMinutos.Value == 0)
@@ -302,10 +332,11 @@ namespace cibernopilosos
                 }
                 else
                 {
-                    if (await ProbarConexionAsync(IPAddress.Parse(ipString)))
+                    if (await ProbarConexionAsync(ipAddress))
                     {
                         conexionsql.EjecutarAccion($"Update Computers set PcStatus = 'En uso' Where PcIp='{ipString}'");
                         await EnviarComandoAsync("INICIAR", (int)numHoras.Value, (int)numMinutos.Value);
+                        LlenarTabla();
                         btnIniciar.Text = "Detener";
                     }
                     else
@@ -318,6 +349,7 @@ namespace cibernopilosos
             {
                 await EnviarComandoAsync("BLOQUEO");
                 conexionsql.EjecutarAccion($"Update Computers set PcStatus = 'Disponible' Where PcIp='{ipString}'");
+                LlenarTabla(); // Actualizar el DataGridView inmediatamente
                 btnIniciar.Text = "Iniciar";
             }
             numHoras.Value = 0m;
