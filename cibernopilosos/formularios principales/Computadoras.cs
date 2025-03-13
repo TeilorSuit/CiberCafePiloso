@@ -12,7 +12,7 @@ namespace cibernopilosos
     {
         private sqlConexion conexionsql = new sqlConexion();
         private int puertoServidor = 12345; //puerto donde el servidor escucha mensajes de los clientes
-        private int puertoCliente = 12346;  //puerto donde los clientes escuchan comandos del servidor
+        private int puertoCliente = 12346;  //uerto donde los clientes escuchan comandos del servidor
         private System.Windows.Forms.Timer actualizacionTimer;
         private bool escuchando = true;
 
@@ -58,7 +58,14 @@ namespace cibernopilosos
                     if (IPAddress.TryParse(ipString, out IPAddress ipAddress))
                     {
                         bool disponible = await ProbarConexionAsync(ipAddress);
-                        estado = disponible ? "Disponible" : "Desconectado";
+                        if (disponible)
+                        {
+                            estado = "Disponible";
+                        }
+                        else
+                        {
+                            estado = "Desconectado";
+                        }
                         conexionsql.EjecutarAccion($"Update Computers set PcStatus = '{estado}' Where PcIp='{ipString}'");
                     }
                     else
@@ -124,19 +131,24 @@ namespace cibernopilosos
                 string ipString = dgvComputadoras.CurrentRow.Cells["PcIp"].Value.ToString();
                 if (IPAddress.TryParse(ipString, out IPAddress ipAddress))
                 {
-                    using (TcpClient client = new TcpClient())
+                    TcpClient client = new TcpClient();
+                    await client.ConnectAsync(ipAddress, puertoCliente);
+                    NetworkStream stream = client.GetStream();
+                    string mensaje;
+                    if (string.IsNullOrEmpty(mensajeAdicional))
                     {
-                        await client.ConnectAsync(ipAddress, puertoCliente);
-                        using (NetworkStream stream = client.GetStream())
-                        {
-                            string mensaje = string.IsNullOrEmpty(mensajeAdicional)
-                                ? $"{comando}:{horas}:{minutos}"
-                                : $"{comando}:{mensajeAdicional}";
-
-                            byte[] mensajeBytes = Encoding.UTF8.GetBytes(mensaje);
-                            await stream.WriteAsync(mensajeBytes, 0, mensajeBytes.Length);
-                        }
+                        mensaje = $"{comando}:{horas}:{minutos}";
                     }
+                    else
+                    {
+                        mensaje = $"{comando}:{mensajeAdicional}";
+                    }
+                    byte[] mensajeBytes = Encoding.UTF8.GetBytes(mensaje);
+
+                    await stream.WriteAsync(mensajeBytes, 0, mensajeBytes.Length);
+
+                    stream.Close();
+                    client.Close();
                 }
             }
             catch (Exception ex)
@@ -144,6 +156,7 @@ namespace cibernopilosos
                 MessageBox.Show($"Error al enviar comando: {ex.Message}");
             }
         }
+
 
         private async Task IniciarEscuchaAsync()
         {
@@ -180,7 +193,7 @@ namespace cibernopilosos
                     {
                         string ipString = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
                         conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'");
-                        RealizaTransaccion(ipString);
+                        //RealizaTransaccion(ipString);
                     }
                 }
             }
