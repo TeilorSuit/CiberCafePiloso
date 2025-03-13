@@ -59,6 +59,7 @@ namespace cibernopilosos.formularios
             this.dgvTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTransactions.Size = new System.Drawing.Size(799, 491);
             this.dgvTransactions.TabIndex = 0;
+            this.dgvTransactions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactions_CellContentClick);
             // 
             // btnDelete
             // 

@@ -48,7 +48,7 @@ namespace cibernopilosos.formularios
         private void AgregarPCs(string pcNumber, string pcInfo, string pcIp)
         {
             sqlConexion conexionsql = new sqlConexion();
-            string consulta = $"Insert into Computers (pcNumber, pcStatus, pcInfo,PcIP) values ('{pcNumber}','idle','{pcInfo}','{pcIp}')";
+            string consulta = $"Insert into Computers (pcNumber, pcStatus, pcInfo,PcIP) values ('{pcNumber}','Disponible','{pcInfo}','{pcIp}')";
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("PC agregada exitosamente");
@@ -97,13 +97,13 @@ namespace cibernopilosos.formularios
                 }
                 finally
                 {
-                    if (Tester != null && Tester.Connected)
+                    if (Tester.Connected)
                     {
-                        Tester.Close();
                         btnConfirmacion.Enabled = true;
                         btnConfirmacion.BackColor = Color.White;
                         btnConfirmacion.FlatStyle = FlatStyle.Standard;
                         btnConfirmacion.ForeColor = Color.Black;
+                        Tester.Close();
                     }
                 }
             }

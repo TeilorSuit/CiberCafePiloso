@@ -34,6 +34,7 @@
             this.btnBorrarCliente = new System.Windows.Forms.Button();
             this.btnAdminSubs = new System.Windows.Forms.Button();
             this.dgvAdmiClientes = new System.Windows.Forms.DataGridView();
+            this.btnVincularPc = new System.Windows.Forms.Button();
             this.flwPanelCuadro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiClientes)).BeginInit();
             this.SuspendLayout();
@@ -45,11 +46,11 @@
             this.flwPanelCuadro.Controls.Add(this.btnEditarCliente);
             this.flwPanelCuadro.Controls.Add(this.btnBorrarCliente);
             this.flwPanelCuadro.Controls.Add(this.btnAdminSubs);
+            this.flwPanelCuadro.Controls.Add(this.btnVincularPc);
             this.flwPanelCuadro.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flwPanelCuadro.Location = new System.Drawing.Point(808, 0);
-            this.flwPanelCuadro.Margin = new System.Windows.Forms.Padding(4);
+            this.flwPanelCuadro.Location = new System.Drawing.Point(606, 0);
             this.flwPanelCuadro.Name = "flwPanelCuadro";
-            this.flwPanelCuadro.Size = new System.Drawing.Size(289, 690);
+            this.flwPanelCuadro.Size = new System.Drawing.Size(217, 561);
             this.flwPanelCuadro.TabIndex = 1;
             // 
             // btnAgregarCliente
@@ -60,10 +61,9 @@
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarCliente.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(4, 4);
-            this.btnAgregarCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(3, 3);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
-            this.btnAgregarCliente.Size = new System.Drawing.Size(285, 74);
+            this.btnAgregarCliente.Size = new System.Drawing.Size(214, 60);
             this.btnAgregarCliente.TabIndex = 0;
             this.btnAgregarCliente.Text = "Agregar Cliente";
             this.btnAgregarCliente.UseVisualStyleBackColor = false;
@@ -77,10 +77,9 @@
             this.btnEditarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarCliente.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditarCliente.Location = new System.Drawing.Point(4, 86);
-            this.btnEditarCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditarCliente.Location = new System.Drawing.Point(3, 69);
             this.btnEditarCliente.Name = "btnEditarCliente";
-            this.btnEditarCliente.Size = new System.Drawing.Size(285, 74);
+            this.btnEditarCliente.Size = new System.Drawing.Size(214, 60);
             this.btnEditarCliente.TabIndex = 1;
             this.btnEditarCliente.Text = "Editar Cliente";
             this.btnEditarCliente.UseVisualStyleBackColor = false;
@@ -94,11 +93,10 @@
             this.btnBorrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrarCliente.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnBorrarCliente.Location = new System.Drawing.Point(4, 168);
-            this.btnBorrarCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBorrarCliente.Location = new System.Drawing.Point(3, 135);
             this.btnBorrarCliente.Name = "btnBorrarCliente";
             this.btnBorrarCliente.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnBorrarCliente.Size = new System.Drawing.Size(285, 74);
+            this.btnBorrarCliente.Size = new System.Drawing.Size(214, 60);
             this.btnBorrarCliente.TabIndex = 2;
             this.btnBorrarCliente.Text = "Borrar Cliente";
             this.btnBorrarCliente.UseVisualStyleBackColor = false;
@@ -112,11 +110,10 @@
             this.btnAdminSubs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdminSubs.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdminSubs.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAdminSubs.Location = new System.Drawing.Point(4, 250);
-            this.btnAdminSubs.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdminSubs.Location = new System.Drawing.Point(3, 201);
             this.btnAdminSubs.Name = "btnAdminSubs";
             this.btnAdminSubs.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnAdminSubs.Size = new System.Drawing.Size(285, 74);
+            this.btnAdminSubs.Size = new System.Drawing.Size(214, 60);
             this.btnAdminSubs.TabIndex = 3;
             this.btnAdminSubs.Text = "Administrar suscripciones";
             this.btnAdminSubs.UseVisualStyleBackColor = false;
@@ -136,25 +133,40 @@
             this.dgvAdmiClientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAdmiClientes.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.dgvAdmiClientes.Location = new System.Drawing.Point(0, 0);
-            this.dgvAdmiClientes.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAdmiClientes.MultiSelect = false;
             this.dgvAdmiClientes.Name = "dgvAdmiClientes";
             this.dgvAdmiClientes.ReadOnly = true;
             this.dgvAdmiClientes.RowHeadersVisible = false;
             this.dgvAdmiClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAdmiClientes.Size = new System.Drawing.Size(1097, 690);
+            this.dgvAdmiClientes.Size = new System.Drawing.Size(823, 561);
             this.dgvAdmiClientes.TabIndex = 2;
+            // 
+            // btnVincularPc
+            // 
+            this.btnVincularPc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnVincularPc.FlatAppearance.BorderSize = 0;
+            this.btnVincularPc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnVincularPc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVincularPc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVincularPc.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnVincularPc.Location = new System.Drawing.Point(3, 267);
+            this.btnVincularPc.Name = "btnVincularPc";
+            this.btnVincularPc.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnVincularPc.Size = new System.Drawing.Size(214, 60);
+            this.btnVincularPc.TabIndex = 4;
+            this.btnVincularPc.Text = "Vincular con Pc";
+            this.btnVincularPc.UseVisualStyleBackColor = false;
+            this.btnVincularPc.Click += new System.EventHandler(this.btnVincularPc_Click);
             // 
             // frmClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1097, 690);
+            this.ClientSize = new System.Drawing.Size(823, 561);
             this.Controls.Add(this.flwPanelCuadro);
             this.Controls.Add(this.dgvAdmiClientes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmClientes";
             this.Text = "frmClientes";
             this.flwPanelCuadro.ResumeLayout(false);
@@ -171,5 +183,6 @@
         private System.Windows.Forms.Button btnBorrarCliente;
         private System.Windows.Forms.Button btnAdminSubs;
         private System.Windows.Forms.DataGridView dgvAdmiClientes;
+        private System.Windows.Forms.Button btnVincularPc;
     }
 }

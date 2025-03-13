@@ -29,7 +29,7 @@ namespace cibernopilosos
         public sqlConexion()
         {
             Server = "(local)";
-            Database = "cibercafedb";
+            Database = "CiberCafeDB";
             Usuario = "teilor";
             Clave = "teilor";
         }

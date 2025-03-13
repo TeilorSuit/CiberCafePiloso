@@ -35,22 +35,32 @@ namespace cibernopilosos.formularios
 
         private void btnBorrarPC_Click(object sender, EventArgs e)
         {
-            DialogResult confirmacion;
-            confirmacion = MessageBox.Show("Esta acción no se puede deshacer. ¿Desea continuar?", "ADVERTENCIA",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-            if (confirmacion == DialogResult.OK)
+            string consulta =
+                $"select PcStatus from Computers where PcIp='{dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString()}'";
+            string estadopc = ConexionSql.DevuelveString(consulta);
+            if (estadopc != "En uso")
             {
-                string comando = $"delete from Computers where PcIP='{dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString()}'";
-                if (ConexionSql.EjecutarAccion(comando))
+                DialogResult confirmacion;
+                confirmacion = MessageBox.Show("Esta acción no se puede deshacer. ¿Desea continuar?", "ADVERTENCIA",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                if (confirmacion == DialogResult.OK)
                 {
-                    MessageBox.Show("Computadora eliminada");
+                    string comando = $"delete from Computers where PcIP='{dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString()}'";
+                    if (ConexionSql.EjecutarAccion(comando))
+                    {
+                        MessageBox.Show("Computadora eliminada");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al eliminar computadora");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Error al eliminar computadora");
-                }
+                llenarTabla();
             }
-            llenarTabla();
+            else
+            {
+                MessageBox.Show("No es posible borrar una pc en uso");
+            }
         }
 
         private void btnEditarPC_Click(object sender, EventArgs e)

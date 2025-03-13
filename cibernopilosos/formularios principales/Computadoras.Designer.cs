@@ -29,11 +29,14 @@
             this.pnlOpcionesText = new System.Windows.Forms.Panel();
             this.lblOpciones = new System.Windows.Forms.Label();
             this.pblContadores = new System.Windows.Forms.Panel();
-            this.lblTiempoRestante = new System.Windows.Forms.Label();
+            this.lblTiempoAdd = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnEnviarMensaje = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblEnviarMensaje = new System.Windows.Forms.Label();
+            this.BotonAddClientePc = new System.Windows.Forms.Button();
             this.pnlDgv = new System.Windows.Forms.Panel();
+            this.lblTiempoRestante = new System.Windows.Forms.Label();
+            this.lblTiempo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numHoras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComputadoras)).BeginInit();
@@ -50,9 +53,9 @@
             this.btnApagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApagar.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApagar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnApagar.Location = new System.Drawing.Point(3, 209);
+            this.btnApagar.Location = new System.Drawing.Point(3, 185);
             this.btnApagar.Name = "btnApagar";
-            this.btnApagar.Size = new System.Drawing.Size(197, 40);
+            this.btnApagar.Size = new System.Drawing.Size(197, 29);
             this.btnApagar.TabIndex = 2;
             this.btnApagar.Text = "Apagar";
             this.btnApagar.UseVisualStyleBackColor = false;
@@ -65,9 +68,9 @@
             this.btnReiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReiniciar.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReiniciar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnReiniciar.Location = new System.Drawing.Point(3, 255);
+            this.btnReiniciar.Location = new System.Drawing.Point(3, 220);
             this.btnReiniciar.Name = "btnReiniciar";
-            this.btnReiniciar.Size = new System.Drawing.Size(197, 40);
+            this.btnReiniciar.Size = new System.Drawing.Size(197, 27);
             this.btnReiniciar.TabIndex = 3;
             this.btnReiniciar.Text = "Reiniciar";
             this.btnReiniciar.UseVisualStyleBackColor = false;
@@ -80,9 +83,9 @@
             this.btnCerrarApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarApp.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarApp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCerrarApp.Location = new System.Drawing.Point(3, 301);
+            this.btnCerrarApp.Location = new System.Drawing.Point(3, 253);
             this.btnCerrarApp.Name = "btnCerrarApp";
-            this.btnCerrarApp.Size = new System.Drawing.Size(197, 43);
+            this.btnCerrarApp.Size = new System.Drawing.Size(197, 27);
             this.btnCerrarApp.TabIndex = 4;
             this.btnCerrarApp.Text = "Cerrar App";
             this.btnCerrarApp.UseVisualStyleBackColor = false;
@@ -95,9 +98,9 @@
             this.btnBloqueoPc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBloqueoPc.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBloqueoPc.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnBloqueoPc.Location = new System.Drawing.Point(3, 350);
+            this.btnBloqueoPc.Location = new System.Drawing.Point(3, 286);
             this.btnBloqueoPc.Name = "btnBloqueoPc";
-            this.btnBloqueoPc.Size = new System.Drawing.Size(197, 48);
+            this.btnBloqueoPc.Size = new System.Drawing.Size(197, 30);
             this.btnBloqueoPc.TabIndex = 5;
             this.btnBloqueoPc.Text = "Bloquear PC";
             this.btnBloqueoPc.UseVisualStyleBackColor = false;
@@ -110,9 +113,9 @@
             this.btnAgregarTiempo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarTiempo.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarTiempo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregarTiempo.Location = new System.Drawing.Point(3, 155);
+            this.btnAgregarTiempo.Location = new System.Drawing.Point(3, 147);
             this.btnAgregarTiempo.Name = "btnAgregarTiempo";
-            this.btnAgregarTiempo.Size = new System.Drawing.Size(197, 48);
+            this.btnAgregarTiempo.Size = new System.Drawing.Size(197, 32);
             this.btnAgregarTiempo.TabIndex = 6;
             this.btnAgregarTiempo.Text = "Agregar Tiempo";
             this.btnAgregarTiempo.UseVisualStyleBackColor = false;
@@ -125,9 +128,9 @@
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnIniciar.Location = new System.Drawing.Point(3, 98);
+            this.btnIniciar.Location = new System.Drawing.Point(3, 114);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(197, 51);
+            this.btnIniciar.Size = new System.Drawing.Size(197, 27);
             this.btnIniciar.TabIndex = 7;
             this.btnIniciar.Text = "Iniciar";
             this.btnIniciar.UseVisualStyleBackColor = false;
@@ -159,7 +162,7 @@
             // 
             // txtboxMensajes
             // 
-            this.txtboxMensajes.Location = new System.Drawing.Point(3, 446);
+            this.txtboxMensajes.Location = new System.Drawing.Point(3, 364);
             this.txtboxMensajes.Multiline = true;
             this.txtboxMensajes.Name = "txtboxMensajes";
             this.txtboxMensajes.Size = new System.Drawing.Size(196, 76);
@@ -172,6 +175,7 @@
             this.dgvComputadoras.AllowUserToDeleteRows = false;
             this.dgvComputadoras.AllowUserToResizeColumns = false;
             this.dgvComputadoras.AllowUserToResizeRows = false;
+            this.dgvComputadoras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvComputadoras.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
             this.dgvComputadoras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComputadoras.ColumnHeadersVisible = false;
@@ -194,6 +198,7 @@
             this.dgvComputadoras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComputadoras.Size = new System.Drawing.Size(604, 522);
             this.dgvComputadoras.TabIndex = 11;
+            this.dgvComputadoras.SelectionChanged += new System.EventHandler(this.dgvComputadoras_SelectionChanged);
             // 
             // flwPanelContenedor
             // 
@@ -208,6 +213,7 @@
             this.flwPanelContenedor.Controls.Add(this.btnBloqueoPc);
             this.flwPanelContenedor.Controls.Add(this.panel3);
             this.flwPanelContenedor.Controls.Add(this.txtboxMensajes);
+            this.flwPanelContenedor.Controls.Add(this.BotonAddClientePc);
             this.flwPanelContenedor.Dock = System.Windows.Forms.DockStyle.Right;
             this.flwPanelContenedor.Location = new System.Drawing.Point(604, 0);
             this.flwPanelContenedor.Name = "flwPanelContenedor";
@@ -235,32 +241,34 @@
             // 
             // pblContadores
             // 
-            this.pblContadores.Controls.Add(this.numMinutos);
+            this.pblContadores.Controls.Add(this.lblTiempo);
             this.pblContadores.Controls.Add(this.lblTiempoRestante);
+            this.pblContadores.Controls.Add(this.numMinutos);
+            this.pblContadores.Controls.Add(this.lblTiempoAdd);
             this.pblContadores.Controls.Add(this.numHoras);
             this.pblContadores.Location = new System.Drawing.Point(3, 53);
             this.pblContadores.Name = "pblContadores";
-            this.pblContadores.Size = new System.Drawing.Size(197, 39);
+            this.pblContadores.Size = new System.Drawing.Size(197, 55);
             this.pblContadores.TabIndex = 8;
             // 
-            // lblTiempoRestante
+            // lblTiempoAdd
             // 
-            this.lblTiempoRestante.AutoSize = true;
-            this.lblTiempoRestante.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTiempoRestante.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTiempoRestante.Location = new System.Drawing.Point(9, 8);
-            this.lblTiempoRestante.Name = "lblTiempoRestante";
-            this.lblTiempoRestante.Size = new System.Drawing.Size(57, 16);
-            this.lblTiempoRestante.TabIndex = 10;
-            this.lblTiempoRestante.Text = "tiempo";
+            this.lblTiempoAdd.AutoSize = true;
+            this.lblTiempoAdd.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTiempoAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTiempoAdd.Location = new System.Drawing.Point(9, 8);
+            this.lblTiempoAdd.Name = "lblTiempoAdd";
+            this.lblTiempoAdd.Size = new System.Drawing.Size(57, 16);
+            this.lblTiempoAdd.TabIndex = 10;
+            this.lblTiempoAdd.Text = "tiempo";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
             this.panel3.Controls.Add(this.btnEnviarMensaje);
-            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.lblEnviarMensaje);
             this.panel3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel3.Location = new System.Drawing.Point(3, 404);
+            this.panel3.Location = new System.Drawing.Point(3, 322);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(197, 36);
             this.panel3.TabIndex = 14;
@@ -277,15 +285,30 @@
             this.btnEnviarMensaje.UseVisualStyleBackColor = false;
             this.btnEnviarMensaje.Click += new System.EventHandler(this.btnEnviarMensaje_Click);
             // 
-            // label2
+            // lblEnviarMensaje
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(5, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 20);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Enviar Mensaje";
+            this.lblEnviarMensaje.AutoSize = true;
+            this.lblEnviarMensaje.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnviarMensaje.Location = new System.Drawing.Point(5, 9);
+            this.lblEnviarMensaje.Name = "lblEnviarMensaje";
+            this.lblEnviarMensaje.Size = new System.Drawing.Size(147, 20);
+            this.lblEnviarMensaje.TabIndex = 13;
+            this.lblEnviarMensaje.Text = "Enviar Mensaje";
+            // 
+            // BotonAddClientePc
+            // 
+            this.BotonAddClientePc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BotonAddClientePc.FlatAppearance.BorderSize = 0;
+            this.BotonAddClientePc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BotonAddClientePc.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BotonAddClientePc.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BotonAddClientePc.Location = new System.Drawing.Point(3, 446);
+            this.BotonAddClientePc.Name = "BotonAddClientePc";
+            this.BotonAddClientePc.Size = new System.Drawing.Size(197, 56);
+            this.BotonAddClientePc.TabIndex = 15;
+            this.BotonAddClientePc.Text = "Vincular con cliente";
+            this.BotonAddClientePc.UseVisualStyleBackColor = false;
+            this.BotonAddClientePc.Click += new System.EventHandler(this.BotonAddClientePc_Click);
             // 
             // pnlDgv
             // 
@@ -294,6 +317,28 @@
             this.pnlDgv.Name = "pnlDgv";
             this.pnlDgv.Size = new System.Drawing.Size(604, 522);
             this.pnlDgv.TabIndex = 13;
+            // 
+            // lblTiempoRestante
+            // 
+            this.lblTiempoRestante.AutoSize = true;
+            this.lblTiempoRestante.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTiempoRestante.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTiempoRestante.Location = new System.Drawing.Point(9, 33);
+            this.lblTiempoRestante.Name = "lblTiempoRestante";
+            this.lblTiempoRestante.Size = new System.Drawing.Size(56, 16);
+            this.lblTiempoRestante.TabIndex = 11;
+            this.lblTiempoRestante.Text = "Resta:";
+            // 
+            // lblTiempo
+            // 
+            this.lblTiempo.AutoSize = true;
+            this.lblTiempo.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTiempo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTiempo.Location = new System.Drawing.Point(71, 33);
+            this.lblTiempo.Name = "lblTiempo";
+            this.lblTiempo.Size = new System.Drawing.Size(50, 16);
+            this.lblTiempo.TabIndex = 12;
+            this.lblTiempo.Text = "00:00";
             // 
             // Computadoras
             // 
@@ -334,9 +379,12 @@
         private System.Windows.Forms.Label lblOpciones;
         private System.Windows.Forms.Panel pblContadores;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblEnviarMensaje;
         private System.Windows.Forms.Panel pnlDgv;
         private System.Windows.Forms.Button btnEnviarMensaje;
+        private System.Windows.Forms.Label lblTiempoAdd;
+        public System.Windows.Forms.Button BotonAddClientePc;
         private System.Windows.Forms.Label lblTiempoRestante;
+        private System.Windows.Forms.Label lblTiempo;
     }
 }

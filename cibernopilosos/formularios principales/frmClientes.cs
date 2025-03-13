@@ -14,11 +14,16 @@ namespace cibernopilosos.formularios
 {
     public partial class frmClientes : Form
     {
+        // Propiedades para controlar el modo de vinculación y almacenar la IP de la PC seleccionada
+        public bool VinculacionMode { get; set; } = false;
+        public string SelectedPcIp { get; set; } = "";
+
         public frmClientes()
         {
             InitializeComponent();
             llenarTabla();
         }
+
         private void llenarTabla()
         {
             sqlConexion ConexionSql = new sqlConexion();
@@ -64,18 +69,22 @@ namespace cibernopilosos.formularios
             ClientInfo.ShowDialog();
             llenarTabla();
         }
+
         private void btnBorrarCliente_Click(object sender, EventArgs e)
         {
             string clienteId = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
             string clienteName = dgvAdmiClientes.CurrentRow.Cells["ClientName"].Value.ToString();
             DialogResult confirmacion;
-            confirmacion= MessageBox.Show($"Está acción borrará absolutamente todos los registros existentes del cliente {clienteName}. ¿Desea continuar?", "ADVERTENCIA",
+            confirmacion = MessageBox.Show($"Está acción borrará absolutamente todos los registros existentes del cliente {clienteName}. ¿Desea continuar?", "ADVERTENCIA",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
-                //string comando = $"delete from Clients where ClientID='{clienteId}'";
-                string comando = $"delete from ClientMembership where CMClientID = '{clienteId}';delete from ClientComputer where CC_ClientID = '{clienteId}';delete from Transactions where TransClientID = '{clienteId}'; delete from Clients where ClientID = '{clienteId}';";
+                // Se eliminan registros relacionados en otras tablas y luego el cliente
+                string comando = $"delete from ClientMembership where CMClientID = '{clienteId}';" +
+                                 $"delete from ClientComputer where CC_ClientID = '{clienteId}';" +
+                                 $"delete from Transactions where TransClientID = '{clienteId}';" +
+                                 $"delete from Clients where ClientID = '{clienteId}';";
                 if (ConexionSql.EjecutarAccion(comando))
                 {
                     MessageBox.Show("Cliente eliminado");
@@ -87,6 +96,7 @@ namespace cibernopilosos.formularios
             }
             llenarTabla();
         }
+
         private void PrecargarDatos(frmInformacionCliente ClientInfo)
         {
             ClientInfo.txtClientID.Text = dgvAdmiClientes.CurrentRow.Cells[0].Value.ToString();
@@ -99,6 +109,68 @@ namespace cibernopilosos.formularios
         private void btnAdminSubs_Click(object sender, EventArgs e)
         {
             MessageBox.Show("En desarrollo");
+        }
+
+        // Evento que se ejecuta al cargar el formulario
+        private void frmClientes_Load(object sender, EventArgs e)
+        {
+            // Llenar la tabla ya se llamó en el constructor; 
+            // Se ajusta la visibilidad de los botones según el modo de apertura
+            if (VinculacionMode)
+            {
+                // Si se abrió desde BotonAddClientePc, ocultar todos menos btnVincularPc
+                btnAgregarCliente.Visible = false;
+                btnEditarCliente.Visible = false;
+                btnBorrarCliente.Visible = false;
+                btnAdminSubs.Visible = false;
+                btnVincularPc.Visible = true;
+            }
+            else
+            {
+                // Si se abrió de otra forma, ocultar el botón de vinculación
+                btnVincularPc.Visible = false;
+            }
+        }
+
+        // Evento para vincular la computadora con el cliente seleccionado
+        private void btnVincularPc_Click(object sender, EventArgs e)
+        {
+            if (dgvAdmiClientes.CurrentRow != null)
+            {
+                // Obtener datos del cliente seleccionado
+                string clientId = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
+                string clientName = dgvAdmiClientes.CurrentRow.Cells["ClientName"].Value.ToString();
+
+                // Verificar que la IP de la PC se haya asignado
+                if (string.IsNullOrEmpty(SelectedPcIp))
+                {
+                    MessageBox.Show("No se ha seleccionado una computadora.");
+                    return;
+                }
+
+                // Crear una descripción para la transacción
+                string descripcion = $"Vinculación de PC {SelectedPcIp} con Cliente {clientName}";
+
+                // Construir la consulta INSERT
+                // Se asume que el ServiceID para precio de PC es 2, TransPaidMoney y TransDiscount se inician en 0, y la cantidad es 1.
+                string query = $"INSERT INTO Transactions (TransClientID, TransServicesID, TransDescrip, TransPaidMoney, TransDiscount, TransQuantity, TransDateTime, TransUsername) " +
+                               $"VALUES ('{clientId}', 2, '{descripcion}', 0, 0, 1, '{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")}', 'admin')";
+
+                sqlConexion ConexionSql = new sqlConexion();
+                if (ConexionSql.EjecutarAccion(query))
+                {
+                    MessageBox.Show("Vinculación exitosa. Transacción registrada.");
+                    this.Close(); // Se cierra el formulario tras la vinculación
+                }
+                else
+                {
+                    MessageBox.Show("Error al vincular la computadora con el cliente.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un cliente para vincular.");
+            }
         }
     }
 }

@@ -85,5 +85,9 @@ namespace cibernopilosos.formularios
             cargarTabla();
         }
 
+        private void dgvTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
