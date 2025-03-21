@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cibernopilosos.formularios_principales;
+using Presentation;
 
 namespace cibernopilosos.formularios
 {
@@ -16,13 +18,13 @@ namespace cibernopilosos.formularios
         {
             InitializeComponent();
             checkUser(modo);
-            Saludito(frmLogin.UserActual.Trim());
+            //Saludito(frmLogin.UserActual.Trim());
         }
 
         private void Saludito(string user = "mundo")
         {
             string capitalizado;
-            if (string.IsNullOrEmpty(user)) capitalizado = "Mundo:D"; 
+            if (string.IsNullOrEmpty(user)) capitalizado = "Mundo:D";
             else capitalizado = char.ToUpper(user[0]) + user.Substring(1).ToLower();
             lblUsuariologin.Text = capitalizado + "!";
         }
@@ -37,25 +39,58 @@ namespace cibernopilosos.formularios
                 pnlSeparador.Hide();
             }
         }
+
         #region Formularios Activos
 
         private Form FormulariosAbierto = null;
+        private Computadoras formularioComputadoras = null;
 
         private void abrirFormularioHijo(Form FormularioHijo)
         {
-            if (FormularioHijo == null)//cambia el mensaje de excepcion
-                throw new ArgumentNullException(nameof(FormularioHijo));
+            try
+            {
+                if (FormularioHijo != null)
+                {
+                    if (FormularioHijo is Computadoras)//comprobar si el existe un computadoras abierto pa q no se reinice
+                    {
+                        if (formularioComputadoras != null)
+                        {
+                            FormularioHijo = formularioComputadoras;
+                        }
+                        else
+                        {
+                            formularioComputadoras = (Computadoras)FormularioHijo; 
+                        }
+                    }
+                    if (FormulariosAbierto != null && FormulariosAbierto != FormularioHijo)
+                    {
+                        if (FormulariosAbierto != formularioComputadoras)
+                        {
+                            FormulariosAbierto.Close();
+                        }
+                    }
 
-            if (FormulariosAbierto != null)
-                FormulariosAbierto.Close();
+                    FormulariosAbierto = FormularioHijo;
+                    FormularioHijo.TopLevel = false;
+                    FormularioHijo.FormBorderStyle = FormBorderStyle.None;
+                    FormularioHijo.Dock = DockStyle.Fill;
 
-            FormulariosAbierto = FormularioHijo;
-            FormularioHijo.TopLevel = false;
-            FormularioHijo.FormBorderStyle = FormBorderStyle.None;
-            FormularioHijo.Dock = DockStyle.Fill;
-            pnlChildForms.Controls.Add(FormularioHijo);
-            FormularioHijo.BringToFront();
-            FormularioHijo.Show();
+                    if (!pnlChildForms.Controls.Contains(FormularioHijo))
+                    {
+                        pnlChildForms.Controls.Add(FormularioHijo);
+                    }
+                    FormularioHijo.BringToFront();
+                    FormularioHijo.Show();
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(FormularioHijo));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         #endregion
 
@@ -63,7 +98,6 @@ namespace cibernopilosos.formularios
         private void btnAmpliarMenu_Click(object sender, EventArgs e)
         {
             tmrSideBar.Start();
-            
         }
         private bool MenuTamanoMaximo = true;
         private void tmrSideBar_Tick(object sender, EventArgs e)
@@ -71,7 +105,7 @@ namespace cibernopilosos.formularios
             if (MenuTamanoMaximo)
             {
                 lblUsuariologin.Hide();
-                lblHola.Hide();                
+                lblHola.Hide();
                 flwSideBar.Width -= 10;
                 if (flwSideBar.MinimumSize.Width == flwSideBar.Width)
                 {
@@ -98,8 +132,11 @@ namespace cibernopilosos.formularios
 
         private void btnComputadoras_Click(object sender, EventArgs e)
         {
-            Computadoras pcs = new Computadoras();
-            abrirFormularioHijo(pcs);
+            if (formularioComputadoras == null)
+            {
+                formularioComputadoras = new Computadoras();
+            }
+            abrirFormularioHijo(formularioComputadoras);
         }
 
         private void btnAdministrarPcs_Click(object sender, EventArgs e)
@@ -119,8 +156,17 @@ namespace cibernopilosos.formularios
         }
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            frmReportes Reportes = new frmReportes();
-            abrirFormularioHijo(Reportes);
+            var form1 = new Form1();
+            abrirFormularioHijo(form1);
+            // Al cerrarse Form1, se dispara este evento:
+            //form1.FormClosed += (s, args) =>
+            //{
+            //    // Re-mostrar el menú
+            //    this.Show();
+            //};
+
+            //this.Hide();
+            //form1.Show();
         }
         private void btnTransacciones_Click(object sender, EventArgs e)
         {

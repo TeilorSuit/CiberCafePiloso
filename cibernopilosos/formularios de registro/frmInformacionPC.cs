@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -48,7 +49,8 @@ namespace cibernopilosos.formularios
         private void AgregarPCs(string pcNumber, string pcInfo, string pcIp)
         {
             sqlConexion conexionsql = new sqlConexion();
-            string consulta = $"Insert into Computers (pcNumber, pcStatus, pcInfo,PcIP) values ('{pcNumber}','Disponible','{pcInfo}','{pcIp}')";
+            string consulta = $"Insert into Computers (PcNumber, PcStatus, PcInfo, PcIp) values ('{pcNumber}','Disponible','{pcInfo}','{pcIp}')";
+
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("PC agregada exitosamente");
@@ -62,7 +64,9 @@ namespace cibernopilosos.formularios
         private void ActualizarPC(string pcNumber, string pcInfo, string pcIp)
         {
             sqlConexion conexionsql = new sqlConexion();
-            string consulta = $"Update Computers set pcNumber='{pcNumber}', pcInfo='{pcInfo}',pcIp='{pcIp}' where PcIP='{pcIPOG}'";
+            string consulta = $"Update Computers set PcNumber='{pcNumber}', PcInfo='{pcInfo}', PcIp='{pcIp}' where PcIp='{pcIPOG}'";
+
+
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("PC actualizada exitosamente");

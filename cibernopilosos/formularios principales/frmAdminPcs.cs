@@ -35,8 +35,8 @@ namespace cibernopilosos.formularios
 
         private void btnBorrarPC_Click(object sender, EventArgs e)
         {
-            string consulta =
-                $"select PcStatus from Computers where PcIp='{dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString()}'";
+            string consulta = $"select PcStatus from Computers where PcIp='{dgvAdmiPCs.CurrentRow.Cells["PcIp"].Value.ToString()}'";
+
             string estadopc = ConexionSql.DevuelveString(consulta);
             if (estadopc != "En uso")
             {
@@ -70,7 +70,7 @@ namespace cibernopilosos.formularios
                 frmInformacionPC frm = new frmInformacionPC();
                 frm.modo = "edit";
                 frm.btnConfirmacion.Text = "Editar";
-                frm.pcIPOG = dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString();
+                frm.pcIPOG = dgvAdmiPCs.CurrentRow.Cells["PcIp"].Value.ToString();
                 PrecargarDatos(frm);
                 frm.ShowDialog();
                 llenarTabla();

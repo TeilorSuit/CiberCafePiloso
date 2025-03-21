@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 using cibernopilosos.formularios_de_registro;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace cibernopilosos.formularios
 {
     public partial class frmClientes : Form
     {
+        sqlConexion ConexionSql = new sqlConexion();
+
         public int TiempoHorasCalculados { get; set; }
         public int TiempoMinutosCalculados { get; set; }
-        public bool VinculacionMode { get; set; } = false;
+        public bool VinculacionMode { get; set; }
         public string SelectedPcIp { get; set; } = "";
 
         public frmClientes()
@@ -28,7 +23,6 @@ namespace cibernopilosos.formularios
 
         private void llenarTabla()
         {
-            sqlConexion ConexionSql = new sqlConexion();
             string consulta = "select * from Clients";
             DataTable tabla = ConexionSql.retornaRegistros(consulta);
             dgvAdmiClientes.DataSource = "";
@@ -108,68 +102,81 @@ namespace cibernopilosos.formularios
             ClientInfo.dtClientBirthDate.Value = Convert.ToDateTime(dgvAdmiClientes.CurrentRow.Cells[3].Value.ToString());
         }
 
-        private void btnAdminSubs_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("En desarrollo");
-        }
 
-        // Evento que se ejecuta al cargar el formulario
-        private void frmClientes_Load(object sender, EventArgs e)
-        {
-            // Llenar la tabla ya se llamó en el constructor; 
-            // Se ajusta la visibilidad de los botones según el modo de apertura
-            if (VinculacionMode)
-            {
-                // Si se abrió desde BotonAddClientePc, ocultar todos menos btnVincularPc
-                btnAgregarCliente.Visible = false;
-                btnEditarCliente.Visible = false;
-                btnBorrarCliente.Visible = false;
-                btnVincularPc.Visible = true;
-            }
-            else
-            {
-                // Si se abrió de otra forma, ocultar el botón de vinculación
-                btnVincularPc.Visible = false;
-            }
-        }
-
-        // Evento para vincular la computadora con el cliente seleccionado
+        // Evento para vincular la computadora con el cliente seleccionado - Kenneth
         private void btnVincularPc_Click(object sender, EventArgs e)
         {
             if (dgvAdmiClientes.CurrentRow != null)
             {
-                // aquí sacamos lo del clientee
+                // Obtener datos del cliente seleccionado
                 string clientId = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
                 string clientName = dgvAdmiClientes.CurrentRow.Cells["ClientName"].Value.ToString();
 
-                // Verificar lo de  la IP 
+                // Verificar que la IP de la PC se haya asignado
                 if (string.IsNullOrEmpty(SelectedPcIp))
                 {
                     MessageBox.Show("No se ha seleccionado una computadora.");
                     return;
                 }
 
-                // descripcion trans
+                // Crear la descripción para la transacción
                 string descripcion = $"Vinculación de PC {SelectedPcIp} con Cliente {clientName}";
 
-                // Consulta el precio por hora de la PC
                 sqlConexion ConexionSql = new sqlConexion();
+
+                // Consultar el precio por hora (se asume que ServiceID = 2 es "Precioxhora PC")
                 string consultaPrecio = "SELECT ServicePrice FROM Services_Products WHERE ServiceID = 2";
                 decimal precioHora = ConexionSql.DevuelveValorDecimal(consultaPrecio);
 
-                // tiempo total en horas 
+                // Calcular el tiempo total en horas (conversión de minutos a fracción de hora)
                 decimal tiempoTotal = TiempoHorasCalculados + ((decimal)TiempoMinutosCalculados / 60m);
-                //  precio final
-                decimal totalPrice = tiempoTotal * precioHora;
+                decimal transServicePrice = tiempoTotal * precioHora;
 
-                // Construir la consultaaaa
-                string query = $"INSERT INTO Transactions (TransClientID, TransServicesID, TransDescrip, TransPaidMoney, TransDiscount, TransQuantity, TransDateTime, TransUsername) " +
-                               $"VALUES ('{clientId}', 2, '{descripcion}', {totalPrice}, 0, 1, '{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")}', 'admin')";
-
-                if (ConexionSql.EjecutarAccion(query))
+                // Consultar el descuento activo del cliente (si tiene membresía activa)
+                string consultaDescuento = "SELECT ISNULL((SELECT m.Discount FROM Membership m " +
+                    "INNER JOIN ClientMembership cm ON m.MembershipID = cm.CMMembershipID " +
+                    $"WHERE cm.CMClientID = '{clientId}' AND GETDATE() BETWEEN cm.CMStartDate AND cm.CMEndDate), 0)";
+                object resultadoDescuento = ConexionSql.DevuelveValorDecimal(consultaDescuento);
+                decimal discountValue = 0m;
+                if (resultadoDescuento != null && resultadoDescuento != DBNull.Value)
                 {
-                    MessageBox.Show("Vinculación exitosa. Transacción registrada.");
-                    this.Close(); // Se cierra el formulario tras la vinculación
+                    try
+                    {
+                        discountValue = Convert.ToDecimal(resultadoDescuento, CultureInfo.InvariantCulture);
+                    }
+                    catch
+                    {
+                        discountValue = 0m;
+                    }
+                }
+
+                // Calcular el descuento, subtotal y total
+                decimal transDiscount = transServicePrice * discountValue;
+                decimal transSubTotal = transServicePrice - transDiscount;
+                decimal transTotal = transSubTotal+(transSubTotal * 0.15m);
+
+                // Construir la consulta INSERT para Transactions
+                string queryTransactions = $"INSERT INTO Transactions (TransClientID, TransServicesID, TransDescrip, TransSubTotal, TransDiscount, TransQuantity, TransDateTime, TransUsername, TransTotal, TransServicePrice) " +
+                               $"VALUES ('{clientId}', 2, '{descripcion}', " +
+                               $"{transSubTotal.ToString(CultureInfo.InvariantCulture)}, " +
+                               $"{transDiscount.ToString(CultureInfo.InvariantCulture)}, " +
+                               $"1, '{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")}', 'admin', " +
+                               $"{transTotal.ToString(CultureInfo.InvariantCulture)}, " +
+                               $"{transServicePrice.ToString(CultureInfo.InvariantCulture)})";
+
+                bool transOk = ConexionSql.EjecutarAccion(queryTransactions);
+
+                // Insertar registro en ClientComputer
+                // Se registra: PcIp, ClientID, la fecha actual (GETDATE()) y el tiempo usado en minutos
+                int totalTimeUsed = (TiempoHorasCalculados * 60) + TiempoMinutosCalculados;
+                string queryClientComputer = $"INSERT INTO ClientComputer (CC_PcIP, CC_ClientID, CC_DateTime, CC_TimeUsed) " +
+                                             $"VALUES ('{SelectedPcIp}', '{clientId}', GETDATE(), {totalTimeUsed})";
+                bool ccOk = ConexionSql.EjecutarAccion(queryClientComputer);
+
+                if (transOk && ccOk)
+                {
+                    MessageBox.Show("Vinculación exitosa. Transacción registrada y PC vinculada.");
+                    this.Close();
                 }
                 else
                 {
@@ -181,6 +188,7 @@ namespace cibernopilosos.formularios
                 MessageBox.Show("Seleccione un cliente para vincular.");
             }
         }
+
 
         private void btnAddMembership_Click(object sender, EventArgs e)
         {
@@ -201,8 +209,9 @@ namespace cibernopilosos.formularios
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
-                string comando = "update Clients set ClientMemStatus = 0 where ClientID = " + idcliente+
-                    "update ClientMembership set CMEndDate=GETDATE() where CMClientID =" + idcliente;
+                string comando = "update Clients set ClientMemStatus = 0 where ClientID = '" + idcliente + "'; " +
+                                 "update ClientMembership set CMEndDate = GETDATE() where CMClientID = '" + idcliente + "'";
+
 
                 if (ConexionSql.EjecutarAccion(comando))
                 {
@@ -221,6 +230,50 @@ namespace cibernopilosos.formularios
             frmMemberShip Membership = new frmMemberShip("1");
             Membership.ShowDialog();
             llenarTabla();
+        }
+
+        private void frmClientes_Load(object sender, EventArgs e)
+        {
+            if (VinculacionMode)
+            {
+                btnAgregarCliente.Visible = false;
+                btnEditarCliente.Visible = false;
+                btnBorrarCliente.Visible = false;
+                pnlMembership.Visible = false;
+            }
+            else
+            {
+                btnVModeCerrar.Visible = false;
+                btnVincularPc.Visible = false;
+            }
+
+            verificarMembresias();
+        }
+
+        private void verificarMembresias()
+        {
+            string fechaHoy = DateTime.Now.ToString("yyyy-MM-dd");
+            string consultaCaducadas =
+                "SELECT cm.CMClientID " +
+                "FROM ClientMembership cm " +
+                "WHERE CONVERT(date, cm.CMEndDate) = '" + fechaHoy + "'";
+
+            DataTable dtCaducadas = ConexionSql.retornaRegistros(consultaCaducadas);
+
+            foreach (DataRow row in dtCaducadas.Rows)
+            {
+                string clientId = row["CMClientID"].ToString();
+                string updateQuery =
+                    "UPDATE Clients " +
+                    "SET ClientMemStatus = 0 " +
+                    "WHERE ClientID = '" + clientId + "'";
+                ConexionSql.EjecutarAccion(updateQuery);
+            }
+        }
+
+        private void btnVModeCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

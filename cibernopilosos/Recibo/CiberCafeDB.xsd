@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CiberCafeDB" targetNamespace="http://tempuri.org/CiberCafeDB.xsd" xmlns:mstns="http://tempuri.org/CiberCafeDB.xsd" xmlns="http://tempuri.org/CiberCafeDB.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CiberCafeDB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="CiberCafeDB" msprop:Generator_DataSetName="CiberCafeDB">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Transacciones" msprop:Generator_RowEvHandlerName="TransaccionesRowChangeEventHandler" msprop:Generator_RowDeletedName="TransaccionesRowDeleted" msprop:Generator_RowDeletingName="TransaccionesRowDeleting" msprop:Generator_RowEvArgName="TransaccionesRowChangeEvent" msprop:Generator_TablePropName="Transacciones" msprop:Generator_RowChangedName="TransaccionesRowChanged" msprop:Generator_RowChangingName="TransaccionesRowChanging" msprop:Generator_TableClassName="TransaccionesDataTable" msprop:Generator_RowClassName="TransaccionesRow" msprop:Generator_TableVarName="tableTransacciones" msprop:Generator_UserTableName="Transacciones">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransID" msprop:Generator_ColumnPropNameInRow="TransID" msprop:Generator_ColumnPropNameInTable="TransIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransID" msprop:Generator_UserColumnName="TransID" type="xs:string" minOccurs="0" />
+              <xs:element name="TransClientID" msprop:Generator_ColumnPropNameInRow="TransClientID" msprop:Generator_ColumnPropNameInTable="TransClientIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransClientID" msprop:Generator_UserColumnName="TransClientID" type="xs:string" minOccurs="0" />
+              <xs:element name="TransServicesID" msprop:Generator_ColumnPropNameInRow="TransServicesID" msprop:Generator_ColumnPropNameInTable="TransServicesIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransServicesID" msprop:Generator_UserColumnName="TransServicesID" type="xs:string" minOccurs="0" />
+              <xs:element name="TransDescrip" msprop:Generator_ColumnPropNameInRow="TransDescrip" msprop:Generator_ColumnPropNameInTable="TransDescripColumn" msprop:Generator_ColumnVarNameInTable="columnTransDescrip" msprop:Generator_UserColumnName="TransDescrip" type="xs:string" minOccurs="0" />
+              <xs:element name="TransServicePrice" msprop:Generator_ColumnPropNameInRow="TransServicePrice" msprop:Generator_ColumnPropNameInTable="TransServicePriceColumn" msprop:Generator_ColumnVarNameInTable="columnTransServicePrice" msprop:Generator_UserColumnName="TransServicePrice" type="xs:string" minOccurs="0" />
+              <xs:element name="TransDiscount" msprop:Generator_ColumnPropNameInRow="TransDiscount" msprop:Generator_ColumnPropNameInTable="TransDiscountColumn" msprop:Generator_ColumnVarNameInTable="columnTransDiscount" msprop:Generator_UserColumnName="TransDiscount" type="xs:string" minOccurs="0" />
+              <xs:element name="TransSubTotal" msprop:Generator_ColumnPropNameInRow="TransSubTotal" msprop:Generator_ColumnPropNameInTable="TransSubTotalColumn" msprop:Generator_ColumnVarNameInTable="columnTransSubTotal" msprop:Generator_UserColumnName="TransSubTotal" type="xs:string" minOccurs="0" />
+              <xs:element name="TransTotal" msprop:Generator_ColumnPropNameInRow="TransTotal" msprop:Generator_ColumnPropNameInTable="TransTotalColumn" msprop:Generator_ColumnVarNameInTable="columnTransTotal" msprop:Generator_UserColumnName="TransTotal" type="xs:string" minOccurs="0" />
+              <xs:element name="TransQuantity" msprop:Generator_ColumnPropNameInRow="TransQuantity" msprop:Generator_ColumnPropNameInTable="TransQuantityColumn" msprop:Generator_ColumnVarNameInTable="columnTransQuantity" msprop:Generator_UserColumnName="TransQuantity" type="xs:string" minOccurs="0" />
+              <xs:element name="TransDateTime" msprop:Generator_ColumnPropNameInRow="TransDateTime" msprop:Generator_ColumnPropNameInTable="TransDateTimeColumn" msprop:Generator_ColumnVarNameInTable="columnTransDateTime" msprop:Generator_UserColumnName="TransDateTime" type="xs:string" minOccurs="0" />
+              <xs:element name="ClientName" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_ColumnVarNameInTable="columnClientName" msprop:Generator_UserColumnName="ClientName" type="xs:string" minOccurs="0" />
+              <xs:element name="IVA" msprop:Generator_ColumnPropNameInRow="IVA" msprop:Generator_ColumnPropNameInTable="IVAColumn" msprop:Generator_ColumnVarNameInTable="columnIVA" msprop:Generator_UserColumnName="IVA" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

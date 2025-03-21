@@ -24,7 +24,9 @@ namespace cibernopilosos.formularios
         private void AgregarCliente(string clientId, string clientName, DateTime clientBirthDate, string clientPhone, string clientAddress)
         {
             string fechaFormateada = clientBirthDate.ToString("yyyy-MM-dd");
-            string consulta = $"Insert into Clients (ClientID,ClientMemStatus, ClientName, ClientBirthDate, ClientPhone, ClientAddress) values ('{clientId}','0','{clientName}','{fechaFormateada}','{clientPhone}','{clientAddress}')";
+            string consulta = $"Insert into Clients (ClientID, ClientMemStatus, ClientName, ClientBirthDate, ClientPhone, ClientAddress) " +
+                  $"values ('{clientId}', 0, '{clientName}', '{fechaFormateada}', '{clientPhone}', '{clientAddress}')";
+
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("Cliente registrado exitosamente");
@@ -55,7 +57,6 @@ namespace cibernopilosos.formularios
         {
             string clientID, clientName,clientPhone,clientAddress;
             DateTime clientBirthdate;
-            bool clientMemStatus;
 
             clientID = txtClientID.Text;
             clientName = txtClientName.Text;
@@ -76,7 +77,6 @@ namespace cibernopilosos.formularios
 
             if (modo == "add")
             {
-                clientMemStatus = false;
                 AgregarCliente(clientID, clientName, clientBirthdate, clientPhone, clientAddress);
             }
             else

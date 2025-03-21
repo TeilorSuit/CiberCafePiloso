@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Data.Sql;
 using System.Data;
 using System.Windows.Forms;
-using System.Data.Common;
-using System.Drawing;
 
 namespace cibernopilosos
 {
@@ -145,7 +138,7 @@ namespace cibernopilosos
                 {
                     if (DataReader[0] != DBNull.Value)
                     {
-                        aux = (decimal)DataReader[0];
+                        aux = Convert.ToDecimal(DataReader[0]);
                     }
                 }
                 DataReader.Close();
@@ -158,7 +151,6 @@ namespace cibernopilosos
             }
             return aux;
         }
-        //completar mas funciones
 
         public bool DevuelveValorBooleano(string consulta)
         {
@@ -186,7 +178,7 @@ namespace cibernopilosos
             return aux;
         }
 
-        public string DevuelveString(string consulta)//pal admin
+        public string DevuelveString(string consulta)
         {
             string aux = "";
             try

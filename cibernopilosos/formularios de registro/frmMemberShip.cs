@@ -71,7 +71,7 @@ namespace cibernopilosos.formularios_de_registro
         private void insertarClientMem(string idmembresia)
         {
             string consult =
-                $"INSERT INTO ClientMembership (CMClientID, CMMembershipID, CMStartDate, CMEndDate) SELECT " +
+                "INSERT INTO ClientMembership (CMClientID, CMMembershipID, CMStartDate, CMEndDate) SELECT " +
                 " c.ClientID, m.MembershipID, GETDATE(), " +
                 "DATEADD(day, COALESCE(m.MemDay, 0) + (COALESCE(m.MemMonth, 0) * 30) + (COALESCE(m.MemYear, 0) * 365)," +
                 " GETDATE()) FROM Clients AS c, Membership AS m WHERE " +

@@ -32,23 +32,24 @@
             this.btnAgregarPC = new System.Windows.Forms.Button();
             this.btnEditarPC = new System.Windows.Forms.Button();
             this.btnBorrarPC = new System.Windows.Forms.Button();
+            this.pnlPrecio = new System.Windows.Forms.Panel();
+            this.lblCentavos = new System.Windows.Forms.Label();
+            this.lblDolares = new System.Windows.Forms.Label();
+            this.numCentavos = new System.Windows.Forms.NumericUpDown();
+            this.numDolares = new System.Windows.Forms.NumericUpDown();
+            this.btnNuevoPrecio = new System.Windows.Forms.Button();
+            this.lblTextNuevoPrecio = new System.Windows.Forms.Label();
+            this.lblPrecioActual = new System.Windows.Forms.Label();
+            this.lblTextoPrecioActual = new System.Windows.Forms.Label();
             this.dgvAdmiPCs = new System.Windows.Forms.DataGridView();
             this.pnlDgv = new System.Windows.Forms.Panel();
-            this.pnlPrecio = new System.Windows.Forms.Panel();
-            this.lblTextoPrecioActual = new System.Windows.Forms.Label();
-            this.lblPrecioActual = new System.Windows.Forms.Label();
-            this.lblTextNuevoPrecio = new System.Windows.Forms.Label();
-            this.btnNuevoPrecio = new System.Windows.Forms.Button();
-            this.numDolares = new System.Windows.Forms.NumericUpDown();
-            this.numCentavos = new System.Windows.Forms.NumericUpDown();
-            this.lblDolares = new System.Windows.Forms.Label();
-            this.lblCentavos = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.flwPanelCuadro.SuspendLayout();
+            this.pnlPrecio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCentavos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDolares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiPCs)).BeginInit();
             this.pnlDgv.SuspendLayout();
-            this.pnlPrecio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDolares)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCentavos)).BeginInit();
             this.SuspendLayout();
             // 
             // flwPanelCuadro
@@ -110,6 +111,115 @@
             this.btnBorrarPC.UseVisualStyleBackColor = false;
             this.btnBorrarPC.Click += new System.EventHandler(this.btnBorrarPC_Click);
             // 
+            // pnlPrecio
+            // 
+            this.pnlPrecio.Controls.Add(this.label1);
+            this.pnlPrecio.Controls.Add(this.lblCentavos);
+            this.pnlPrecio.Controls.Add(this.lblDolares);
+            this.pnlPrecio.Controls.Add(this.numCentavos);
+            this.pnlPrecio.Controls.Add(this.numDolares);
+            this.pnlPrecio.Controls.Add(this.btnNuevoPrecio);
+            this.pnlPrecio.Controls.Add(this.lblTextNuevoPrecio);
+            this.pnlPrecio.Controls.Add(this.lblPrecioActual);
+            this.pnlPrecio.Controls.Add(this.lblTextoPrecioActual);
+            this.pnlPrecio.Location = new System.Drawing.Point(3, 201);
+            this.pnlPrecio.Name = "pnlPrecio";
+            this.pnlPrecio.Size = new System.Drawing.Size(214, 167);
+            this.pnlPrecio.TabIndex = 4;
+            // 
+            // lblCentavos
+            // 
+            this.lblCentavos.AutoSize = true;
+            this.lblCentavos.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCentavos.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblCentavos.Location = new System.Drawing.Point(14, 114);
+            this.lblCentavos.Name = "lblCentavos";
+            this.lblCentavos.Size = new System.Drawing.Size(84, 16);
+            this.lblCentavos.TabIndex = 8;
+            this.lblCentavos.Text = "Centavos:";
+            // 
+            // lblDolares
+            // 
+            this.lblDolares.AutoSize = true;
+            this.lblDolares.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDolares.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblDolares.Location = new System.Drawing.Point(14, 71);
+            this.lblDolares.Name = "lblDolares";
+            this.lblDolares.Size = new System.Drawing.Size(69, 16);
+            this.lblDolares.TabIndex = 7;
+            this.lblDolares.Text = "Dolares:";
+            // 
+            // numCentavos
+            // 
+            this.numCentavos.Location = new System.Drawing.Point(17, 133);
+            this.numCentavos.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numCentavos.Name = "numCentavos";
+            this.numCentavos.Size = new System.Drawing.Size(52, 20);
+            this.numCentavos.TabIndex = 6;
+            // 
+            // numDolares
+            // 
+            this.numDolares.Location = new System.Drawing.Point(17, 90);
+            this.numDolares.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numDolares.Name = "numDolares";
+            this.numDolares.Size = new System.Drawing.Size(52, 20);
+            this.numDolares.TabIndex = 5;
+            // 
+            // btnNuevoPrecio
+            // 
+            this.btnNuevoPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnNuevoPrecio.FlatAppearance.BorderSize = 0;
+            this.btnNuevoPrecio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevoPrecio.Font = new System.Drawing.Font("MS Reference Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoPrecio.Location = new System.Drawing.Point(104, 87);
+            this.btnNuevoPrecio.Name = "btnNuevoPrecio";
+            this.btnNuevoPrecio.Size = new System.Drawing.Size(85, 66);
+            this.btnNuevoPrecio.TabIndex = 4;
+            this.btnNuevoPrecio.Text = "Cambiar";
+            this.btnNuevoPrecio.UseVisualStyleBackColor = false;
+            this.btnNuevoPrecio.Click += new System.EventHandler(this.btnNuevoPrecio_Click);
+            // 
+            // lblTextNuevoPrecio
+            // 
+            this.lblTextNuevoPrecio.AutoSize = true;
+            this.lblTextNuevoPrecio.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextNuevoPrecio.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblTextNuevoPrecio.Location = new System.Drawing.Point(12, 49);
+            this.lblTextNuevoPrecio.Name = "lblTextNuevoPrecio";
+            this.lblTextNuevoPrecio.Size = new System.Drawing.Size(118, 16);
+            this.lblTextNuevoPrecio.TabIndex = 2;
+            this.lblTextNuevoPrecio.Text = "Cambiar Precio";
+            // 
+            // lblPrecioActual
+            // 
+            this.lblPrecioActual.AutoSize = true;
+            this.lblPrecioActual.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioActual.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblPrecioActual.Location = new System.Drawing.Point(132, 12);
+            this.lblPrecioActual.Name = "lblPrecioActual";
+            this.lblPrecioActual.Size = new System.Drawing.Size(25, 16);
+            this.lblPrecioActual.TabIndex = 1;
+            this.lblPrecioActual.Text = "...";
+            // 
+            // lblTextoPrecioActual
+            // 
+            this.lblTextoPrecioActual.AutoSize = true;
+            this.lblTextoPrecioActual.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextoPrecioActual.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblTextoPrecioActual.Location = new System.Drawing.Point(12, 12);
+            this.lblTextoPrecioActual.Name = "lblTextoPrecioActual";
+            this.lblTextoPrecioActual.Size = new System.Drawing.Size(114, 16);
+            this.lblTextoPrecioActual.TabIndex = 0;
+            this.lblTextoPrecioActual.Text = "Precio Actual:";
+            // 
             // dgvAdmiPCs
             // 
             this.dgvAdmiPCs.AllowUserToAddRows = false;
@@ -142,113 +252,16 @@
             this.pnlDgv.Size = new System.Drawing.Size(606, 561);
             this.pnlDgv.TabIndex = 1;
             // 
-            // pnlPrecio
+            // label1
             // 
-            this.pnlPrecio.Controls.Add(this.lblCentavos);
-            this.pnlPrecio.Controls.Add(this.lblDolares);
-            this.pnlPrecio.Controls.Add(this.numCentavos);
-            this.pnlPrecio.Controls.Add(this.numDolares);
-            this.pnlPrecio.Controls.Add(this.btnNuevoPrecio);
-            this.pnlPrecio.Controls.Add(this.lblTextNuevoPrecio);
-            this.pnlPrecio.Controls.Add(this.lblPrecioActual);
-            this.pnlPrecio.Controls.Add(this.lblTextoPrecioActual);
-            this.pnlPrecio.Location = new System.Drawing.Point(3, 201);
-            this.pnlPrecio.Name = "pnlPrecio";
-            this.pnlPrecio.Size = new System.Drawing.Size(214, 167);
-            this.pnlPrecio.TabIndex = 4;
-            // 
-            // lblTextoPrecioActual
-            // 
-            this.lblTextoPrecioActual.AutoSize = true;
-            this.lblTextoPrecioActual.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTextoPrecioActual.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblTextoPrecioActual.Location = new System.Drawing.Point(12, 12);
-            this.lblTextoPrecioActual.Name = "lblTextoPrecioActual";
-            this.lblTextoPrecioActual.Size = new System.Drawing.Size(114, 16);
-            this.lblTextoPrecioActual.TabIndex = 0;
-            this.lblTextoPrecioActual.Text = "Precio Actual:";
-            // 
-            // lblPrecioActual
-            // 
-            this.lblPrecioActual.AutoSize = true;
-            this.lblPrecioActual.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioActual.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblPrecioActual.Location = new System.Drawing.Point(132, 12);
-            this.lblPrecioActual.Name = "lblPrecioActual";
-            this.lblPrecioActual.Size = new System.Drawing.Size(25, 16);
-            this.lblPrecioActual.TabIndex = 1;
-            this.lblPrecioActual.Text = "...";
-            // 
-            // lblTextNuevoPrecio
-            // 
-            this.lblTextNuevoPrecio.AutoSize = true;
-            this.lblTextNuevoPrecio.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTextNuevoPrecio.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblTextNuevoPrecio.Location = new System.Drawing.Point(12, 49);
-            this.lblTextNuevoPrecio.Name = "lblTextNuevoPrecio";
-            this.lblTextNuevoPrecio.Size = new System.Drawing.Size(118, 16);
-            this.lblTextNuevoPrecio.TabIndex = 2;
-            this.lblTextNuevoPrecio.Text = "Cambiar Precio";
-            // 
-            // btnNuevoPrecio
-            // 
-            this.btnNuevoPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnNuevoPrecio.FlatAppearance.BorderSize = 0;
-            this.btnNuevoPrecio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevoPrecio.Font = new System.Drawing.Font("MS Reference Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoPrecio.Location = new System.Drawing.Point(104, 87);
-            this.btnNuevoPrecio.Name = "btnNuevoPrecio";
-            this.btnNuevoPrecio.Size = new System.Drawing.Size(85, 66);
-            this.btnNuevoPrecio.TabIndex = 4;
-            this.btnNuevoPrecio.Text = "Cambiar";
-            this.btnNuevoPrecio.UseVisualStyleBackColor = false;
-            this.btnNuevoPrecio.Click += new System.EventHandler(this.btnNuevoPrecio_Click);
-            // 
-            // numDolares
-            // 
-            this.numDolares.Location = new System.Drawing.Point(17, 90);
-            this.numDolares.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.numDolares.Name = "numDolares";
-            this.numDolares.Size = new System.Drawing.Size(52, 20);
-            this.numDolares.TabIndex = 5;
-            // 
-            // numCentavos
-            // 
-            this.numCentavos.Location = new System.Drawing.Point(17, 133);
-            this.numCentavos.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numCentavos.Name = "numCentavos";
-            this.numCentavos.Size = new System.Drawing.Size(52, 20);
-            this.numCentavos.TabIndex = 6;
-            // 
-            // lblDolares
-            // 
-            this.lblDolares.AutoSize = true;
-            this.lblDolares.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDolares.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblDolares.Location = new System.Drawing.Point(14, 71);
-            this.lblDolares.Name = "lblDolares";
-            this.lblDolares.Size = new System.Drawing.Size(69, 16);
-            this.lblDolares.TabIndex = 7;
-            this.lblDolares.Text = "Dolares:";
-            // 
-            // lblCentavos
-            // 
-            this.lblCentavos.AutoSize = true;
-            this.lblCentavos.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCentavos.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblCentavos.Location = new System.Drawing.Point(14, 114);
-            this.lblCentavos.Name = "lblCentavos";
-            this.lblCentavos.Size = new System.Drawing.Size(84, 16);
-            this.lblCentavos.TabIndex = 8;
-            this.lblCentavos.Text = "Centavos:";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.Location = new System.Drawing.Point(171, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "+IVA";
             // 
             // frmAdminPcs
             // 
@@ -263,12 +276,12 @@
             this.Text = "frmAdministrarComputadoras";
             this.Load += new System.EventHandler(this.frmAdminPcs_Load);
             this.flwPanelCuadro.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiPCs)).EndInit();
-            this.pnlDgv.ResumeLayout(false);
             this.pnlPrecio.ResumeLayout(false);
             this.pnlPrecio.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDolares)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCentavos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDolares)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiPCs)).EndInit();
+            this.pnlDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -289,5 +302,6 @@
         private System.Windows.Forms.Label lblDolares;
         private System.Windows.Forms.NumericUpDown numCentavos;
         private System.Windows.Forms.NumericUpDown numDolares;
+        private System.Windows.Forms.Label label1;
     }
 }

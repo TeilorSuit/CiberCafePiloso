@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cibernopilosos.Recibo;
 
 namespace cibernopilosos.formularios
 {
@@ -45,8 +46,12 @@ namespace cibernopilosos.formularios
                 dgvTransactions.Columns["TransServicesID"].HeaderText = "ID Servicio";
             if (dt.Columns.Contains("TransDescrip"))
                 dgvTransactions.Columns["TransDescrip"].HeaderText = "Descripción";
-            if (dt.Columns.Contains("TransPaidMoney"))
-                dgvTransactions.Columns["TransPaidMoney"].HeaderText = "Monto Pagado";
+            if (dt.Columns.Contains("TransSubTotal"))
+                dgvTransactions.Columns["TransSubTotal"].HeaderText = "Sub total";
+            if (dt.Columns.Contains("TransTotal"))
+                dgvTransactions.Columns["TransTotal"].HeaderText = "Total";
+            if (dt.Columns.Contains("TransServicePrice"))
+                dgvTransactions.Columns["TransServicePrice"].HeaderText = "Precio del servicio";
             if (dt.Columns.Contains("TransDiscount"))
                 dgvTransactions.Columns["TransDiscount"].HeaderText = "Descuento";
             if (dt.Columns.Contains("TransQuantity"))
@@ -85,9 +90,51 @@ namespace cibernopilosos.formularios
             cargarTabla();
         }
 
-        private void dgvTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            string buscar = txtFiltrado.Text;
+            string sentencia = $"SELECT * FROM Transactions WHERE TransClientID LIKE '%{buscar}%' OR TransID LIKE '%{buscar}%' OR TransServicesID LIKE '%{buscar}%'";
 
+            DataTable dt = conexion.retornaRegistros(sentencia);
+            dgvTransactions.DataSource = "";
+            dgvTransactions.DataSource = dt;
+            cambiarNombreColumnas(dt);
+        }
+
+        private void txtFiltrado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtFiltrado_TextChanged(object sender, EventArgs e)
+        {
+            string buscar = txtFiltrado.Text;
+            if (buscar.Length > 2)
+            {
+                string sentencia = $"SELECT * FROM Transactions WHERE TransClientID LIKE '%{buscar}%' OR TransID LIKE '%{buscar}%' OR TransServicesID LIKE '%{buscar}%'";
+                DataTable dt = conexion.retornaRegistros(sentencia);
+                dgvTransactions.DataSource = "";
+                dgvTransactions.DataSource = dt;
+                cambiarNombreColumnas(dt);
+            }
+            else
+            {
+                cargarTabla();
+            }
+        }
+
+        private void btnRecibo_Click(object sender, EventArgs e)
+        {
+            string idtrans = dgvTransactions.SelectedRows[0].Cells["TransID"].Value.ToString();
+            string consulta =
+                "Select t.TransID, t.TransClientID, t.TransServicesID, t.TransDescrip, t.TransServicePrice, t.TransDiscount, t.TransSubTotal, t.TransTotal, t.TransQuantity, t.TransDateTime, c.ClientName " +
+                $"from Transactions as T inner join Clients as C on T.TransClientID = C.ClientID where t.TransID = {idtrans}";
+            string reporte = "cibernopilosos.Recibo.rptRecibo.rdlc";
+            frmReport recibo = new frmReport(reporte, "TransaccionesTabla", consulta);
+            recibo.ShowDialog();
         }
     }
 }

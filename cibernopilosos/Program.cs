@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using cibernopilosos.formularios_de_registro;
 using cibernopilosos.formularios;
 
 namespace cibernopilosos
@@ -17,7 +18,7 @@ namespace cibernopilosos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+            Application.Run(new frmMenu(true));
         }
     }
 }

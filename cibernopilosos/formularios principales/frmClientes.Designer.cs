@@ -33,15 +33,16 @@
             this.btnEditarCliente = new System.Windows.Forms.Button();
             this.btnBorrarCliente = new System.Windows.Forms.Button();
             this.btnVincularPc = new System.Windows.Forms.Button();
-            this.dgvAdmiClientes = new System.Windows.Forms.DataGridView();
-            this.btnAddMembership = new System.Windows.Forms.Button();
-            this.btnDeleteMembership = new System.Windows.Forms.Button();
             this.pnlMembership = new System.Windows.Forms.Panel();
-            this.lblMemberShip = new System.Windows.Forms.Label();
             this.btnVisorMembresias = new System.Windows.Forms.Button();
+            this.lblMemberShip = new System.Windows.Forms.Label();
+            this.btnDeleteMembership = new System.Windows.Forms.Button();
+            this.btnAddMembership = new System.Windows.Forms.Button();
+            this.btnVModeCerrar = new System.Windows.Forms.Button();
+            this.dgvAdmiClientes = new System.Windows.Forms.DataGridView();
             this.flwPanelCuadro.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiClientes)).BeginInit();
             this.pnlMembership.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // flwPanelCuadro
@@ -52,6 +53,7 @@
             this.flwPanelCuadro.Controls.Add(this.btnBorrarCliente);
             this.flwPanelCuadro.Controls.Add(this.btnVincularPc);
             this.flwPanelCuadro.Controls.Add(this.pnlMembership);
+            this.flwPanelCuadro.Controls.Add(this.btnVModeCerrar);
             this.flwPanelCuadro.Dock = System.Windows.Forms.DockStyle.Right;
             this.flwPanelCuadro.Location = new System.Drawing.Point(606, 0);
             this.flwPanelCuadro.Name = "flwPanelCuadro";
@@ -124,6 +126,93 @@
             this.btnVincularPc.UseVisualStyleBackColor = false;
             this.btnVincularPc.Click += new System.EventHandler(this.btnVincularPc_Click);
             // 
+            // pnlMembership
+            // 
+            this.pnlMembership.Controls.Add(this.btnVisorMembresias);
+            this.pnlMembership.Controls.Add(this.lblMemberShip);
+            this.pnlMembership.Controls.Add(this.btnDeleteMembership);
+            this.pnlMembership.Controls.Add(this.btnAddMembership);
+            this.pnlMembership.Location = new System.Drawing.Point(3, 267);
+            this.pnlMembership.Name = "pnlMembership";
+            this.pnlMembership.Size = new System.Drawing.Size(214, 118);
+            this.pnlMembership.TabIndex = 7;
+            // 
+            // btnVisorMembresias
+            // 
+            this.btnVisorMembresias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnVisorMembresias.FlatAppearance.BorderSize = 0;
+            this.btnVisorMembresias.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnVisorMembresias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisorMembresias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVisorMembresias.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnVisorMembresias.Location = new System.Drawing.Point(5, 77);
+            this.btnVisorMembresias.Name = "btnVisorMembresias";
+            this.btnVisorMembresias.Size = new System.Drawing.Size(206, 31);
+            this.btnVisorMembresias.TabIndex = 8;
+            this.btnVisorMembresias.Text = "Ver Membresías";
+            this.btnVisorMembresias.UseVisualStyleBackColor = false;
+            this.btnVisorMembresias.Click += new System.EventHandler(this.btnVisorMembresias_Click);
+            // 
+            // lblMemberShip
+            // 
+            this.lblMemberShip.AutoSize = true;
+            this.lblMemberShip.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMemberShip.ForeColor = System.Drawing.Color.White;
+            this.lblMemberShip.Location = new System.Drawing.Point(44, 7);
+            this.lblMemberShip.Name = "lblMemberShip";
+            this.lblMemberShip.Size = new System.Drawing.Size(118, 19);
+            this.lblMemberShip.TabIndex = 7;
+            this.lblMemberShip.Text = "MEMBRESÍAS";
+            // 
+            // btnDeleteMembership
+            // 
+            this.btnDeleteMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnDeleteMembership.FlatAppearance.BorderSize = 0;
+            this.btnDeleteMembership.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDeleteMembership.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteMembership.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteMembership.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDeleteMembership.Location = new System.Drawing.Point(5, 32);
+            this.btnDeleteMembership.Name = "btnDeleteMembership";
+            this.btnDeleteMembership.Size = new System.Drawing.Size(100, 39);
+            this.btnDeleteMembership.TabIndex = 6;
+            this.btnDeleteMembership.Text = "-";
+            this.btnDeleteMembership.UseVisualStyleBackColor = false;
+            this.btnDeleteMembership.Click += new System.EventHandler(this.btnDeleteMembership_Click);
+            // 
+            // btnAddMembership
+            // 
+            this.btnAddMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnAddMembership.FlatAppearance.BorderSize = 0;
+            this.btnAddMembership.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddMembership.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddMembership.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMembership.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAddMembership.Location = new System.Drawing.Point(111, 32);
+            this.btnAddMembership.Name = "btnAddMembership";
+            this.btnAddMembership.Size = new System.Drawing.Size(100, 39);
+            this.btnAddMembership.TabIndex = 5;
+            this.btnAddMembership.Text = "+";
+            this.btnAddMembership.UseVisualStyleBackColor = false;
+            this.btnAddMembership.Click += new System.EventHandler(this.btnAddMembership_Click);
+            // 
+            // btnVModeCerrar
+            // 
+            this.btnVModeCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnVModeCerrar.FlatAppearance.BorderSize = 0;
+            this.btnVModeCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnVModeCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVModeCerrar.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVModeCerrar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnVModeCerrar.Location = new System.Drawing.Point(3, 391);
+            this.btnVModeCerrar.Name = "btnVModeCerrar";
+            this.btnVModeCerrar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnVModeCerrar.Size = new System.Drawing.Size(214, 60);
+            this.btnVModeCerrar.TabIndex = 8;
+            this.btnVModeCerrar.Text = "Cerrar";
+            this.btnVModeCerrar.UseVisualStyleBackColor = false;
+            this.btnVModeCerrar.Click += new System.EventHandler(this.btnVModeCerrar_Click);
+            // 
             // dgvAdmiClientes
             // 
             this.dgvAdmiClientes.AllowUserToAddRows = false;
@@ -146,76 +235,6 @@
             this.dgvAdmiClientes.Size = new System.Drawing.Size(823, 561);
             this.dgvAdmiClientes.TabIndex = 2;
             // 
-            // btnAddMembership
-            // 
-            this.btnAddMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
-            this.btnAddMembership.FlatAppearance.BorderSize = 0;
-            this.btnAddMembership.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAddMembership.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddMembership.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddMembership.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAddMembership.Location = new System.Drawing.Point(111, 32);
-            this.btnAddMembership.Name = "btnAddMembership";
-            this.btnAddMembership.Size = new System.Drawing.Size(100, 39);
-            this.btnAddMembership.TabIndex = 5;
-            this.btnAddMembership.Text = "+";
-            this.btnAddMembership.UseVisualStyleBackColor = false;
-            this.btnAddMembership.Click += new System.EventHandler(this.btnAddMembership_Click);
-            // 
-            // btnDeleteMembership
-            // 
-            this.btnDeleteMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
-            this.btnDeleteMembership.FlatAppearance.BorderSize = 0;
-            this.btnDeleteMembership.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDeleteMembership.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteMembership.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteMembership.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnDeleteMembership.Location = new System.Drawing.Point(5, 32);
-            this.btnDeleteMembership.Name = "btnDeleteMembership";
-            this.btnDeleteMembership.Size = new System.Drawing.Size(100, 39);
-            this.btnDeleteMembership.TabIndex = 6;
-            this.btnDeleteMembership.Text = "-";
-            this.btnDeleteMembership.UseVisualStyleBackColor = false;
-            this.btnDeleteMembership.Click += new System.EventHandler(this.btnDeleteMembership_Click);
-            // 
-            // pnlMembership
-            // 
-            this.pnlMembership.Controls.Add(this.btnVisorMembresias);
-            this.pnlMembership.Controls.Add(this.lblMemberShip);
-            this.pnlMembership.Controls.Add(this.btnDeleteMembership);
-            this.pnlMembership.Controls.Add(this.btnAddMembership);
-            this.pnlMembership.Location = new System.Drawing.Point(3, 267);
-            this.pnlMembership.Name = "pnlMembership";
-            this.pnlMembership.Size = new System.Drawing.Size(214, 118);
-            this.pnlMembership.TabIndex = 7;
-            // 
-            // lblMemberShip
-            // 
-            this.lblMemberShip.AutoSize = true;
-            this.lblMemberShip.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMemberShip.ForeColor = System.Drawing.Color.White;
-            this.lblMemberShip.Location = new System.Drawing.Point(44, 7);
-            this.lblMemberShip.Name = "lblMemberShip";
-            this.lblMemberShip.Size = new System.Drawing.Size(118, 19);
-            this.lblMemberShip.TabIndex = 7;
-            this.lblMemberShip.Text = "MEMBRESÍAS";
-            // 
-            // btnVisorMembresias
-            // 
-            this.btnVisorMembresias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
-            this.btnVisorMembresias.FlatAppearance.BorderSize = 0;
-            this.btnVisorMembresias.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnVisorMembresias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisorMembresias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVisorMembresias.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnVisorMembresias.Location = new System.Drawing.Point(5, 77);
-            this.btnVisorMembresias.Name = "btnVisorMembresias";
-            this.btnVisorMembresias.Size = new System.Drawing.Size(206, 31);
-            this.btnVisorMembresias.TabIndex = 8;
-            this.btnVisorMembresias.Text = "Ver Membresías";
-            this.btnVisorMembresias.UseVisualStyleBackColor = false;
-            this.btnVisorMembresias.Click += new System.EventHandler(this.btnVisorMembresias_Click);
-            // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,10 +247,11 @@
             this.MinimizeBox = false;
             this.Name = "frmClientes";
             this.Text = "frmClientes";
+            this.Load += new System.EventHandler(this.frmClientes_Load);
             this.flwPanelCuadro.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiClientes)).EndInit();
             this.pnlMembership.ResumeLayout(false);
             this.pnlMembership.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,15 +259,16 @@
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flwPanelCuadro;
-        private System.Windows.Forms.Button btnAgregarCliente;
-        private System.Windows.Forms.Button btnEditarCliente;
-        private System.Windows.Forms.Button btnBorrarCliente;
         private System.Windows.Forms.DataGridView dgvAdmiClientes;
         private System.Windows.Forms.Button btnVincularPc;
         private System.Windows.Forms.Button btnAddMembership;
         private System.Windows.Forms.Button btnDeleteMembership;
-        private System.Windows.Forms.Panel pnlMembership;
         private System.Windows.Forms.Label lblMemberShip;
         private System.Windows.Forms.Button btnVisorMembresias;
+        private System.Windows.Forms.Button btnAgregarCliente;
+        private System.Windows.Forms.Button btnEditarCliente;
+        private System.Windows.Forms.Button btnBorrarCliente;
+        private System.Windows.Forms.Panel pnlMembership;
+        private System.Windows.Forms.Button btnVModeCerrar;
     }
 }
