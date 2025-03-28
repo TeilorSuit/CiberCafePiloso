@@ -31,35 +31,35 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.pnlChildForms = new System.Windows.Forms.Panel();
-            this.pctMainLogo = new System.Windows.Forms.PictureBox();
             this.flwSideBar = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlAmpliarMenu = new System.Windows.Forms.Panel();
-            this.btnAmpliarMenu = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
-            this.pctLogo = new System.Windows.Forms.PictureBox();
             this.pnlComputadoras = new System.Windows.Forms.Panel();
-            this.btnComputadoras = new System.Windows.Forms.Button();
             this.pnlClientes = new System.Windows.Forms.Panel();
-            this.btnClientes = new System.Windows.Forms.Button();
             this.pnlTransacciones = new System.Windows.Forms.Panel();
-            this.btnTransacciones = new System.Windows.Forms.Button();
             this.pnlSeparador = new System.Windows.Forms.Panel();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnAdministrarPcs = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
-            this.tmrSideBar = new System.Windows.Forms.Timer(this.components);
             this.pblSaludo = new System.Windows.Forms.Panel();
-            this.lblHola = new System.Windows.Forms.Label();
             this.lblUsuariologin = new System.Windows.Forms.Label();
+            this.lblHola = new System.Windows.Forms.Label();
+            this.tmrSideBar = new System.Windows.Forms.Timer(this.components);
+            this.pctMainLogo = new System.Windows.Forms.PictureBox();
+            this.btnAmpliarMenu = new System.Windows.Forms.Button();
+            this.pctLogo = new System.Windows.Forms.PictureBox();
+            this.btnComputadoras = new System.Windows.Forms.Button();
+            this.btnClientes = new System.Windows.Forms.Button();
+            this.btnTransacciones = new System.Windows.Forms.Button();
             this.pnlChildForms.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).BeginInit();
             this.flwSideBar.SuspendLayout();
             this.pnlAmpliarMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.pnlComputadoras.SuspendLayout();
             this.pnlClientes.SuspendLayout();
             this.pnlTransacciones.SuspendLayout();
             this.pblSaludo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlChildForms
@@ -72,18 +72,6 @@
             this.pnlChildForms.Name = "pnlChildForms";
             this.pnlChildForms.Size = new System.Drawing.Size(1084, 561);
             this.pnlChildForms.TabIndex = 1;
-            // 
-            // pctMainLogo
-            // 
-            this.pctMainLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.pctMainLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pctMainLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoNegro;
-            this.pctMainLogo.Location = new System.Drawing.Point(261, 0);
-            this.pctMainLogo.Name = "pctMainLogo";
-            this.pctMainLogo.Size = new System.Drawing.Size(823, 561);
-            this.pctMainLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pctMainLogo.TabIndex = 3;
-            this.pctMainLogo.TabStop = false;
             // 
             // flwSideBar
             // 
@@ -104,6 +92,7 @@
             this.flwSideBar.Name = "flwSideBar";
             this.flwSideBar.Size = new System.Drawing.Size(261, 561);
             this.flwSideBar.TabIndex = 0;
+            this.flwSideBar.Paint += new System.Windows.Forms.PaintEventHandler(this.flwSideBar_Paint);
             // 
             // pnlAmpliarMenu
             // 
@@ -115,24 +104,6 @@
             this.pnlAmpliarMenu.Size = new System.Drawing.Size(200, 74);
             this.pnlAmpliarMenu.TabIndex = 2;
             // 
-            // btnAmpliarMenu
-            // 
-            this.btnAmpliarMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAmpliarMenu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAmpliarMenu.FlatAppearance.BorderSize = 0;
-            this.btnAmpliarMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnAmpliarMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnAmpliarMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAmpliarMenu.ForeColor = System.Drawing.Color.Transparent;
-            this.btnAmpliarMenu.ImageIndex = 3;
-            this.btnAmpliarMenu.ImageList = this.imgList;
-            this.btnAmpliarMenu.Location = new System.Drawing.Point(14, 15);
-            this.btnAmpliarMenu.Name = "btnAmpliarMenu";
-            this.btnAmpliarMenu.Size = new System.Drawing.Size(59, 46);
-            this.btnAmpliarMenu.TabIndex = 2;
-            this.btnAmpliarMenu.UseVisualStyleBackColor = true;
-            this.btnAmpliarMenu.Click += new System.EventHandler(this.btnAmpliarMenu_Click);
-            // 
             // imgList
             // 
             this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
@@ -143,16 +114,6 @@
             this.imgList.Images.SetKeyName(3, "menu.png");
             this.imgList.Images.SetKeyName(4, "transmoney.png");
             // 
-            // pctLogo
-            // 
-            this.pctLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoBlanco;
-            this.pctLogo.Location = new System.Drawing.Point(97, 9);
-            this.pctLogo.Name = "pctLogo";
-            this.pctLogo.Size = new System.Drawing.Size(86, 56);
-            this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pctLogo.TabIndex = 0;
-            this.pctLogo.TabStop = false;
-            // 
             // pnlComputadoras
             // 
             this.pnlComputadoras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(50)))));
@@ -162,26 +123,6 @@
             this.pnlComputadoras.Size = new System.Drawing.Size(261, 66);
             this.pnlComputadoras.TabIndex = 5;
             // 
-            // btnComputadoras
-            // 
-            this.btnComputadoras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
-            this.btnComputadoras.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.btnComputadoras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnComputadoras.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnComputadoras.ForeColor = System.Drawing.Color.White;
-            this.btnComputadoras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnComputadoras.ImageIndex = 1;
-            this.btnComputadoras.ImageList = this.imgList;
-            this.btnComputadoras.Location = new System.Drawing.Point(-9, -9);
-            this.btnComputadoras.Name = "btnComputadoras";
-            this.btnComputadoras.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnComputadoras.Size = new System.Drawing.Size(293, 85);
-            this.btnComputadoras.TabIndex = 0;
-            this.btnComputadoras.Text = "             Computadoras";
-            this.btnComputadoras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnComputadoras.UseVisualStyleBackColor = false;
-            this.btnComputadoras.Click += new System.EventHandler(this.btnComputadoras_Click);
-            // 
             // pnlClientes
             // 
             this.pnlClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(50)))));
@@ -190,26 +131,6 @@
             this.pnlClientes.Name = "pnlClientes";
             this.pnlClientes.Size = new System.Drawing.Size(261, 66);
             this.pnlClientes.TabIndex = 5;
-            // 
-            // btnClientes
-            // 
-            this.btnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
-            this.btnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClientes.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClientes.ForeColor = System.Drawing.Color.White;
-            this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.ImageIndex = 2;
-            this.btnClientes.ImageList = this.imgList;
-            this.btnClientes.Location = new System.Drawing.Point(-9, -9);
-            this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnClientes.Size = new System.Drawing.Size(281, 85);
-            this.btnClientes.TabIndex = 0;
-            this.btnClientes.Text = "             Clientes";
-            this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.UseVisualStyleBackColor = false;
-            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // pnlTransacciones
             // 
@@ -221,26 +142,6 @@
             this.pnlTransacciones.Name = "pnlTransacciones";
             this.pnlTransacciones.Size = new System.Drawing.Size(261, 66);
             this.pnlTransacciones.TabIndex = 4;
-            // 
-            // btnTransacciones
-            // 
-            this.btnTransacciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
-            this.btnTransacciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
-            this.btnTransacciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransacciones.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransacciones.ForeColor = System.Drawing.Color.White;
-            this.btnTransacciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTransacciones.ImageIndex = 4;
-            this.btnTransacciones.ImageList = this.imgList;
-            this.btnTransacciones.Location = new System.Drawing.Point(-10, -9);
-            this.btnTransacciones.Name = "btnTransacciones";
-            this.btnTransacciones.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.btnTransacciones.Size = new System.Drawing.Size(281, 85);
-            this.btnTransacciones.TabIndex = 1;
-            this.btnTransacciones.Text = "             Transacciones";
-            this.btnTransacciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTransacciones.UseVisualStyleBackColor = false;
-            this.btnTransacciones.Click += new System.EventHandler(this.btnTransacciones_Click);
             // 
             // pnlSeparador
             // 
@@ -298,30 +199,14 @@
             this.btnReportes.UseVisualStyleBackColor = false;
             this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
-            // tmrSideBar
-            // 
-            this.tmrSideBar.Interval = 10;
-            this.tmrSideBar.Tick += new System.EventHandler(this.tmrSideBar_Tick);
-            // 
             // pblSaludo
             // 
             this.pblSaludo.Controls.Add(this.lblUsuariologin);
             this.pblSaludo.Controls.Add(this.lblHola);
             this.pblSaludo.Location = new System.Drawing.Point(3, 416);
             this.pblSaludo.Name = "pblSaludo";
-            this.pblSaludo.Size = new System.Drawing.Size(252, 133);
+            this.pblSaludo.Size = new System.Drawing.Size(252, 84);
             this.pblSaludo.TabIndex = 9;
-            // 
-            // lblHola
-            // 
-            this.lblHola.AutoSize = true;
-            this.lblHola.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHola.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblHola.Location = new System.Drawing.Point(26, 22);
-            this.lblHola.Name = "lblHola";
-            this.lblHola.Size = new System.Drawing.Size(134, 24);
-            this.lblHola.TabIndex = 0;
-            this.lblHola.Text = "!Bienvenido";
             // 
             // lblUsuariologin
             // 
@@ -333,6 +218,122 @@
             this.lblUsuariologin.Size = new System.Drawing.Size(18, 24);
             this.lblUsuariologin.TabIndex = 1;
             this.lblUsuariologin.Text = "!";
+            // 
+            // lblHola
+            // 
+            this.lblHola.AutoSize = true;
+            this.lblHola.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHola.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblHola.Location = new System.Drawing.Point(26, 24);
+            this.lblHola.Name = "lblHola";
+            this.lblHola.Size = new System.Drawing.Size(134, 24);
+            this.lblHola.TabIndex = 0;
+            this.lblHola.Text = "!Bienvenido";
+            // 
+            // tmrSideBar
+            // 
+            this.tmrSideBar.Interval = 10;
+            this.tmrSideBar.Tick += new System.EventHandler(this.tmrSideBar_Tick);
+            // 
+            // pctMainLogo
+            // 
+            this.pctMainLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.pctMainLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pctMainLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoNegro;
+            this.pctMainLogo.Location = new System.Drawing.Point(261, 0);
+            this.pctMainLogo.Name = "pctMainLogo";
+            this.pctMainLogo.Size = new System.Drawing.Size(823, 561);
+            this.pctMainLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctMainLogo.TabIndex = 3;
+            this.pctMainLogo.TabStop = false;
+            // 
+            // btnAmpliarMenu
+            // 
+            this.btnAmpliarMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAmpliarMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAmpliarMenu.FlatAppearance.BorderSize = 0;
+            this.btnAmpliarMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnAmpliarMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnAmpliarMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAmpliarMenu.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAmpliarMenu.ImageIndex = 3;
+            this.btnAmpliarMenu.ImageList = this.imgList;
+            this.btnAmpliarMenu.Location = new System.Drawing.Point(14, 15);
+            this.btnAmpliarMenu.Name = "btnAmpliarMenu";
+            this.btnAmpliarMenu.Size = new System.Drawing.Size(59, 46);
+            this.btnAmpliarMenu.TabIndex = 2;
+            this.btnAmpliarMenu.UseVisualStyleBackColor = true;
+            this.btnAmpliarMenu.Click += new System.EventHandler(this.btnAmpliarMenu_Click);
+            // 
+            // pctLogo
+            // 
+            this.pctLogo.Image = global::cibernopilosos.Properties.Resources.CiberPilosoLogoBlanco;
+            this.pctLogo.Location = new System.Drawing.Point(97, 9);
+            this.pctLogo.Name = "pctLogo";
+            this.pctLogo.Size = new System.Drawing.Size(86, 56);
+            this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctLogo.TabIndex = 0;
+            this.pctLogo.TabStop = false;
+            // 
+            // btnComputadoras
+            // 
+            this.btnComputadoras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
+            this.btnComputadoras.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnComputadoras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComputadoras.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComputadoras.ForeColor = System.Drawing.Color.White;
+            this.btnComputadoras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnComputadoras.ImageIndex = 1;
+            this.btnComputadoras.ImageList = this.imgList;
+            this.btnComputadoras.Location = new System.Drawing.Point(-9, -9);
+            this.btnComputadoras.Name = "btnComputadoras";
+            this.btnComputadoras.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnComputadoras.Size = new System.Drawing.Size(293, 85);
+            this.btnComputadoras.TabIndex = 0;
+            this.btnComputadoras.Text = "             Computadoras";
+            this.btnComputadoras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnComputadoras.UseVisualStyleBackColor = false;
+            this.btnComputadoras.Click += new System.EventHandler(this.btnComputadoras_Click);
+            // 
+            // btnClientes
+            // 
+            this.btnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
+            this.btnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClientes.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.ForeColor = System.Drawing.Color.White;
+            this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClientes.ImageIndex = 2;
+            this.btnClientes.ImageList = this.imgList;
+            this.btnClientes.Location = new System.Drawing.Point(-9, -9);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnClientes.Size = new System.Drawing.Size(281, 85);
+            this.btnClientes.TabIndex = 0;
+            this.btnClientes.Text = "             Clientes";
+            this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClientes.UseVisualStyleBackColor = false;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
+            // 
+            // btnTransacciones
+            // 
+            this.btnTransacciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
+            this.btnTransacciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
+            this.btnTransacciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransacciones.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransacciones.ForeColor = System.Drawing.Color.White;
+            this.btnTransacciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransacciones.ImageIndex = 4;
+            this.btnTransacciones.ImageList = this.imgList;
+            this.btnTransacciones.Location = new System.Drawing.Point(-10, -9);
+            this.btnTransacciones.Name = "btnTransacciones";
+            this.btnTransacciones.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnTransacciones.Size = new System.Drawing.Size(281, 85);
+            this.btnTransacciones.TabIndex = 1;
+            this.btnTransacciones.Text = "             Caja";
+            this.btnTransacciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransacciones.UseVisualStyleBackColor = false;
+            this.btnTransacciones.Click += new System.EventHandler(this.btnTransacciones_Click);
             // 
             // frmMenu
             // 
@@ -346,15 +347,15 @@
             this.Text = "CiberCafe";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMenu_FormClosed);
             this.pnlChildForms.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).EndInit();
             this.flwSideBar.ResumeLayout(false);
             this.pnlAmpliarMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.pnlComputadoras.ResumeLayout(false);
             this.pnlClientes.ResumeLayout(false);
             this.pnlTransacciones.ResumeLayout(false);
             this.pblSaludo.ResumeLayout(false);
             this.pblSaludo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctMainLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

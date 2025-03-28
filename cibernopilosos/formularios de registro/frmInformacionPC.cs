@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlTypes;
 using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using cibernopilosos.formularios_principales;
 
 namespace cibernopilosos.formularios
 {
@@ -18,7 +12,6 @@ namespace cibernopilosos.formularios
         private TcpClient Tester;
         private IPAddress ipAddress;
         private int puerto = 12346;
-
         public frmInformacionPC()
         {
             InitializeComponent();
@@ -54,6 +47,7 @@ namespace cibernopilosos.formularios
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("PC agregada exitosamente");
+                this.Close();
             }
             else
             {
@@ -116,6 +110,7 @@ namespace cibernopilosos.formularios
                 MessageBox.Show("Dirección IP no válida");
             }
         }
+
 
         private void frmInformacionPC_Load(object sender, EventArgs e)
         {

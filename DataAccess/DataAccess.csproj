@@ -41,10 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComputerUsageDao.cs" />
-    <Compile Include="OrderDao.cs" />
+    <Compile Include="Caja\CajaDao.cs" />
+    <Compile Include="Clientes\ClientDao.cs" />
+    <Compile Include="Computadoras\ComputersDao.cs" />
+    <Compile Include="Miembros\MembershipDao.cs" />
     <Compile Include="ConnectionSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Uso\UsageDao.cs" />
+    <Compile Include="Ventas\TransactionsDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{9b39e596-0c7b-4058-a79e-7f4de297277d}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,8 +27,9 @@
             this.pnlOpcionesText = new System.Windows.Forms.Panel();
             this.lblOpciones = new System.Windows.Forms.Label();
             this.pblContadores = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTiempoRestante = new System.Windows.Forms.Label();
+            this.lblMinutosAdd = new System.Windows.Forms.Label();
+            this.lblHorasAdd = new System.Windows.Forms.Label();
             this.lblTiempoAdd = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnEnviarMensaje = new System.Windows.Forms.Button();
@@ -160,8 +161,9 @@
             // 
             // pblContadores
             // 
-            this.pblContadores.Controls.Add(this.label2);
-            this.pblContadores.Controls.Add(this.label1);
+            this.pblContadores.Controls.Add(this.lblTiempoRestante);
+            this.pblContadores.Controls.Add(this.lblMinutosAdd);
+            this.pblContadores.Controls.Add(this.lblHorasAdd);
             this.pblContadores.Controls.Add(this.numMinutos);
             this.pblContadores.Controls.Add(this.lblTiempoAdd);
             this.pblContadores.Controls.Add(this.numHoras);
@@ -170,27 +172,37 @@
             this.pblContadores.Size = new System.Drawing.Size(197, 55);
             this.pblContadores.TabIndex = 8;
             // 
-            // label2
+            // lblTiempoRestante
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(130, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 15);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Minutos";
+            this.lblTiempoRestante.AutoSize = true;
+            this.lblTiempoRestante.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTiempoRestante.Location = new System.Drawing.Point(12, 32);
+            this.lblTiempoRestante.Name = "lblTiempoRestante";
+            this.lblTiempoRestante.Size = new System.Drawing.Size(19, 13);
+            this.lblTiempoRestante.TabIndex = 16;
+            this.lblTiempoRestante.Text = "----";
             // 
-            // label1
+            // lblMinutosAdd
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(72, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 15);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Horas";
+            this.lblMinutosAdd.AutoSize = true;
+            this.lblMinutosAdd.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinutosAdd.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblMinutosAdd.Location = new System.Drawing.Point(130, 31);
+            this.lblMinutosAdd.Name = "lblMinutosAdd";
+            this.lblMinutosAdd.Size = new System.Drawing.Size(57, 15);
+            this.lblMinutosAdd.TabIndex = 15;
+            this.lblMinutosAdd.Text = "Minutos";
+            // 
+            // lblHorasAdd
+            // 
+            this.lblHorasAdd.AutoSize = true;
+            this.lblHorasAdd.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHorasAdd.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblHorasAdd.Location = new System.Drawing.Point(72, 31);
+            this.lblHorasAdd.Name = "lblHorasAdd";
+            this.lblHorasAdd.Size = new System.Drawing.Size(45, 15);
+            this.lblHorasAdd.TabIndex = 14;
+            this.lblHorasAdd.Text = "Horas";
             // 
             // lblTiempoAdd
             // 
@@ -306,9 +318,10 @@
         private System.Windows.Forms.Button btnEnviarMensaje;
         private System.Windows.Forms.Label lblTiempoAdd;
         public System.Windows.Forms.Button BotonAddClientePc;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMinutosAdd;
+        private System.Windows.Forms.Label lblHorasAdd;
         private System.Windows.Forms.FlowLayoutPanel fpnlComputadoras;
         private System.Windows.Forms.ImageList imglestadoscomputadora;
+        private System.Windows.Forms.Label lblTiempoRestante;
     }
 }

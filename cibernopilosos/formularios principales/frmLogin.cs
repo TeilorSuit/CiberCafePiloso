@@ -13,6 +13,7 @@ namespace cibernopilosos.formularios
 {
     public partial class frmLogin : Form
     {
+        public static int UserIdActual;
         public static string UserActual;
 
         public frmLogin()
@@ -30,7 +31,6 @@ namespace cibernopilosos.formularios
         {
             string username = txtUserName.Text.ToString();
             string password = txtPassword.Text.ToString();
-            UserActual = username;
             comprobarAcceso(username, password);
         }
 
@@ -41,6 +41,10 @@ namespace cibernopilosos.formularios
                 if (conexion.Login(username.Trim(), password.Trim()))
                 {
                     bool admin = conexion.DevuelveValorBooleano($"Select Admin from Users Where Username='{username}' and Password='{password}'");
+                    UserIdActual =
+                        conexion.DevuelveValorEntero(
+                            $"Select IdUSer from Users Where Username='{username}' and Password='{password}'");
+                    UserActual = username;
                     frmMenu menu = new frmMenu(admin);
                     this.Hide();
                     menu.Show();

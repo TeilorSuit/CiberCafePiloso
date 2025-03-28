@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flwPanelCuadro = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
             this.btnEditarCliente = new System.Windows.Forms.Button();
@@ -40,14 +43,16 @@
             this.btnAddMembership = new System.Windows.Forms.Button();
             this.btnVModeCerrar = new System.Windows.Forms.Button();
             this.dgvAdmiClientes = new System.Windows.Forms.DataGridView();
+            this.pnlDgv = new System.Windows.Forms.Panel();
             this.flwPanelCuadro.SuspendLayout();
             this.pnlMembership.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiClientes)).BeginInit();
+            this.pnlDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // flwPanelCuadro
             // 
-            this.flwPanelCuadro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(67)))), ((int)(((byte)(80)))));
+            this.flwPanelCuadro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(80)))), ((int)(((byte)(72)))));
             this.flwPanelCuadro.Controls.Add(this.btnAgregarCliente);
             this.flwPanelCuadro.Controls.Add(this.btnEditarCliente);
             this.flwPanelCuadro.Controls.Add(this.btnBorrarCliente);
@@ -62,7 +67,7 @@
             // 
             // btnAgregarCliente
             // 
-            this.btnAgregarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnAgregarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.btnAgregarCliente.FlatAppearance.BorderSize = 0;
             this.btnAgregarCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -78,7 +83,7 @@
             // 
             // btnEditarCliente
             // 
-            this.btnEditarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnEditarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.btnEditarCliente.FlatAppearance.BorderSize = 0;
             this.btnEditarCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnEditarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -94,7 +99,7 @@
             // 
             // btnBorrarCliente
             // 
-            this.btnBorrarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnBorrarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.btnBorrarCliente.FlatAppearance.BorderSize = 0;
             this.btnBorrarCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnBorrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -111,7 +116,7 @@
             // 
             // btnVincularPc
             // 
-            this.btnVincularPc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnVincularPc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.btnVincularPc.FlatAppearance.BorderSize = 0;
             this.btnVincularPc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnVincularPc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -139,7 +144,7 @@
             // 
             // btnVisorMembresias
             // 
-            this.btnVisorMembresias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnVisorMembresias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(70)))), ((int)(((byte)(62)))));
             this.btnVisorMembresias.FlatAppearance.BorderSize = 0;
             this.btnVisorMembresias.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnVisorMembresias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -166,7 +171,7 @@
             // 
             // btnDeleteMembership
             // 
-            this.btnDeleteMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnDeleteMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(70)))), ((int)(((byte)(62)))));
             this.btnDeleteMembership.FlatAppearance.BorderSize = 0;
             this.btnDeleteMembership.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDeleteMembership.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -182,7 +187,7 @@
             // 
             // btnAddMembership
             // 
-            this.btnAddMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnAddMembership.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(70)))), ((int)(((byte)(62)))));
             this.btnAddMembership.FlatAppearance.BorderSize = 0;
             this.btnAddMembership.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddMembership.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -198,7 +203,7 @@
             // 
             // btnVModeCerrar
             // 
-            this.btnVModeCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(77)))), ((int)(((byte)(90)))));
+            this.btnVModeCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.btnVModeCerrar.FlatAppearance.BorderSize = 0;
             this.btnVModeCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnVModeCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -219,21 +224,55 @@
             this.dgvAdmiClientes.AllowUserToDeleteRows = false;
             this.dgvAdmiClientes.AllowUserToResizeColumns = false;
             this.dgvAdmiClientes.AllowUserToResizeRows = false;
-            this.dgvAdmiClientes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(67)))), ((int)(((byte)(80)))));
+            this.dgvAdmiClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAdmiClientes.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dgvAdmiClientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAdmiClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dgvAdmiClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAdmiClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAdmiClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdmiClientes.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dgvAdmiClientes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAdmiClientes.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dgvAdmiClientes.EnableHeadersVisualStyles = false;
+            this.dgvAdmiClientes.GridColor = System.Drawing.Color.Tomato;
             this.dgvAdmiClientes.Location = new System.Drawing.Point(0, 0);
             this.dgvAdmiClientes.MultiSelect = false;
             this.dgvAdmiClientes.Name = "dgvAdmiClientes";
             this.dgvAdmiClientes.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAdmiClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAdmiClientes.RowHeadersVisible = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.MistyRose;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvAdmiClientes.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAdmiClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAdmiClientes.Size = new System.Drawing.Size(823, 561);
+            this.dgvAdmiClientes.Size = new System.Drawing.Size(606, 561);
             this.dgvAdmiClientes.TabIndex = 2;
+            // 
+            // pnlDgv
+            // 
+            this.pnlDgv.Controls.Add(this.dgvAdmiClientes);
+            this.pnlDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDgv.Location = new System.Drawing.Point(0, 0);
+            this.pnlDgv.Name = "pnlDgv";
+            this.pnlDgv.Size = new System.Drawing.Size(606, 561);
+            this.pnlDgv.TabIndex = 3;
             // 
             // frmClientes
             // 
@@ -241,8 +280,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(823, 561);
+            this.Controls.Add(this.pnlDgv);
             this.Controls.Add(this.flwPanelCuadro);
-            this.Controls.Add(this.dgvAdmiClientes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimizeBox = false;
             this.Name = "frmClientes";
@@ -252,6 +291,7 @@
             this.pnlMembership.ResumeLayout(false);
             this.pnlMembership.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdmiClientes)).EndInit();
+            this.pnlDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -270,5 +310,6 @@
         private System.Windows.Forms.Button btnBorrarCliente;
         private System.Windows.Forms.Panel pnlMembership;
         private System.Windows.Forms.Button btnVModeCerrar;
+        private System.Windows.Forms.Panel pnlDgv;
     }
 }

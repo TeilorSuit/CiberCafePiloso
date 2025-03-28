@@ -96,22 +96,75 @@
     </Compile>
     <Content Include="css\css\font-awesome.css" />
     <Content Include="css\css\font-awesome.min.css" />
-    <Content Include="Reportes1\SalesReport.rdlc">
+    <Content Include="Reporte de Usos\ReporteUsoGrafico.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reporte de Computadoras\ReporteComputadorasGrafico.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Computadoras\ReporteComputadorasListado.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Membresías\ReporteMembresiaListado.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Membresías\ReporteMembresiaGrafico.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Usos\ReporteUsoListado.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Ventas\ReporteVentasListado.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Ventas\ReporteVentasGrafico.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Caja\ReporteCajaGrafico.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Caja\ReporteCajaListado.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Clientes\ReporteClientesGrafico.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporte de Clientes\ReporteClientesListado.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="ReporteClientes.rdlc" />
     <None Include="fonts\fontawesome-webfont.eot" />
     <None Include="fonts\fontawesome-webfont.ttf" />
     <None Include="fonts\fontawesome-webfont.woff" />
     <None Include="fonts\fontawesome-webfont.woff2" />
     <None Include="fonts\FontAwesome.otf" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Domain.BirthdayByMonth.datasource" />
+    <None Include="Properties\DataSources\Domain.Caja.CajaChart.datasource" />
+    <None Include="Properties\DataSources\Domain.Caja.CajaListing.datasource" />
+    <None Include="Properties\DataSources\Domain.Clientes.ClientsByMembership.datasource" />
+    <None Include="Properties\DataSources\Domain.ClientListing.datasource" />
+    <None Include="Properties\DataSources\Domain.ClientReport.datasource" />
+    <None Include="Properties\DataSources\Domain.ClientSalesSummary.datasource" />
+    <None Include="Properties\DataSources\Domain.ComputerListing.datasource" />
+    <None Include="Properties\DataSources\Domain.ComputerStatusSummary.datasource" />
     <None Include="Properties\DataSources\Domain.ComputerUsageListing.datasource" />
     <None Include="Properties\DataSources\Domain.ComputerUsageReport.datasource" />
+    <None Include="Properties\DataSources\Domain.MembershipActiveReport.datasource" />
+    <None Include="Properties\DataSources\Domain.MembershipExpiringReport.datasource" />
+    <None Include="Properties\DataSources\Domain.MembershipListing.datasource" />
+    <None Include="Properties\DataSources\Domain.MembershipReport.datasource" />
+    <None Include="Properties\DataSources\Domain.MembershipSummaryByType.datasource" />
+    <None Include="Properties\DataSources\Domain.MembershipTypeSummary.datasource" />
+    <None Include="Properties\DataSources\Domain.Membresias.MembershipChart.datasource" />
     <None Include="Properties\DataSources\Domain.NetSalesByPeriod.datasource" />
+    <None Include="Properties\DataSources\Domain.ProductSalesListing.datasource" />
     <None Include="Properties\DataSources\Domain.SalesListing.datasource" />
     <None Include="Properties\DataSources\Domain.SalesReport.datasource" />
     <None Include="Properties\DataSources\Domain.UsageByClient.datasource" />
     <None Include="Properties\DataSources\Domain.UsageByHour.datasource" />
+    <None Include="Properties\DataSources\Domain.UsoPorPCListing.datasource" />
+    <None Include="Properties\DataSources\Domain.Uso__ClientComputer_.UsageListing.datasource" />
     <None Include="Properties\DataSources\NetSalesByPeriod.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -141,6 +194,7 @@
     <Content Include="css\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

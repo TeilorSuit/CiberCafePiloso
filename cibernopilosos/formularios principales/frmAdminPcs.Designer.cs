@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flwPanelCuadro = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAgregarPC = new System.Windows.Forms.Button();
             this.btnEditarPC = new System.Windows.Forms.Button();
             this.btnBorrarPC = new System.Windows.Forms.Button();
             this.pnlPrecio = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblCentavos = new System.Windows.Forms.Label();
             this.lblDolares = new System.Windows.Forms.Label();
             this.numCentavos = new System.Windows.Forms.NumericUpDown();
@@ -43,7 +46,6 @@
             this.lblTextoPrecioActual = new System.Windows.Forms.Label();
             this.dgvAdmiPCs = new System.Windows.Forms.DataGridView();
             this.pnlDgv = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.flwPanelCuadro.SuspendLayout();
             this.pnlPrecio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCentavos)).BeginInit();
@@ -126,6 +128,17 @@
             this.pnlPrecio.Name = "pnlPrecio";
             this.pnlPrecio.Size = new System.Drawing.Size(214, 167);
             this.pnlPrecio.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.Location = new System.Drawing.Point(171, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "+IVA";
             // 
             // lblCentavos
             // 
@@ -226,18 +239,35 @@
             this.dgvAdmiPCs.AllowUserToDeleteRows = false;
             this.dgvAdmiPCs.AllowUserToResizeColumns = false;
             this.dgvAdmiPCs.AllowUserToResizeRows = false;
-            this.dgvAdmiPCs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(227)))));
+            this.dgvAdmiPCs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAdmiPCs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(99)))), ((int)(((byte)(99)))));
             this.dgvAdmiPCs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAdmiPCs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dgvAdmiPCs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAdmiPCs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAdmiPCs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdmiPCs.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dgvAdmiPCs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAdmiPCs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(70)))), ((int)(((byte)(21)))));
+            this.dgvAdmiPCs.EnableHeadersVisualStyles = false;
+            this.dgvAdmiPCs.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.dgvAdmiPCs.Location = new System.Drawing.Point(0, 0);
             this.dgvAdmiPCs.MultiSelect = false;
             this.dgvAdmiPCs.Name = "dgvAdmiPCs";
             this.dgvAdmiPCs.ReadOnly = true;
             this.dgvAdmiPCs.RowHeadersVisible = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvAdmiPCs.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAdmiPCs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAdmiPCs.Size = new System.Drawing.Size(606, 561);
             this.dgvAdmiPCs.TabIndex = 0;
@@ -251,17 +281,6 @@
             this.pnlDgv.Name = "pnlDgv";
             this.pnlDgv.Size = new System.Drawing.Size(606, 561);
             this.pnlDgv.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(171, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 16);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "+IVA";
             // 
             // frmAdminPcs
             // 

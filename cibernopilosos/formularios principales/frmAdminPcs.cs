@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using cibernopilosos.formularios_principales;
 
 namespace cibernopilosos.formularios
 {
@@ -25,7 +20,23 @@ namespace cibernopilosos.formularios
             DataTable tabla = ConexionSql.retornaRegistros(consulta);
             dgvAdmiPCs.DataSource = "";
             dgvAdmiPCs.DataSource = tabla;
+            cambiarNombreColumnas(tabla);
         }
+
+        private void cambiarNombreColumnas(DataTable dt)
+        {
+            if (dt.Columns.Contains("PcID"))
+                dgvAdmiPCs.Columns["PcID"].HeaderText = "ID";
+            if (dt.Columns.Contains("PcNumber"))
+                dgvAdmiPCs.Columns["PcNumber"].HeaderText = "Número de PC";
+            if (dt.Columns.Contains("PcInfo"))
+                dgvAdmiPCs.Columns["PcInfo"].HeaderText = "Información";
+            if (dt.Columns.Contains("PcIP"))
+                dgvAdmiPCs.Columns["PcIP"].HeaderText = "Dirección IP";
+            if (dt.Columns.Contains("PcStatus"))
+                dgvAdmiPCs.Columns["PcStatus"].HeaderText = "Estado";
+        }
+
         private void btnAgregarPC_Click(object sender, EventArgs e)
         {
             frmInformacionPC PcInfo = new frmInformacionPC();
@@ -33,6 +44,55 @@ namespace cibernopilosos.formularios
             llenarTabla();
         }
 
+       
+
+        private void btnEditarPC_Click(object sender, EventArgs e)
+        {
+            if (dgvAdmiPCs.CurrentRow != null)
+            {
+                frmInformacionPC frm = new frmInformacionPC();
+                frm.modo = "edit";
+                frm.btnConfirmacion.Text = "Editar";
+                frm.pcIPOG = dgvAdmiPCs.CurrentRow.Cells["PcIp"].Value.ToString();
+                PrecargarDatos(frm);
+                frm.ShowDialog();
+                llenarTabla();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una computadora para editar.");
+            }
+        }
+
+        private void PrecargarDatos(frmInformacionPC PCInfo)
+        {
+            PCInfo.txtPcNumber.Text = dgvAdmiPCs.CurrentRow.Cells["PcNumber"].Value.ToString();
+            PCInfo.txtPcInfo.Text = dgvAdmiPCs.CurrentRow.Cells["PcInfo"].Value.ToString();
+            PCInfo.txtPcIP.Text = dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString();
+        }
+
+        private void btnNuevoPrecio_Click(object sender, EventArgs e)
+        {
+            decimal dolares = numDolares.Value;
+            decimal centavos = numCentavos.Value;
+            string consulta = $"update Services_Products set ServicePrice = {dolares}.{centavos} where ServiceID = 2";
+            if (ConexionSql.EjecutarAccion(consulta))
+            {
+                MessageBox.Show("Precio actualizado");
+                lblPrecioActual.Text = $"${dolares}.{centavos}";
+            }
+            else
+            {
+                MessageBox.Show("Error al actualizar precio");
+            }
+        }
+
+        private void frmAdminPcs_Load(object sender, EventArgs e)
+        {
+            string consulta = "select ServicePrice from Services_Products where ServiceID = 2";
+            decimal valor = ConexionSql.DevuelveValorDecimal(consulta);
+            lblPrecioActual.Text = Math.Round(valor, 2).ToString();
+        }
         private void btnBorrarPC_Click(object sender, EventArgs e)
         {
             string consulta = $"select PcStatus from Computers where PcIp='{dgvAdmiPCs.CurrentRow.Cells["PcIp"].Value.ToString()}'";
@@ -61,54 +121,6 @@ namespace cibernopilosos.formularios
             {
                 MessageBox.Show("No es posible borrar una pc en uso");
             }
-        }
-
-        private void btnEditarPC_Click(object sender, EventArgs e)
-        {
-            if (dgvAdmiPCs.CurrentRow != null)
-            {
-                frmInformacionPC frm = new frmInformacionPC();
-                frm.modo = "edit";
-                frm.btnConfirmacion.Text = "Editar";
-                frm.pcIPOG = dgvAdmiPCs.CurrentRow.Cells["PcIp"].Value.ToString();
-                PrecargarDatos(frm);
-                frm.ShowDialog();
-                llenarTabla();
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una computadora para editar.");
-            }
-        }
-
-        private void PrecargarDatos(frmInformacionPC PCInfo)
-        {
-            PCInfo.txtPcNumber.Text = dgvAdmiPCs.CurrentRow.Cells["pcNumber"].Value.ToString();
-            PCInfo.txtPcInfo.Text = dgvAdmiPCs.CurrentRow.Cells["PcInfo"].Value.ToString();
-            PCInfo.txtPcIP.Text = dgvAdmiPCs.CurrentRow.Cells["PcIP"].Value.ToString();
-        }
-
-        private void btnNuevoPrecio_Click(object sender, EventArgs e)
-        {
-            decimal dolares = numDolares.Value;
-            decimal centavos = numCentavos.Value;
-            string consulta = $"update Services_Products set ServicePrice = {dolares}.{centavos} where ServiceID = 2";
-            if (ConexionSql.EjecutarAccion(consulta))
-            {
-                MessageBox.Show("Precio actualizado");
-                lblPrecioActual.Text = $"${dolares}.{centavos}";
-            }
-            else
-            {
-                MessageBox.Show("Error al actualizar precio");
-            }
-        }
-
-        private void frmAdminPcs_Load(object sender, EventArgs e)
-        {
-            string consulta = "select ServicePrice from Services_Products where ServiceID = 2";
-            decimal valor = ConexionSql.DevuelveValorDecimal(consulta);
-            lblPrecioActual.Text = Math.Round(valor,2).ToString();
         }
     }
 }

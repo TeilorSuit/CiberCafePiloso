@@ -1,23 +1,23 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace cibernopilosos
 {
     internal class sqlConexion
     {
-        public SqlConnection ConexionSql;
-        public SqlCommand ComandoSql;
-        public SqlDataAdapter DataAdapterSql;
-        public DataTable DataTableSql;
-        public SqlDataReader DataReader;
+        private SqlConnection ConexionSql;
+        private SqlCommand ComandoSql;
+        private SqlDataAdapter DataAdapterSql;
+        private DataTable DataTableSql;
+        private SqlDataReader DataReader;
 
-        string Server;
-        string Database;
-        string Usuario;
-        string Clave;
-        string Cadena;
+        public string Server;
+        public string Database;
+        public string Usuario;
+        public string Clave;
+
 
         public sqlConexion()
         {
@@ -26,35 +26,59 @@ namespace cibernopilosos
             Usuario = "teilor";
             Clave = "teilor";
         }
+
+        public string Cadena
+        {
+            get
+            {
+                return $"Server={Server};Database={Database};User id={Usuario.Trim()};Password={Clave}";
+            }
+        }
+
         public bool abrirConexion()
         {
-            ConexionSql = new SqlConnection();
             try
             {
-                Cadena = "Server=" + Server + "; Database=" + Database + "; User id=" + Usuario.Trim() + "; Password=" + Clave;
-                ConexionSql.ConnectionString = Cadena;
-                ConexionSql.Open();
+                if (ConexionSql == null)
+                {
+                    ConexionSql = new SqlConnection(Cadena);
+                }
+                else
+                {
+                    ConexionSql.ConnectionString = Cadena;
+                }
+
+                if (ConexionSql.State != ConnectionState.Open)
+                {
+                    ConexionSql.Open();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR AL CONECTAR: "+ex.Message);
+                MessageBox.Show("ERROR AL CONECTAR: " + ex.Message);
                 return false;
             }
             return true;
         }
+
         public bool cerrarConexion()
         {
-            ConexionSql.Close();
+            if (ConexionSql != null && ConexionSql.State == ConnectionState.Open)
+            {
+                ConexionSql.Close();
+            }
             return true;
         }
 
         public bool Login(string username, string password)
         {
-            string consulta = $"Select Username,PassWord from Users Where Username='{username}'";
+            string consulta = $"SELECT Username, Password FROM Users WHERE Username='{username}'";
             DataTable dt = retornaRegistros(consulta);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (username == dt.Rows[i][0].ToString()&&password == dt.Rows[i][1].ToString())
+                string user = dt.Rows[i]["Username"].ToString();
+                string pass = dt.Rows[i]["Password"].ToString();
+                if (username == user && password == pass)
                 {
                     return true;
                 }
@@ -62,91 +86,115 @@ namespace cibernopilosos
             return false;
         }
 
-        public DataTable retornaRegistros(string Sentencia)
-        {
-            if (Sentencia.Length > 0)
-            {
-                try
-                {
-                    abrirConexion();
-                    ComandoSql = new SqlCommand(Sentencia, ConexionSql);
-                    DataAdapterSql = new SqlDataAdapter(ComandoSql);
-                    DataTableSql = new DataTable();
-                    DataAdapterSql.Fill(DataTableSql);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                cerrarConexion();
-            }
-            return DataTableSql;
-        }
-
-        public bool EjecutarAccion(string Sentencia)
+       
+        public bool EjecutarAccion(string sentencia)
         {
             try
             {
-                abrirConexion();
-                ComandoSql = new SqlCommand(Sentencia, ConexionSql);
-                ComandoSql.ExecuteNonQuery();
+                if (abrirConexion())
+                {
+                    ComandoSql = new SqlCommand(sentencia, ConexionSql);
+                    ComandoSql.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error en EjecutarAccion: " + ex.Message);
                 cerrarConexion();
                 return false;
             }
-            cerrarConexion();
+            finally
+            {
+                cerrarConexion();
+            }
             return true;
         }
 
-        public int DevuelveValorEntero(string consulta)//sin usar
+        #region Rescatar Valores
+        public DataTable retornaRegistros(string sentencia)
+        {
+            DataTable dtResultado = new DataTable();
+            if (sentencia.Length > 0)
+            {
+                try
+                {
+                    if (abrirConexion())
+                    {
+                        ComandoSql = new SqlCommand(sentencia, ConexionSql);
+                        DataAdapterSql = new SqlDataAdapter(ComandoSql);
+                        DataTableSql = new DataTable();
+                        DataAdapterSql.Fill(DataTableSql);
+
+                        dtResultado = DataTableSql;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error en retornaRegistros: " + ex.Message);
+                }
+                finally
+                {
+                    cerrarConexion();
+                }
+            }
+            return dtResultado;
+        }
+
+        public int DevuelveValorEntero(string consulta)
         {
             int aux = 0;
             try
             {
-                abrirConexion();
-                ComandoSql = new SqlCommand(consulta, ConexionSql);
-                DataReader = ComandoSql.ExecuteReader();
-                if (DataReader.Read())
+                if (abrirConexion())
                 {
-                    if (DataReader[0] != DBNull.Value)
+                    ComandoSql = new SqlCommand(consulta, ConexionSql);
+                    DataReader = ComandoSql.ExecuteReader();
+                    if (DataReader.Read())
                     {
-                        aux = (int)DataReader[0];
+                        if (DataReader[0] != DBNull.Value)
+                        {
+                            aux = Convert.ToInt32(DataReader[0]);
+                        }
                     }
+                    DataReader.Close();
                 }
-                DataReader.Close();
-                cerrarConexion();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Algo anda mal. " + ex.Message);
+                MessageBox.Show("Algo anda mal (DevuelveValorEntero): " + ex.Message);
+            }
+            finally
+            {
                 cerrarConexion();
             }
             return aux;
         }
+
         public decimal DevuelveValorDecimal(string consulta)
         {
             decimal aux = 0;
             try
             {
-                abrirConexion();
-                ComandoSql = new SqlCommand(consulta, ConexionSql);
-                DataReader = ComandoSql.ExecuteReader();
-                if (DataReader.Read())
+                if (abrirConexion())
                 {
-                    if (DataReader[0] != DBNull.Value)
+                    ComandoSql = new SqlCommand(consulta, ConexionSql);
+                    DataReader = ComandoSql.ExecuteReader();
+                    if (DataReader.Read())
                     {
-                        aux = Convert.ToDecimal(DataReader[0]);
+                        if (DataReader[0] != DBNull.Value)
+                        {
+                            aux = Convert.ToDecimal(DataReader[0]);
+                        }
                     }
+                    DataReader.Close();
                 }
-                DataReader.Close();
-                cerrarConexion();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Algo anda mal. " + ex.Message);
+                MessageBox.Show("Algo anda mal (DevuelveValorDecimal): " + ex.Message);
+            }
+            finally
+            {
                 cerrarConexion();
             }
             return aux;
@@ -157,22 +205,26 @@ namespace cibernopilosos
             bool aux = false;
             try
             {
-                abrirConexion();
-                ComandoSql = new SqlCommand(consulta, ConexionSql);
-                DataReader = ComandoSql.ExecuteReader();
-                if (DataReader.Read())
+                if (abrirConexion())
                 {
-                    if (DataReader[0] != DBNull.Value)
+                    ComandoSql = new SqlCommand(consulta, ConexionSql);
+                    DataReader = ComandoSql.ExecuteReader();
+                    if (DataReader.Read())
                     {
-                        aux = (bool)DataReader[0];
+                        if (DataReader[0] != DBNull.Value)
+                        {
+                            aux = (bool)DataReader[0];
+                        }
                     }
+                    DataReader.Close();
                 }
-                DataReader.Close();
-                cerrarConexion();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Algo anda mal. " + ex.Message);
+                MessageBox.Show("Algo anda mal (DevuelveValorBooleano): " + ex.Message);
+            }
+            finally
+            {
                 cerrarConexion();
             }
             return aux;
@@ -183,25 +235,30 @@ namespace cibernopilosos
             string aux = "";
             try
             {
-                abrirConexion();
-                ComandoSql = new SqlCommand(consulta, ConexionSql);
-                DataReader = ComandoSql.ExecuteReader();
-                if (DataReader.Read())
+                if (abrirConexion())
                 {
-                    if (DataReader[0] != DBNull.Value)
+                    ComandoSql = new SqlCommand(consulta, ConexionSql);
+                    DataReader = ComandoSql.ExecuteReader();
+                    if (DataReader.Read())
                     {
-                        aux = (string)DataReader[0];
+                        if (DataReader[0] != DBNull.Value)
+                        {
+                            aux = DataReader[0].ToString();
+                        }
                     }
+                    DataReader.Close();
                 }
-                DataReader.Close();
-                cerrarConexion();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Algo anda mal. " + ex.Message);
+                MessageBox.Show("Algo anda mal (DevuelveString): " + ex.Message);
+            }
+            finally
+            {
                 cerrarConexion();
             }
             return aux;
         }
+        #endregion
     }
 }

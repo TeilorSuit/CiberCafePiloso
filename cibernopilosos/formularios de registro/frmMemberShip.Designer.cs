@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMembership = new System.Windows.Forms.Panel();
-            this.lblMemberShip = new System.Windows.Forms.Label();
             this.dgvMembership = new System.Windows.Forms.DataGridView();
+            this.lblMemberShip = new System.Windows.Forms.Label();
             this.btnConfirmacion = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.lbltextcobro = new System.Windows.Forms.Label();
@@ -42,40 +44,58 @@
             // pnlMembership
             // 
             this.pnlMembership.Controls.Add(this.dgvMembership);
-            this.pnlMembership.Location = new System.Drawing.Point(12, 104);
+            this.pnlMembership.Location = new System.Drawing.Point(12, 92);
             this.pnlMembership.Name = "pnlMembership";
-            this.pnlMembership.Size = new System.Drawing.Size(497, 274);
+            this.pnlMembership.Size = new System.Drawing.Size(497, 146);
             this.pnlMembership.TabIndex = 9;
+            // 
+            // dgvMembership
+            // 
+            this.dgvMembership.AllowUserToAddRows = false;
+            this.dgvMembership.AllowUserToDeleteRows = false;
+            this.dgvMembership.AllowUserToResizeRows = false;
+            this.dgvMembership.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(67)))), ((int)(((byte)(80)))));
+            this.dgvMembership.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dgvMembership.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(47)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(47)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMembership.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvMembership.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMembership.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMembership.EnableHeadersVisualStyles = false;
+            this.dgvMembership.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(47)))), ((int)(((byte)(60)))));
+            this.dgvMembership.Location = new System.Drawing.Point(0, 0);
+            this.dgvMembership.MultiSelect = false;
+            this.dgvMembership.Name = "dgvMembership";
+            this.dgvMembership.ReadOnly = true;
+            this.dgvMembership.RowHeadersVisible = false;
+            this.dgvMembership.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(72)))), ((int)(((byte)(85)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvMembership.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvMembership.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMembership.Size = new System.Drawing.Size(497, 146);
+            this.dgvMembership.TabIndex = 0;
+            this.dgvMembership.SelectionChanged += new System.EventHandler(this.dgvMembership_SelectionChanged);
             // 
             // lblMemberShip
             // 
             this.lblMemberShip.AutoSize = true;
             this.lblMemberShip.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMemberShip.ForeColor = System.Drawing.Color.White;
-            this.lblMemberShip.Location = new System.Drawing.Point(179, 26);
+            this.lblMemberShip.Location = new System.Drawing.Point(179, 24);
             this.lblMemberShip.Name = "lblMemberShip";
             this.lblMemberShip.Size = new System.Drawing.Size(163, 26);
             this.lblMemberShip.TabIndex = 8;
             this.lblMemberShip.Text = "MEMBRESÍAS";
-            // 
-            // dgvMembership
-            // 
-            this.dgvMembership.AllowUserToAddRows = false;
-            this.dgvMembership.AllowUserToDeleteRows = false;
-            this.dgvMembership.AllowUserToResizeColumns = false;
-            this.dgvMembership.AllowUserToResizeRows = false;
-            this.dgvMembership.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvMembership.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMembership.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMembership.Location = new System.Drawing.Point(0, 0);
-            this.dgvMembership.MultiSelect = false;
-            this.dgvMembership.Name = "dgvMembership";
-            this.dgvMembership.ReadOnly = true;
-            this.dgvMembership.RowHeadersVisible = false;
-            this.dgvMembership.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMembership.Size = new System.Drawing.Size(497, 274);
-            this.dgvMembership.TabIndex = 0;
-            this.dgvMembership.SelectionChanged += new System.EventHandler(this.dgvMembership_SelectionChanged);
             // 
             // btnConfirmacion
             // 
@@ -85,7 +105,7 @@
             this.btnConfirmacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmacion.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmacion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnConfirmacion.Location = new System.Drawing.Point(12, 384);
+            this.btnConfirmacion.Location = new System.Drawing.Point(12, 257);
             this.btnConfirmacion.Name = "btnConfirmacion";
             this.btnConfirmacion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnConfirmacion.Size = new System.Drawing.Size(250, 54);
@@ -102,7 +122,7 @@
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("MS Reference Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSalir.Location = new System.Drawing.Point(259, 384);
+            this.btnSalir.Location = new System.Drawing.Point(259, 257);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnSalir.Size = new System.Drawing.Size(250, 54);
@@ -116,7 +136,7 @@
             this.lbltextcobro.AutoSize = true;
             this.lbltextcobro.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltextcobro.ForeColor = System.Drawing.Color.White;
-            this.lbltextcobro.Location = new System.Drawing.Point(8, 81);
+            this.lbltextcobro.Location = new System.Drawing.Point(8, 60);
             this.lbltextcobro.Name = "lbltextcobro";
             this.lbltextcobro.Size = new System.Drawing.Size(145, 20);
             this.lbltextcobro.TabIndex = 12;
@@ -127,7 +147,7 @@
             this.lblValorCobrar.AutoSize = true;
             this.lblValorCobrar.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorCobrar.ForeColor = System.Drawing.Color.White;
-            this.lblValorCobrar.Location = new System.Drawing.Point(149, 82);
+            this.lblValorCobrar.Location = new System.Drawing.Point(149, 61);
             this.lblValorCobrar.Name = "lblValorCobrar";
             this.lblValorCobrar.Size = new System.Drawing.Size(60, 20);
             this.lblValorCobrar.TabIndex = 13;
@@ -138,7 +158,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(67)))), ((int)(((byte)(80)))));
-            this.ClientSize = new System.Drawing.Size(521, 450);
+            this.ClientSize = new System.Drawing.Size(521, 324);
             this.Controls.Add(this.lblValorCobrar);
             this.Controls.Add(this.lbltextcobro);
             this.Controls.Add(this.btnSalir);
@@ -148,7 +168,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(537, 489);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(537, 489);
+            this.MinimumSize = new System.Drawing.Size(537, 363);
             this.Name = "frmMemberShip";
             this.ShowIcon = false;
             this.Text = "Membresías";

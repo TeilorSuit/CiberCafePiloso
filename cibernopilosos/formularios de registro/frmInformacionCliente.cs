@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace cibernopilosos.formularios
@@ -24,7 +16,7 @@ namespace cibernopilosos.formularios
         private void AgregarCliente(string clientId, string clientName, DateTime clientBirthDate, string clientPhone, string clientAddress)
         {
             string fechaFormateada = clientBirthDate.ToString("yyyy-MM-dd");
-            string consulta = $"Insert into Clients (ClientID, ClientMemStatus, ClientName, ClientBirthDate, ClientPhone, ClientAddress) " +
+            string consulta = "Insert into Clients (ClientID, ClientMemStatus, ClientName, ClientBirthDate, ClientPhone, ClientAddress) " +
                   $"values ('{clientId}', 0, '{clientName}', '{fechaFormateada}', '{clientPhone}', '{clientAddress}')";
 
             if (conexionsql.EjecutarAccion(consulta))

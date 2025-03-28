@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flwPanelCuadro = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAgregarUsuario = new System.Windows.Forms.Button();
             this.btnEditarUsuario = new System.Windows.Forms.Button();
             this.btnBorrarUsuario = new System.Windows.Forms.Button();
+            this.btnResgistrosCaja = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.pnlDgv = new System.Windows.Forms.Panel();
             this.flwPanelCuadro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            this.pnlDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // flwPanelCuadro
@@ -43,6 +48,7 @@
             this.flwPanelCuadro.Controls.Add(this.btnAgregarUsuario);
             this.flwPanelCuadro.Controls.Add(this.btnEditarUsuario);
             this.flwPanelCuadro.Controls.Add(this.btnBorrarUsuario);
+            this.flwPanelCuadro.Controls.Add(this.btnResgistrosCaja);
             this.flwPanelCuadro.Dock = System.Windows.Forms.DockStyle.Right;
             this.flwPanelCuadro.Location = new System.Drawing.Point(606, 0);
             this.flwPanelCuadro.Name = "flwPanelCuadro";
@@ -95,27 +101,70 @@
             this.btnBorrarUsuario.UseVisualStyleBackColor = false;
             this.btnBorrarUsuario.Click += new System.EventHandler(this.btnBorrarUsuario_Click);
             // 
+            // btnResgistrosCaja
+            // 
+            this.btnResgistrosCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
+            this.btnResgistrosCaja.FlatAppearance.BorderSize = 0;
+            this.btnResgistrosCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResgistrosCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResgistrosCaja.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnResgistrosCaja.Location = new System.Drawing.Point(3, 201);
+            this.btnResgistrosCaja.Name = "btnResgistrosCaja";
+            this.btnResgistrosCaja.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnResgistrosCaja.Size = new System.Drawing.Size(214, 47);
+            this.btnResgistrosCaja.TabIndex = 3;
+            this.btnResgistrosCaja.Text = "Registros Caja";
+            this.btnResgistrosCaja.UseVisualStyleBackColor = false;
+            this.btnResgistrosCaja.Click += new System.EventHandler(this.btnResgistrosCaja_Click);
+            // 
             // dgvUsers
             // 
             this.dgvUsers.AllowUserToAddRows = false;
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.AllowUserToResizeColumns = false;
             this.dgvUsers.AllowUserToResizeRows = false;
-            this.dgvUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(99)))), ((int)(((byte)(99)))));
             this.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Cursor = System.Windows.Forms.Cursors.Cross;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvUsers.EnableHeadersVisualStyles = false;
+            this.dgvUsers.GridColor = System.Drawing.Color.SteelBlue;
             this.dgvUsers.Location = new System.Drawing.Point(0, 0);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersVisible = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvUsers.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(823, 561);
+            this.dgvUsers.Size = new System.Drawing.Size(606, 561);
             this.dgvUsers.TabIndex = 2;
+            // 
+            // pnlDgv
+            // 
+            this.pnlDgv.BackColor = System.Drawing.Color.Thistle;
+            this.pnlDgv.Controls.Add(this.dgvUsers);
+            this.pnlDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDgv.Location = new System.Drawing.Point(0, 0);
+            this.pnlDgv.Name = "pnlDgv";
+            this.pnlDgv.Size = new System.Drawing.Size(606, 561);
+            this.pnlDgv.TabIndex = 3;
             // 
             // frmUsuarios
             // 
@@ -123,13 +172,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(823, 561);
+            this.Controls.Add(this.pnlDgv);
             this.Controls.Add(this.flwPanelCuadro);
-            this.Controls.Add(this.dgvUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmUsuarios";
             this.Text = "frmEmpleados";
             this.flwPanelCuadro.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            this.pnlDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -141,5 +191,7 @@
         private System.Windows.Forms.Button btnEditarUsuario;
         private System.Windows.Forms.Button btnBorrarUsuario;
         private System.Windows.Forms.DataGridView dgvUsers;
+        private System.Windows.Forms.Button btnResgistrosCaja;
+        private System.Windows.Forms.Panel pnlDgv;
     }
 }

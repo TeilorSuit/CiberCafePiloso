@@ -37,7 +37,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.txtPcIP = new System.Windows.Forms.TextBox();
             this.lblPCIP = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnValidar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -184,7 +183,6 @@
         public System.Windows.Forms.Button btnSalir;
         public System.Windows.Forms.TextBox txtPcIP;
         private System.Windows.Forms.Label lblPCIP;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         public System.Windows.Forms.Button btnValidar;
     }
 }

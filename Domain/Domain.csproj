@@ -41,20 +41,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UsageByClient.cs" />
-    <Compile Include="UsageByHour.cs" />
-    <Compile Include="ComputerUsageListing.cs" />
-    <Compile Include="ComputerUsageReport.cs" />
-    <Compile Include="NetSalesByPeriod.cs" />
-    <Compile Include="SalesListing.cs" />
-    <Compile Include="SalesReport.cs" />
+    <Compile Include="Caja\CajaChart.cs" />
+    <Compile Include="Caja\CajaListing.cs" />
+    <Compile Include="Clientes\ClientsByMembership.cs" />
+    <Compile Include="Clientes\ClientsByMonth.cs" />
+    <Compile Include="Clientes\ClientChart.cs" />
+    <Compile Include="Clientes\ClientListing.cs" />
+    <Compile Include="Clientes\ClientSalesSummary.cs" />
+    <Compile Include="Computadoras\ComputerChart.cs" />
+    <Compile Include="Computadoras\ComputerListing.cs" />
+    <Compile Include="Computadoras\ComputerStatusSummary.cs" />
+    <Compile Include="Computadoras\ComputerUsageListing.cs" />
+    <Compile Include="Membresias\MembershipChart.cs" />
+    <Compile Include="Membresias\MembershipListing.cs" />
+    <Compile Include="Membresias\MembershipSummaryByType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{69b9c7a9-f713-4dd0-b37c-9afac9474a9a}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
+    <Compile Include="Uso %28ClientComputer%29\UsageByClient.cs" />
+    <Compile Include="Uso %28ClientComputer%29\UsageByHour.cs" />
+    <Compile Include="Uso %28ClientComputer%29\UsageChart.cs" />
+    <Compile Include="Uso %28ClientComputer%29\UsageListing.cs" />
+    <Compile Include="Ventas\NetSalesByPeriod.cs" />
+    <Compile Include="Ventas\ProductSalesListing.cs" />
+    <Compile Include="Ventas\SalesChart.cs" />
+    <Compile Include="Ventas\SalesListing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\ComputerUsageReport.datasource" />

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using cibernopilosos.formularios_principales;
 using Presentation;
@@ -43,55 +36,51 @@ namespace cibernopilosos.formularios
         #region Formularios Activos
 
         private Form FormulariosAbierto = null;
-        private Computadoras formularioComputadoras = null;
+        private Computadoras formularioComputadoras = new Computadoras();
 
         private void abrirFormularioHijo(Form FormularioHijo)
         {
             try
             {
-                if (FormularioHijo != null)
+                if (FormularioHijo == formularioComputadoras)
                 {
-                    if (FormularioHijo is Computadoras)//comprobar si el existe un computadoras abierto pa q no se reinice
-                    {
-                        if (formularioComputadoras != null)
-                        {
-                            FormularioHijo = formularioComputadoras;
-                        }
-                        else
-                        {
-                            formularioComputadoras = (Computadoras)FormularioHijo; 
-                        }
-                    }
-                    if (FormulariosAbierto != null && FormulariosAbierto != FormularioHijo)
-                    {
-                        if (FormulariosAbierto != formularioComputadoras)
-                        {
-                            FormulariosAbierto.Close();
-                        }
-                    }
-
-                    FormulariosAbierto = FormularioHijo;
-                    FormularioHijo.TopLevel = false;
-                    FormularioHijo.FormBorderStyle = FormBorderStyle.None;
-                    FormularioHijo.Dock = DockStyle.Fill;
-
                     if (!pnlChildForms.Controls.Contains(FormularioHijo))
                     {
-                        pnlChildForms.Controls.Add(FormularioHijo);
+                        ConfigurarFormularioHijo(FormularioHijo);
                     }
                     FormularioHijo.BringToFront();
                     FormularioHijo.Show();
+                    FormulariosAbierto = FormularioHijo;
+                    return; 
                 }
-                else
+
+                if (FormulariosAbierto != null && FormulariosAbierto != formularioComputadoras)
                 {
-                    throw new ArgumentNullException(nameof(FormularioHijo));
+                    FormulariosAbierto.Close();
                 }
+
+                FormulariosAbierto = FormularioHijo;
+                ConfigurarFormularioHijo(FormularioHijo);
+                FormularioHijo.BringToFront();
+                FormularioHijo.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void ConfigurarFormularioHijo(Form formulario)
+        {
+            formulario.TopLevel = false;
+            formulario.FormBorderStyle = FormBorderStyle.None;
+            formulario.Dock = DockStyle.Fill;
+            if (!pnlChildForms.Controls.Contains(formulario))
+            {
+                pnlChildForms.Controls.Add(formulario);
+            }
+        }
+
         #endregion
 
         #region AmpliarMenu
@@ -132,11 +121,8 @@ namespace cibernopilosos.formularios
 
         private void btnComputadoras_Click(object sender, EventArgs e)
         {
-            if (formularioComputadoras == null)
-            {
-                formularioComputadoras = new Computadoras();
-            }
             abrirFormularioHijo(formularioComputadoras);
+            formularioComputadoras.mostrarComputadorasEnPanel();
         }
 
         private void btnAdministrarPcs_Click(object sender, EventArgs e)
@@ -158,15 +144,6 @@ namespace cibernopilosos.formularios
         {
             var form1 = new Form1();
             abrirFormularioHijo(form1);
-            // Al cerrarse Form1, se dispara este evento:
-            //form1.FormClosed += (s, args) =>
-            //{
-            //    // Re-mostrar el menú
-            //    this.Show();
-            //};
-
-            //this.Hide();
-            //form1.Show();
         }
         private void btnTransacciones_Click(object sender, EventArgs e)
         {
@@ -179,6 +156,11 @@ namespace cibernopilosos.formularios
         private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void flwSideBar_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

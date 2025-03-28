@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace cibernopilosos.formularios
@@ -60,11 +53,11 @@ namespace cibernopilosos.formularios
             }
         }
 
-        public string AuxUsername;
+        public string AuxUserID;
         private void ActualizarUsuario(string username, string password)
         {
             int Admin = checkAdmin();
-            string consulta = $"Update Users set Username='{username}', Password='{password}', Admin={Admin} where Username='{AuxUsername}'";
+            string consulta = $"Update Users set Username='{username}', Password='{password}', Admin={Admin} where IdUser='{AuxUserID}'";
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("Cliente actualizado exitosamente");

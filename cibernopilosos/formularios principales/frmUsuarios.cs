@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.ReportingServices.Interfaces;
 
 namespace cibernopilosos.formularios
 {
@@ -15,7 +16,7 @@ namespace cibernopilosos.formularios
         public frmUsuarios()
         {
             InitializeComponent();
-            llenarTabla();
+            llenarTabla(true);
         }
 
         private void btnAgregarUsuario_Click(object sender, EventArgs e)
@@ -24,7 +25,7 @@ namespace cibernopilosos.formularios
             frm.modo = "add";
             frm.btnConfirmacion.Text = "Registrar";
             frm.ShowDialog();
-            llenarTabla();
+            llenarTabla(true);
         }
 
         private void btnEditarUsuario_Click(object sender, EventArgs e)
@@ -32,22 +33,32 @@ namespace cibernopilosos.formularios
             frmInformacionUsuario frm = new frmInformacionUsuario();
             frm.modo = "edit";
             frm.btnConfirmacion.Text = "Editar";
-            frm.AuxUsername = dgvUsers.CurrentRow.Cells[0].Value.ToString();
+            frm.AuxUserID = dgvUsers.CurrentRow.Cells["idUSer"].Value.ToString();
             PrecargarDatos(frm);
             frm.ShowDialog();
-            llenarTabla();
+            llenarTabla(true);
         }
-
 
         private void PrecargarDatos(frmInformacionUsuario UserInfo)
         {
-            UserInfo.txtUsername.Text = dgvUsers.CurrentRow.Cells[0].Value.ToString();
-            UserInfo.txtPassword.Text = dgvUsers.CurrentRow.Cells[1].Value.ToString();
+            UserInfo.txtUsername.Text = dgvUsers.CurrentRow.Cells["Username"].Value.ToString();
+            UserInfo.txtPassword.Text = dgvUsers.CurrentRow.Cells["Password"].Value.ToString();
         }
-        private void llenarTabla()
+        private void llenarTabla(bool modo)
         {
             sqlConexion ConexionSql = new sqlConexion();
-            string consulta = "select * from Users";
+            string consulta;
+            if (modo)
+            {
+                consulta = "select * from Users";
+                btnResgistrosCaja.Text = "Ver registros de caja";
+            }
+            else
+            {
+                consulta = "select * from Caja";
+                btnResgistrosCaja.Text = "Ver Usuarios";
+
+            }
             DataTable tabla = ConexionSql.retornaRegistros(consulta);
             dgvUsers.DataSource = "";
             dgvUsers.DataSource = tabla;
@@ -55,8 +66,8 @@ namespace cibernopilosos.formularios
 
         private void btnBorrarUsuario_Click(object sender, EventArgs e)
         {
-            string useractual = frmLogin.UserActual.ToString();
-            if(dgvUsers.CurrentRow.Cells[0].Value.ToString() == useractual.ToString())
+            string useridactual = frmLogin.UserIdActual.ToString();
+            if(dgvUsers.CurrentRow.Cells["IdUser"].Value.ToString() == useridactual)
             {
                 MessageBox.Show("No puedes eliminar tu propio usuario");
                 return;
@@ -68,7 +79,7 @@ namespace cibernopilosos.formularios
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
-                string comando = $"delete from Users where Username='{dgvUsers.CurrentRow.Cells[0].Value.ToString()}'";
+                string comando = $"delete from Users where IdUser='{dgvUsers.CurrentRow.Cells["IdUser"].Value.ToString()}'";
                 if (ConexionSql.EjecutarAccion(comando))
                 {
                     MessageBox.Show("Cliente eliminado exitosamente");
@@ -78,7 +89,17 @@ namespace cibernopilosos.formularios
                     MessageBox.Show("Error al eliminar cliente");
                 }
             }
-            llenarTabla();
+            llenarTabla(true);
+        }
+
+        bool modolol = true;
+        private void btnResgistrosCaja_Click(object sender, EventArgs e)
+        {
+            modolol = !modolol;
+            llenarTabla(modolol);
+            btnAgregarUsuario.Visible = modolol;
+            btnEditarUsuario.Visible = modolol;
+            btnBorrarUsuario.Visible = modolol;
         }
     }
 }

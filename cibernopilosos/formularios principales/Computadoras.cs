@@ -14,32 +14,37 @@ namespace cibernopilosos.formularios_principales
     public partial class Computadoras : Form
     {
         private sqlConexion conexionsql = new sqlConexion();
-        private int puertoServidor = 12345; // Puerto donde el servidor escucha mensajes de los clientes
-        private int puertoCliente = 12346; // Puerto donde los clientes escuchan comandos del servidor
+        private int puertoServidor = 12345;
+        private int puertoCliente = 12346;
         private Timer actualizacionTimer;
         private bool escuchando = true;
-        private Dictionary<string, PictureBox> imagenesPorIp =
-            new Dictionary<string, PictureBox>(); // Asociar imagen con ip
+        private Dictionary<string, PictureBox> imagenesPorIp = new Dictionary<string, PictureBox>();
+        private readonly object estadoLock = new object();
+        private Timer cuentaRegresivaTimer;
+        private DateTime tiempoLimite;
 
         public Computadoras()
         {
             InitializeComponent();
             actualizacionTimer = new System.Windows.Forms.Timer();
-            actualizacionTimer.Interval = 5000; // Cada 5 segundos revisa el estado
+            actualizacionTimer.Interval = 2000;
             actualizacionTimer.Tick += ActualizacionTimer_Tick;
+
+            cuentaRegresivaTimer = new System.Windows.Forms.Timer();
+            cuentaRegresivaTimer.Interval = 1000; // 1 segundo
+            cuentaRegresivaTimer.Tick += CuentaRegresivaTimer_Tick;
         }
 
         private void Computadoras_Load(object sender, EventArgs e)
         {
             mostrarComputadorasEnPanel();
             actualizacionTimer.Start();
-            _ = IniciarEscuchaAsync(); //para que no reciba el task (nunca va a acabar)
-            _ = ActualizarEstadoComputadorasAsync(); //actualización inicial al abrir el formulario
+            _ = IniciarEscuchaAsync();
+            ActualizarEstadoComputadorasAsync();
         }
 
-        #region CargarComputadoras
-
         private PictureBox computadoraSeleccionada = null;
+
         private List<Computadora> cargarListaConLasComputadoras()
         {
             List<Computadora> computadoras = new List<Computadora>();
@@ -48,63 +53,72 @@ namespace cibernopilosos.formularios_principales
 
             foreach (DataRow row in dt.Rows)
             {
-                Computadora comp = new Computadora();
-                comp.Ip = row["PcIp"].ToString();
-                comp.Numero = row["PcNumber"].ToString();
-                comp.Descripcion = row["PcInfo"].ToString();
-                comp.Estado = row["PcStatus"].ToString();
-
+                Computadora comp = new Computadora
+                {
+                    Ip = row["PcIp"].ToString(),
+                    Numero = row["PcNumber"].ToString(),
+                    Descripcion = row["PcInfo"].ToString(),
+                    Estado = row["PcStatus"].ToString()
+                };
                 computadoras.Add(comp);
             }
             return computadoras;
         }
 
-        private void mostrarComputadorasEnPanel()
+        public void mostrarComputadorasEnPanel()
         {
+            fpnlComputadoras.Controls.Clear();
+            imagenesPorIp.Clear();
+
             List<Computadora> computadoras = cargarListaConLasComputadoras();
             foreach (Computadora comp in computadoras)
             {
-                //panel para cada computadora
-                Panel panel = new Panel();
-                panel.Size = new System.Drawing.Size(200, 200);
-                panel.BorderStyle = BorderStyle.None;
-                panel.BackColor = System.Drawing.Color.FromArgb(36, 69, 69);
+                Panel panel = new Panel
+                {
+                    Size = new Size(200, 200),
+                    BorderStyle = BorderStyle.None,
+                    BackColor = Color.FromArgb(36, 69, 69)
+                };
 
-                Label lblNumero = new Label();
-                lblNumero.Text = comp.Numero;
-                lblNumero.Location = new System.Drawing.Point(90, 10);
-                lblNumero.AutoSize = true;
-                lblNumero.ForeColor = Color.White;
-                lblNumero.Font = new Font("MS Reference Sans Serif", 13, FontStyle.Bold);
+                Label lblNumero = new Label
+                {
+                    Text = comp.Numero,
+                    Location = new Point(90, 10),
+                    AutoSize = true,
+                    ForeColor = Color.White,
+                    Font = new Font("MS Reference Sans Serif", 13, FontStyle.Bold)
+                };
 
-                Label lblDescripcion = new Label();
-                lblDescripcion.Text = comp.Descripcion;
-                lblDescripcion.Location = new System.Drawing.Point(10, 30);
-                lblDescripcion.AutoSize = true;
-                lblDescripcion.ForeColor = Color.White;
-                lblDescripcion.Font = new Font("MS Reference Sans Serif", 10, FontStyle.Regular);
+                Label lblDescripcion = new Label
+                {
+                    Text = comp.Descripcion,
+                    Location = new Point(10, 30),
+                    AutoSize = true,
+                    ForeColor = Color.White,
+                    Font = new Font("MS Reference Sans Serif", 10, FontStyle.Regular)
+                };
 
-                PictureBox pb = new PictureBox();
-                pb.Tag = comp; 
-                pb.Image = imglestadoscomputadora.Images[2]; 
-                pb.Size = new Size(150, 150); 
-                pb.SizeMode = PictureBoxSizeMode.StretchImage; 
-                pb.Location = new Point(25, 50); 
+                PictureBox pb = new PictureBox
+                {
+                    Tag = comp,
+                    Size = new Size(150, 150),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Location = new Point(25, 50)
+                };
                 pb.Click += Imagen_Clicito;
+
+                pb.Image = imglestadoscomputadora.Images[obtenerIndiceImagenPorEstado(comp.Estado)];
 
                 panel.Controls.Add(lblNumero);
                 panel.Controls.Add(lblDescripcion);
                 panel.Controls.Add(pb);
 
                 fpnlComputadoras.Controls.Add(panel);
-
-                //diccionario para actualizar img 
                 imagenesPorIp[comp.Ip] = pb;
             }
         }
 
-        //imitacion selección imagen
-        private void Imagen_Clicito(object sender, EventArgs e) // Evento creado a mano
+        private void Imagen_Clicito(object sender, EventArgs e)
         {
             PictureBox pb = sender as PictureBox;
             if (pb != null)
@@ -112,49 +126,100 @@ namespace cibernopilosos.formularios_principales
                 if (computadoraSeleccionada != null)
                 {
                     computadoraSeleccionada.Parent.BackColor = Color.FromArgb(36, 69, 69);
-                    estadoBonotesPorComputadora();
                 }
 
                 if (computadoraSeleccionada == pb)
                 {
                     deshabilitarTodo();
                     computadoraSeleccionada = null;
+                    cuentaRegresivaTimer.Stop();
+                    lblTiempoRestante.Text = string.Empty;
                 }
                 else
                 {
                     computadoraSeleccionada = pb;
-                    pb.Parent.BackColor = Color.LightBlue; //resalta el panel seleccionado
+                    pb.Parent.BackColor = Color.LightBlue;
                     estadoBonotesPorComputadora();
+
+                    Computadora pc = computadoraSeleccionada.Tag as Computadora;
+                    if (pc.Estado.ToLower() == "en uso")
+                    {
+                        SolicitarTiempoRestante(pc.Ip);
+                    }
                 }
+            }
+        }
+
+        private async void SolicitarTiempoRestante(string ip)
+        {
+            try
+            {
+                using (TcpClient client = new TcpClient())
+                {
+                    await client.ConnectAsync(IPAddress.Parse(ip), puertoCliente);
+                    using (NetworkStream stream = client.GetStream())
+                    {
+                        byte[] mensajeBytes = Encoding.UTF8.GetBytes("SOLICITAR_TIEMPO");
+                        await stream.WriteAsync(mensajeBytes, 0, mensajeBytes.Length);
+
+                        byte[] buffer = new byte[client.ReceiveBufferSize];
+                        int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                        string respuesta = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
+
+                        if (respuesta.StartsWith("TIEMPO_RESTANTE:"))
+                        {
+                            int minutosRestantes = int.Parse(respuesta.Split(':')[1]);
+                            tiempoLimite = DateTime.Now.AddMinutes(minutosRestantes);
+                            cuentaRegresivaTimer.Start();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al solicitar tiempo restante: {ex.Message}");
+            }
+        }
+
+        private void CuentaRegresivaTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan tiempoRestante = tiempoLimite - DateTime.Now;
+            if (tiempoRestante.TotalSeconds > 0)
+            {
+                lblTiempoRestante.Text = $"{tiempoRestante.Hours:D2}:{tiempoRestante.Minutes:D2}:{tiempoRestante.Seconds:D2}";
+            }
+            else
+            {
+                cuentaRegresivaTimer.Stop();
+                lblTiempoRestante.Text = "00:00:00";
             }
         }
 
         private void Computadoras_FormClosing(object sender, FormClosingEventArgs e)
         {
             escuchando = false;
+            actualizacionTimer.Stop();
+            cuentaRegresivaTimer.Stop();
         }
-        #endregion
-
-        #region Actualización y conexiones
 
         private void ActualizacionTimer_Tick(object sender, EventArgs e)
         {
-            _ = ActualizarEstadoComputadorasAsync(); //revisa el estado cada 5 segundos
+            ActualizarEstadoComputadorasAsync();
         }
 
         private async Task ActualizarEstadoComputadorasAsync()
         {
             string consulta = "SELECT PcIp, PcStatus FROM Computers";
-            DataTable tabla = conexionsql.retornaRegistros(consulta);
+            DataTable dt = conexionsql.retornaRegistros(consulta);
 
-            foreach (DataRow row in tabla.Rows)
+            foreach (DataRow row in dt.Rows)
             {
-                string ipString = row["PcIp"].ToString();
-                string estadoActual = row["PcStatus"].ToString();
+                string ip = row["PcIp"].ToString();
+                string estadoActual = row["PcStatus"].ToString().Trim().ToLower();
 
-                if (estadoActual != "En uso")
+                if (estadoActual != "en uso")
                 {
-                    if (IPAddress.TryParse(ipString, out IPAddress ipAddress))
+                    if (IPAddress.TryParse(ip, out IPAddress ipAddress))
                     {
                         bool disponible = await ProbarConexionAsync(ipAddress);
                         string nuevoEstado;
@@ -166,15 +231,15 @@ namespace cibernopilosos.formularios_principales
                         {
                             nuevoEstado = "Desconectado";
                         }
-                        conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = '{nuevoEstado}' WHERE PcIp = '{ipString}'");
-                    }
-                    else
-                    {
-                        conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'IP no válida' WHERE PcIp = '{ipString}'");
+
+                        if (!nuevoEstado.ToLower().Equals(estadoActual))
+                        {
+                            conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = '{nuevoEstado}' WHERE PcIp = '{ip}'");
+                        }
                     }
                 }
             }
-            actualizarImagenesSegunEstado(); //actualiza las imágenes después de cambiar el estado
+            actualizarImagenesSegunEstado();
         }
 
         private void actualizarImagenesSegunEstado()
@@ -189,8 +254,11 @@ namespace cibernopilosos.formularios_principales
 
                 if (imagenesPorIp.TryGetValue(ip, out PictureBox pb))
                 {
-                    int indiceImagenPorEstado = obtenerIndiceImagenPorEstado(estado);
-                    pb.Image = imglestadoscomputadora.Images[indiceImagenPorEstado];
+                    int indiceImagen = obtenerIndiceImagenPorEstado(estado);
+                    if (pb.Image != imglestadoscomputadora.Images[indiceImagen])
+                    {
+                        pb.Image = imglestadoscomputadora.Images[indiceImagen];
+                    }
                 }
             }
         }
@@ -199,14 +267,10 @@ namespace cibernopilosos.formularios_principales
         {
             switch (estado.ToLower())
             {
-                case "disponible":
-                    return 0;
-                case "en uso":
-                    return 1;
-                case "desconectado":
-                    return 2;
-                default:
-                    return 0;
+                case "disponible": return 0;
+                case "en uso": return 1;
+                case "desconectado": return 2;
+                default: return 2;
             }
         }
 
@@ -217,14 +281,10 @@ namespace cibernopilosos.formularios_principales
                 using (TcpClient client = new TcpClient())
                 {
                     Task connectTask = client.ConnectAsync(ipAddress, puertoCliente);
-                    Task timeoutTask = Task.Delay(2000); //espera 2 segundos como max
+                    Task timeoutTask = Task.Delay(1000);
                     Task completedTask = await Task.WhenAny(connectTask, timeoutTask);
 
-                    if (completedTask == timeoutTask)
-                    {
-                        return false;
-                    }
-
+                    if (completedTask == timeoutTask) return false;
                     await connectTask;
                     return true;
                 }
@@ -292,7 +352,16 @@ namespace cibernopilosos.formularios_principales
                     if (mensaje == "TIEMPO_ACABADO")
                     {
                         string ipString = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
-                        conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'");
+                        lock (estadoLock)
+                        {
+                            string consulta = $"SELECT PcStatus FROM Computers WHERE PcIp = '{ipString}'";
+                            string estadoActual = conexionsql.DevuelveString(consulta);
+                            if (estadoActual == "En uso")
+                            {
+                                conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'");
+                            }
+                        }
+                        actualizarImagenesSegunEstado();
                     }
                 }
             }
@@ -305,10 +374,6 @@ namespace cibernopilosos.formularios_principales
                 client.Close();
             }
         }
-
-        #endregion
-
-        #region Métodos de interfaz
 
         private void estadoBonotesPorComputadora()
         {
@@ -358,10 +423,6 @@ namespace cibernopilosos.formularios_principales
             txtboxMensajes.Enabled = true;
         }
 
-        #endregion
-
-        #region Botones eventos
-
         private async void btnIniciar_Click(object sender, EventArgs e)
         {
             if (computadoraSeleccionada == null)
@@ -372,8 +433,6 @@ namespace cibernopilosos.formularios_principales
             Computadora pc = computadoraSeleccionada.Tag as Computadora;
             string ipString = pc.Ip;
 
-            IPAddress ipAddress = IPAddress.Parse(ipString);
-
             if (btnIniciar.Text == "Iniciar")
             {
                 if (numHoras.Value == 0 && numMinutos.Value == 0)
@@ -382,34 +441,41 @@ namespace cibernopilosos.formularios_principales
                     return;
                 }
 
-                if (!await ProbarConexionAsync(ipAddress))
+                if (!await ProbarConexionAsync(IPAddress.Parse(ipString)))
                 {
                     MessageBox.Show("No se pudo conectar al cliente. Verifica que esté en línea.");
                     return;
                 }
 
-                string updateQuery = $"UPDATE Computers SET PcStatus = 'En uso' WHERE PcIp = '{ipString}'";
-                conexionsql.EjecutarAccion(updateQuery);
-
+                lock (estadoLock)
+                {
+                    conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'En uso' WHERE PcIp = '{ipString}'");
+                }
                 await EnviarComandoAsync("INICIAR", ipString, (int)numHoras.Value, (int)numMinutos.Value);
-
                 btnIniciar.Text = "Detener";
                 computadoraSeleccionada.Image = imglestadoscomputadora.Images[1];
+                actualizarImagenesSegunEstado();
+                deshabilitarTodo();
+                computadoraSeleccionada.Parent.BackColor = Color.FromArgb(36, 69, 69);
+                computadoraSeleccionada = null;
             }
             else if (btnIniciar.Text == "Detener")
             {
                 await EnviarComandoAsync("BLOQUEO", ipString);
-
-                string updateQuery = $"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'";
-                conexionsql.EjecutarAccion(updateQuery);
-
+                lock (estadoLock)
+                {
+                    conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'");
+                }
                 btnIniciar.Text = "Iniciar";
                 computadoraSeleccionada.Image = imglestadoscomputadora.Images[0];
+                actualizarImagenesSegunEstado();
+                deshabilitarTodo();
+                computadoraSeleccionada.Parent.BackColor = Color.FromArgb(36, 69, 69);
+                computadoraSeleccionada = null;
             }
 
             numHoras.Value = 0m;
             numMinutos.Value = 0m;
-            actualizarImagenesSegunEstado(); // Actualiza las imágenes inmediatamente
         }
 
         private async void btnAgregarTiempo_Click(object sender, EventArgs e)
@@ -417,22 +483,19 @@ namespace cibernopilosos.formularios_principales
             if (numHoras.Value == 0 && numMinutos.Value == 0)
             {
                 MessageBox.Show("Seleccione un tiempo");
+                return;
             }
-            else
+            if (computadoraSeleccionada == null)
             {
-                if (computadoraSeleccionada == null)
-                {
-                    MessageBox.Show("Seleccione una computadora primero.");
-                }
-                else
-                {
-                    Computadora pc = computadoraSeleccionada.Tag as Computadora;
-                    string ipString = pc.Ip;
-                    await EnviarComandoAsync("AÑADIR", ipString, (int)numHoras.Value, (int)numMinutos.Value);
-                    numHoras.Value = 0m;
-                    numMinutos.Value = 0m;
-                }
+                MessageBox.Show("Seleccione una computadora primero.");
+                return;
             }
+
+            Computadora pc = computadoraSeleccionada.Tag as Computadora;
+            string ipString = pc.Ip;
+            await EnviarComandoAsync("AÑADIR", ipString, (int)numHoras.Value, (int)numMinutos.Value);
+            numHoras.Value = 0m;
+            numMinutos.Value = 0m;
         }
 
         private async void btnCerrarApp_Click(object sender, EventArgs e)
@@ -442,16 +505,20 @@ namespace cibernopilosos.formularios_principales
                 if (computadoraSeleccionada == null)
                 {
                     MessageBox.Show("Seleccione una computadora primero.");
+                    return;
                 }
-                else
+
+                Computadora pc = computadoraSeleccionada.Tag as Computadora;
+                string ipString = pc.Ip;
+                await EnviarComandoAsync("CERRAR", ipString);
+                lock (estadoLock)
                 {
-                    Computadora pc = computadoraSeleccionada.Tag as Computadora;
-                    string ipString = pc.Ip;
-                    await EnviarComandoAsync("CERRAR", ipString);
-                    string updateQuery = $"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'";
-                    conexionsql.EjecutarAccion(updateQuery);
-                    actualizarImagenesSegunEstado(); // Actualiza las imágenes inmediatamente
+                    conexionsql.EjecutarAccion($"UPDATE Computers SET PcStatus = 'Disponible' WHERE PcIp = '{ipString}'");
                 }
+                actualizarImagenesSegunEstado();
+                deshabilitarTodo();
+                computadoraSeleccionada.Parent.BackColor = Color.FromArgb(36, 69, 69);
+                computadoraSeleccionada = null;
             }
         }
 
@@ -462,15 +529,14 @@ namespace cibernopilosos.formularios_principales
                 if (computadoraSeleccionada == null)
                 {
                     MessageBox.Show("Seleccione una computadora primero.");
+                    return;
                 }
-                else
-                {
-                    Computadora pc = computadoraSeleccionada.Tag as Computadora;
-                    string ipString = pc.Ip;
-                    await EnviarComandoAsync("MENSAJE", ipString, 0, 0, txtboxMensajes.Text);
-                    txtboxMensajes.Clear();
-                    e.SuppressKeyPress = true;
-                }
+
+                Computadora pc = computadoraSeleccionada.Tag as Computadora;
+                string ipString = pc.Ip;
+                await EnviarComandoAsync("MENSAJE", ipString, 0, 0, txtboxMensajes.Text);
+                txtboxMensajes.Clear();
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -481,14 +547,13 @@ namespace cibernopilosos.formularios_principales
                 if (computadoraSeleccionada == null)
                 {
                     MessageBox.Show("Seleccione una computadora primero.");
+                    return;
                 }
-                else
-                {
-                    Computadora pc = computadoraSeleccionada.Tag as Computadora;
-                    string ipString = pc.Ip;
-                    await EnviarComandoAsync("MENSAJE", ipString, 0, 0, txtboxMensajes.Text);
-                    txtboxMensajes.Clear();
-                }
+
+                Computadora pc = computadoraSeleccionada.Tag as Computadora;
+                string ipString = pc.Ip;
+                await EnviarComandoAsync("MENSAJE", ipString, 0, 0, txtboxMensajes.Text);
+                txtboxMensajes.Clear();
             }
         }
 
@@ -502,21 +567,22 @@ namespace cibernopilosos.formularios_principales
             if (computadoraSeleccionada == null)
             {
                 MessageBox.Show("Seleccione una computadora para vincular.");
+                return;
             }
-            else
+
+            Computadora pc = computadoraSeleccionada.Tag as Computadora;
+            string ipString = pc.Ip;
+            frmClientes frmCli = new frmClientes
             {
-                Computadora pc = computadoraSeleccionada.Tag as Computadora;
-                string ipString = pc.Ip;
-                frmClientes frmCli = new frmClientes();
-                frmCli.VinculacionMode = true;
-                frmCli.SelectedPcIp = ipString;
-                frmCli.TiempoHorasCalculados = (int)numHoras.Value;
-                frmCli.TiempoMinutosCalculados = (int)numMinutos.Value;
-                frmCli.ShowDialog();
-            }
+                VinculacionMode = true,
+                SelectedPcIp = ipString,
+                TiempoHorasCalculados = (int)numHoras.Value,
+                TiempoMinutosCalculados = (int)numMinutos.Value
+            };
+            frmCli.ShowDialog();
+            mostrarComputadorasEnPanel();
         }
 
-        #endregion
     }
 
     public class Computadora
@@ -527,3 +593,5 @@ namespace cibernopilosos.formularios_principales
         public string Estado { get; set; }
     }
 }
+
+
