@@ -34,6 +34,7 @@
             this.btnLast7Days = new FontAwesome.Sharp.IconButton();
             this.treeViewReports = new System.Windows.Forms.TreeView();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,9 +162,18 @@
             this.iconMenuItem1.Size = new System.Drawing.Size(32, 19);
             this.iconMenuItem1.Text = "iconMenuItem1";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(278, 208);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(259, 28);
+            this.progressBar1.TabIndex = 2;
+            this.progressBar1.Visible = false;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
@@ -175,5 +185,6 @@
 
         }
         private System.Windows.Forms.TreeView treeViewReports;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

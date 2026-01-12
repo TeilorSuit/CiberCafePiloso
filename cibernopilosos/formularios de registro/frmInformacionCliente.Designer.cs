@@ -34,13 +34,13 @@
             this.txtClientName = new System.Windows.Forms.TextBox();
             this.lblClientName = new System.Windows.Forms.Label();
             this.lblClientBirthDate = new System.Windows.Forms.Label();
+            this.dtClientBirthDate = new System.Windows.Forms.DateTimePicker();
             this.txtClientPhone = new System.Windows.Forms.TextBox();
             this.lblClientPhone = new System.Windows.Forms.Label();
             this.txtClientAddress = new System.Windows.Forms.TextBox();
             this.lblClientAddress = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnConfirmacion = new System.Windows.Forms.Button();
-            this.dtClientBirthDate = new System.Windows.Forms.DateTimePicker();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -52,12 +52,12 @@
             // 
             this.txtClientID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.txtClientID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtClientID.ForeColor = System.Drawing.Color.Transparent;
+            this.txtClientID.ForeColor = System.Drawing.Color.White;
             this.txtClientID.Location = new System.Drawing.Point(22, 89);
             this.txtClientID.MaxLength = 10;
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.Size = new System.Drawing.Size(362, 13);
-            this.txtClientID.TabIndex = 7;
+            this.txtClientID.TabIndex = 0;
             this.txtClientID.TextChanged += new System.EventHandler(this.txtClientID_TextChanged);
             this.txtClientID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClientID_KeyPress);
             // 
@@ -76,12 +76,13 @@
             // 
             this.txtClientName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.txtClientName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtClientName.ForeColor = System.Drawing.Color.Transparent;
+            this.txtClientName.ForeColor = System.Drawing.Color.White;
             this.txtClientName.Location = new System.Drawing.Point(20, 149);
-            this.txtClientName.MaxLength = 20;
+            this.txtClientName.MaxLength = 50;
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(362, 13);
-            this.txtClientName.TabIndex = 11;
+            this.txtClientName.TabIndex = 1;
+            this.txtClientName.TextChanged += new System.EventHandler(this.txtClientID_TextChanged);
             // 
             // lblClientName
             // 
@@ -105,16 +106,23 @@
             this.lblClientBirthDate.TabIndex = 12;
             this.lblClientBirthDate.Text = "Fecha de nacimiento";
             // 
+            // dtClientBirthDate
+            // 
+            this.dtClientBirthDate.Location = new System.Drawing.Point(20, 212);
+            this.dtClientBirthDate.Name = "dtClientBirthDate";
+            this.dtClientBirthDate.Size = new System.Drawing.Size(362, 20);
+            this.dtClientBirthDate.TabIndex = 2;
+            // 
             // txtClientPhone
             // 
             this.txtClientPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.txtClientPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtClientPhone.ForeColor = System.Drawing.Color.Transparent;
+            this.txtClientPhone.ForeColor = System.Drawing.Color.White;
             this.txtClientPhone.Location = new System.Drawing.Point(20, 275);
             this.txtClientPhone.MaxLength = 10;
             this.txtClientPhone.Name = "txtClientPhone";
             this.txtClientPhone.Size = new System.Drawing.Size(362, 13);
-            this.txtClientPhone.TabIndex = 15;
+            this.txtClientPhone.TabIndex = 3;
             this.txtClientPhone.TextChanged += new System.EventHandler(this.txtClientPhone_TextChanged);
             this.txtClientPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClientPhone_KeyPress);
             // 
@@ -133,12 +141,12 @@
             // 
             this.txtClientAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(60)))), ((int)(((byte)(52)))));
             this.txtClientAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtClientAddress.ForeColor = System.Drawing.Color.Transparent;
+            this.txtClientAddress.ForeColor = System.Drawing.Color.White;
             this.txtClientAddress.Location = new System.Drawing.Point(20, 335);
-            this.txtClientAddress.MaxLength = 30;
+            this.txtClientAddress.MaxLength = 100;
             this.txtClientAddress.Name = "txtClientAddress";
             this.txtClientAddress.Size = new System.Drawing.Size(362, 13);
-            this.txtClientAddress.TabIndex = 17;
+            this.txtClientAddress.TabIndex = 4;
             // 
             // lblClientAddress
             // 
@@ -161,7 +169,7 @@
             this.btnSalir.Location = new System.Drawing.Point(200, 378);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(166, 26);
-            this.btnSalir.TabIndex = 19;
+            this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -176,21 +184,10 @@
             this.btnConfirmacion.Location = new System.Drawing.Point(35, 378);
             this.btnConfirmacion.Name = "btnConfirmacion";
             this.btnConfirmacion.Size = new System.Drawing.Size(166, 26);
-            this.btnConfirmacion.TabIndex = 18;
+            this.btnConfirmacion.TabIndex = 5;
             this.btnConfirmacion.Text = "Agregar";
             this.btnConfirmacion.UseVisualStyleBackColor = false;
             this.btnConfirmacion.Click += new System.EventHandler(this.btnConfirmacion_Click);
-            // 
-            // dtClientBirthDate
-            // 
-            this.dtClientBirthDate.Location = new System.Drawing.Point(20, 214);
-            this.dtClientBirthDate.Margin = new System.Windows.Forms.Padding(2);
-            this.dtClientBirthDate.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
-            this.dtClientBirthDate.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
-            this.dtClientBirthDate.Name = "dtClientBirthDate";
-            this.dtClientBirthDate.Size = new System.Drawing.Size(182, 20);
-            this.dtClientBirthDate.TabIndex = 20;
-            this.dtClientBirthDate.Value = new System.DateTime(2001, 9, 11, 0, 0, 0, 0);
             // 
             // lblTitle
             // 
@@ -208,7 +205,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(22, 107);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 2);
+            this.panel1.Size = new System.Drawing.Size(362, 1);
             this.panel1.TabIndex = 22;
             // 
             // panel2
@@ -216,7 +213,7 @@
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Location = new System.Drawing.Point(20, 167);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(332, 2);
+            this.panel2.Size = new System.Drawing.Size(362, 1);
             this.panel2.TabIndex = 22;
             // 
             // panel3
@@ -224,7 +221,7 @@
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Location = new System.Drawing.Point(20, 293);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(332, 2);
+            this.panel3.Size = new System.Drawing.Size(362, 1);
             this.panel3.TabIndex = 22;
             // 
             // panel4
@@ -232,7 +229,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Location = new System.Drawing.Point(20, 353);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(332, 2);
+            this.panel4.Size = new System.Drawing.Size(362, 1);
             this.panel4.TabIndex = 22;
             // 
             // frmInformacionCliente
@@ -246,13 +243,13 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.dtClientBirthDate);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnConfirmacion);
             this.Controls.Add(this.txtClientAddress);
             this.Controls.Add(this.lblClientAddress);
             this.Controls.Add(this.txtClientPhone);
             this.Controls.Add(this.lblClientPhone);
+            this.Controls.Add(this.dtClientBirthDate);
             this.Controls.Add(this.lblClientBirthDate);
             this.Controls.Add(this.txtClientName);
             this.Controls.Add(this.lblClientName);
@@ -265,7 +262,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(419, 469);
             this.Name = "frmInformacionCliente";
-            this.Text = "frmInformacionCliente";
+            this.Text = "Información del cliente";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,10 +278,10 @@
         private System.Windows.Forms.Label lblTitle;
         public System.Windows.Forms.TextBox txtClientID;
         public System.Windows.Forms.TextBox txtClientName;
+        public System.Windows.Forms.DateTimePicker dtClientBirthDate;
         public System.Windows.Forms.TextBox txtClientPhone;
         public System.Windows.Forms.TextBox txtClientAddress;
         public System.Windows.Forms.Button btnConfirmacion;
-        public System.Windows.Forms.DateTimePicker dtClientBirthDate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;

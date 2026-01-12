@@ -211,9 +211,9 @@
             this.lblTiempoAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTiempoAdd.Location = new System.Drawing.Point(9, 8);
             this.lblTiempoAdd.Name = "lblTiempoAdd";
-            this.lblTiempoAdd.Size = new System.Drawing.Size(57, 16);
+            this.lblTiempoAdd.Size = new System.Drawing.Size(60, 16);
             this.lblTiempoAdd.TabIndex = 10;
-            this.lblTiempoAdd.Text = "tiempo";
+            this.lblTiempoAdd.Text = "Tiempo";
             // 
             // panel3
             // 

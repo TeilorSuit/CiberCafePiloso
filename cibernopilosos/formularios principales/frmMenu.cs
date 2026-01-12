@@ -11,7 +11,7 @@ namespace cibernopilosos.formularios
         {
             InitializeComponent();
             checkUser(modo);
-            //Saludito(frmLogin.UserActual.Trim());
+            Saludito(frmLogin.UserActual.Trim());
         }
 
         private void Saludito(string user = "mundo")

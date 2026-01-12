@@ -71,9 +71,15 @@ namespace cibernopilosos.formularios
             string clienteId = dgvAdmiClientes.CurrentRow.Cells["ClientID"].Value.ToString();
             string clienteName = dgvAdmiClientes.CurrentRow.Cells["ClientName"].Value.ToString();
             DialogResult confirmacion;
-            confirmacion = MessageBox.Show($"Está acción borrará absolutamente todos los registros existentes del cliente {clienteName}. ¿Desea continuar?", "ADVERTENCIA",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-            if (confirmacion == DialogResult.OK)
+            confirmacion = MessageBox.Show(
+    $"Esta acción borrará absolutamente todos los registros existentes del cliente {clienteName}. ¿Desea continuar?",
+    "Advertencia - Eliminar cliente",
+    MessageBoxButtons.YesNo,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button2
+);
+
+            if (confirmacion == DialogResult.Yes)
             {
                 sqlConexion ConexionSql = new sqlConexion();
                 string comando = $"delete from ClientMembership where CMClientID = '{clienteId}';" +

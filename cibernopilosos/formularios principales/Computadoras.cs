@@ -177,7 +177,7 @@ namespace cibernopilosos.formularios_principales
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al solicitar tiempo restante: {ex.Message}");
+                MessageBox.Show("No se pudo obtener el tiempo restante. Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -313,7 +313,7 @@ namespace cibernopilosos.formularios_principales
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al enviar comando a {ipString}: {ex.Message}");
+                MessageBox.Show("No se pudo enviar el comando a la computadora. Verifique que esté conectada e intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -331,7 +331,7 @@ namespace cibernopilosos.formularios_principales
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error en la escucha: {ex.Message}");
+                MessageBox.Show("Error al escuchar conexiones. Reinicie la aplicación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -367,7 +367,7 @@ namespace cibernopilosos.formularios_principales
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al procesar cliente: {ex.Message}");
+                MessageBox.Show("Error al procesar la solicitud del cliente. Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {
@@ -443,8 +443,7 @@ namespace cibernopilosos.formularios_principales
 
                 if (!await ProbarConexionAsync(IPAddress.Parse(ipString)))
                 {
-                    MessageBox.Show("No se pudo conectar al cliente. Verifica que esté en línea.");
-                    return;
+                    MessageBox.Show("No se pudo conectar a la computadora seleccionada. Verifique que esté encendida y en la red, luego intente nuevamente.", "Conexión fallida", MessageBoxButtons.OK, MessageBoxIcon.Warning); return;
                 }
 
                 lock (estadoLock)
@@ -582,7 +581,6 @@ namespace cibernopilosos.formularios_principales
             frmCli.ShowDialog();
             mostrarComputadorasEnPanel();
         }
-
     }
 
     public class Computadora

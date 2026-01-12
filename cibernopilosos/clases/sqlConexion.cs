@@ -21,7 +21,7 @@ namespace cibernopilosos
 
         public sqlConexion()
         {
-            Server = "(local)";
+            Server = "teilor\\SQLEXPRESS";
             Database = "CiberCafeDB";
             Usuario = "teilor";
             Clave = "teilor";
