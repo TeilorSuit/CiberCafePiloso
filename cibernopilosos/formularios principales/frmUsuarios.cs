@@ -33,7 +33,7 @@ namespace cibernopilosos.formularios
             frmInformacionUsuario frm = new frmInformacionUsuario();
             frm.modo = "edit";
             frm.btnConfirmacion.Text = "Editar";
-            frm.AuxUserID = dgvUsers.CurrentRow.Cells["idUSer"].Value.ToString();
+            frm.AuxUserID = dgvUsers.CurrentRow.Cells["UserID"].Value.ToString();
             PrecargarDatos(frm);
             frm.ShowDialog();
             llenarTabla(true);
@@ -50,7 +50,7 @@ namespace cibernopilosos.formularios
             string consulta;
             if (modo)
             {
-                consulta = "select * from Users";
+                consulta = "select UserID, Username, Password, Admin from Users";
                 btnResgistrosCaja.Text = "Ver registros de caja";
             }
             else
@@ -67,7 +67,7 @@ namespace cibernopilosos.formularios
         private void btnBorrarUsuario_Click(object sender, EventArgs e)
         {
             string useridactual = frmLogin.UserIdActual.ToString();
-            if(dgvUsers.CurrentRow.Cells["IdUser"].Value.ToString() == useridactual)
+            if (dgvUsers.CurrentRow.Cells["UserID"].Value.ToString() == useridactual)
             {
                 MessageBox.Show("No puedes eliminar tu propio usuario");
                 return;
@@ -79,7 +79,7 @@ namespace cibernopilosos.formularios
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
-                string comando = $"delete from Users where IdUser='{dgvUsers.CurrentRow.Cells["IdUser"].Value.ToString()}'";
+                string comando = $"delete from Users where UserID={dgvUsers.CurrentRow.Cells["UserID"].Value}";
                 if (ConexionSql.EjecutarAccion(comando))
                 {
                     MessageBox.Show("Cliente eliminado exitosamente");

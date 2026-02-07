@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace cibernopilosos
 {
@@ -13,27 +14,26 @@ namespace cibernopilosos
         private DataTable DataTableSql;
         private SqlDataReader DataReader;
 
-        public string Server;
-        public string Database;
-        public string Usuario;
-        public string Clave;
-
-
         public sqlConexion()
         {
-            Server = "(local)";
-            Database = "CiberCafeDB";
-            Usuario = "teilor";
-            Clave = "teilor";
+
         }
 
         public string Cadena
         {
             get
             {
-                return $"Server={Server};Database={Database};User id={Usuario.Trim()};Password={Clave}";
+                var conn = ConfigurationManager.ConnectionStrings["CiberCafeDB"];
+                if (conn == null)
+                {
+                    MessageBox.Show("No se encontró la cadena de conexión en App.config");
+                    return "";
+                }
+                return conn.ConnectionString;
             }
         }
+
+
 
         public bool abrirConexion()
         {
@@ -72,21 +72,36 @@ namespace cibernopilosos
 
         public bool Login(string username, string password)
         {
-            string consulta = $"SELECT Username, Password FROM Users WHERE Username='{username}'";
-            DataTable dt = retornaRegistros(consulta);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            bool acceso = false;
+
+            try
             {
-                string user = dt.Rows[i]["Username"].ToString();
-                string pass = dt.Rows[i]["Password"].ToString();
-                if (username == user && password == pass)
+                if (abrirConexion())
                 {
-                    return true;
+                    string consulta = "SELECT COUNT(*) FROM Users WHERE Username=@user AND Password=@pass";
+
+                    using (SqlCommand cmd = new SqlCommand(consulta, ConexionSql))
+                    {
+                        cmd.Parameters.AddWithValue("@user", username);
+                        cmd.Parameters.AddWithValue("@pass", password);
+
+                        int count = (int)cmd.ExecuteScalar();
+                        acceso = count > 0;
+                    }
                 }
             }
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en Login: " + ex.Message);
+            }
+            finally
+            {
+                cerrarConexion();
+            }
+
+            return acceso;
         }
 
-       
         public bool EjecutarAccion(string sentencia)
         {
             try

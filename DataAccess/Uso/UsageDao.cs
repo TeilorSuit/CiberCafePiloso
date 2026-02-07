@@ -8,7 +8,9 @@ namespace DataAccess
 {
     public class UsageDao : ConnectionSql
     {
-        // Retorna la lista de sesiones de uso cuya "sesión completa" (inicio + tiempo usado) se encuentre en el rango [fromDate, toDate].
+        // --------------------------------------------------------------------------------
+        // MÉTODO 1: LISTADO DE SESIONES
+        // --------------------------------------------------------------------------------
         public List<ComputerUsageListing> GetUsageSessions(DateTime fromDate, DateTime toDate)
         {
             var list = new List<ComputerUsageListing>();
@@ -18,23 +20,28 @@ namespace DataAccess
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    // La consulta filtra aquellas sesiones donde:
-                    // - La fecha de inicio (CC_DateTime) es mayor o igual a @fromDate
-                    // - La fecha de fin calculada (CC_DateTime + CC_TimeUsed en minutos) es menor o igual a @toDate.
+
+                    // CAMBIO REALIZADO: Adaptación a tu Base de Datos real
+                    // 1. CC_StartTime se disfraza de 'CC_DateTime'
+                    // 2. Calculamos 'CC_TimeUsed' restando EndTime - StartTime
+                    // 3. Convertimos CC_PcID a texto para llenar el hueco de 'CC_PcIP'
                     command.CommandText = @"
                         SELECT 
                             cc.CC_ID,
-                            cc.CC_PcIP,
+                            CAST(cc.CC_PcID AS varchar(20)) AS CC_PcIP, 
                             cc.CC_ClientID,
-                            cc.CC_DateTime,
-                            cc.CC_TimeUsed,
+                            cc.CC_StartTime AS CC_DateTime, 
+                            ISNULL(DATEDIFF(MINUTE, cc.CC_StartTime, cc.CC_EndTime), 0) AS CC_TimeUsed,
                             c.ClientName,
                             comp.PcNumber
                         FROM ClientComputer cc
                         LEFT JOIN Clients c ON cc.CC_ClientID = c.ClientID
-                        LEFT JOIN Computers comp ON cc.CC_PcIP = comp.PcIp
-                        WHERE cc.CC_DateTime >= @fromDate 
-                          AND DATEADD(MINUTE, cc.CC_TimeUsed, cc.CC_DateTime) <= @toDate";
+                        -- Nota: El Join con Computers es delicado porque no tienes IP en la tabla PC. 
+                        -- Intentamos unir por lo que haya, pero usamos LEFT JOIN para que no falle si no coincide.
+                        LEFT JOIN Computers comp ON CAST(cc.CC_PcID AS varchar(20)) = comp.PcIp 
+                        WHERE cc.CC_StartTime >= @fromDate 
+                          AND (cc.CC_EndTime IS NULL OR cc.CC_EndTime <= @toDate)";
+
                     command.Parameters.AddWithValue("@fromDate", fromDate);
                     command.Parameters.AddWithValue("@toDate", toDate);
                     command.CommandType = CommandType.Text;
@@ -49,9 +56,9 @@ namespace DataAccess
                                 CC_PcIP = reader["CC_PcIP"].ToString(),
                                 CC_ClientID = reader["CC_ClientID"].ToString(),
                                 CC_DateTime = Convert.ToDateTime(reader["CC_DateTime"]),
-                                CC_TimeUsed = Convert.ToInt32(reader["CC_TimeUsed"]),
-                                ClientName = reader["ClientName"] == DBNull.Value ? "" : reader["ClientName"].ToString(),
-                                PcNumber = reader["PcNumber"] == DBNull.Value ? "" : reader["PcNumber"].ToString()
+                                CC_TimeUsed = reader["CC_TimeUsed"] == DBNull.Value ? 0 : Convert.ToInt32(reader["CC_TimeUsed"]),
+                                ClientName = reader["ClientName"] == DBNull.Value ? "Desconocido" : reader["ClientName"].ToString(),
+                                PcNumber = reader["PcNumber"] == DBNull.Value ? "PC-" + reader["CC_PcIP"].ToString() : reader["PcNumber"].ToString()
                             };
                             list.Add(usage);
                         }
@@ -61,7 +68,9 @@ namespace DataAccess
             return list;
         }
 
-        // Método para agrupar uso por hora (para el gráfico)
+        // --------------------------------------------------------------------------------
+        // MÉTODO 2: USO POR HORA (GRÁFICO)
+        // --------------------------------------------------------------------------------
         public List<UsageByHour> GetUsageByHour(DateTime fromDate, DateTime toDate)
         {
             var list = new List<UsageByHour>();
@@ -71,14 +80,17 @@ namespace DataAccess
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
+
+                    // CAMBIO REALIZADO: Usamos CC_StartTime y calculamos la suma de minutos al vuelo
                     command.CommandText = @"
-                        SELECT DATEPART(HOUR, CC_DateTime) AS UsageHour,
-                               SUM(CC_TimeUsed) AS TotalTimeUsed
+                        SELECT DATEPART(HOUR, CC_StartTime) AS UsageHour,
+                               SUM(DATEDIFF(MINUTE, CC_StartTime, ISNULL(CC_EndTime, GETDATE()))) AS TotalTimeUsed
                         FROM ClientComputer
-                        WHERE CC_DateTime >= @fromDate 
-                          AND DATEADD(MINUTE, CC_TimeUsed, CC_DateTime) <= @toDate
-                        GROUP BY DATEPART(HOUR, CC_DateTime)
+                        WHERE CC_StartTime >= @fromDate 
+                          AND CC_StartTime <= @toDate
+                        GROUP BY DATEPART(HOUR, CC_StartTime)
                         ORDER BY UsageHour";
+
                     command.Parameters.AddWithValue("@fromDate", fromDate);
                     command.Parameters.AddWithValue("@toDate", toDate);
                     command.CommandType = CommandType.Text;
@@ -89,8 +101,8 @@ namespace DataAccess
                         {
                             var u = new UsageByHour
                             {
-                                Hour = Convert.ToInt32(reader["UsageHour"]),
-                                TotalTimeUsed = Convert.ToInt32(reader["TotalTimeUsed"])
+                                Hour = reader["UsageHour"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UsageHour"]),
+                                TotalTimeUsed = reader["TotalTimeUsed"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalTimeUsed"])
                             };
                             list.Add(u);
                         }
@@ -100,7 +112,9 @@ namespace DataAccess
             return list;
         }
 
-        // Método para agrupar uso por cliente (para clientes frecuentes)
+        // --------------------------------------------------------------------------------
+        // MÉTODO 3: CLIENTES FRECUENTES
+        // --------------------------------------------------------------------------------
         public List<UsageByClient> GetFrequentClients(DateTime fromDate, DateTime toDate)
         {
             var list = new List<UsageByClient>();
@@ -110,18 +124,21 @@ namespace DataAccess
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
+
+                    // CAMBIO REALIZADO: Ajuste de nombres de columnas y cálculo de SUMA
                     command.CommandText = @"
                         SELECT 
                             cc.CC_ClientID,
-                            c.ClientName,
+                            MAX(c.ClientName) as ClientName, -- Usamos MAX para evitar problemas en el GROUP BY
                             COUNT(*) AS TotalSessions,
-                            SUM(cc.CC_TimeUsed) AS TotalTimeUsed
+                            SUM(DATEDIFF(MINUTE, cc.CC_StartTime, ISNULL(cc.CC_EndTime, GETDATE()))) AS TotalTimeUsed
                         FROM ClientComputer cc
                         LEFT JOIN Clients c ON cc.CC_ClientID = c.ClientID
-                        WHERE cc.CC_DateTime >= @fromDate 
-                          AND DATEADD(MINUTE, cc.CC_TimeUsed, cc.CC_DateTime) <= @toDate
-                        GROUP BY cc.CC_ClientID, c.ClientName
+                        WHERE cc.CC_StartTime >= @fromDate 
+                          AND cc.CC_StartTime <= @toDate
+                        GROUP BY cc.CC_ClientID
                         ORDER BY TotalTimeUsed DESC";
+
                     command.Parameters.AddWithValue("@fromDate", fromDate);
                     command.Parameters.AddWithValue("@toDate", toDate);
                     command.CommandType = CommandType.Text;
@@ -133,9 +150,9 @@ namespace DataAccess
                             var u = new UsageByClient
                             {
                                 ClientID = reader["CC_ClientID"].ToString(),
-                                ClientName = reader["ClientName"].ToString(),
+                                ClientName = reader["ClientName"] == DBNull.Value ? "Sin Nombre" : reader["ClientName"].ToString(),
                                 TotalSessions = Convert.ToInt32(reader["TotalSessions"]),
-                                TotalTimeUsed = Convert.ToInt32(reader["TotalTimeUsed"])
+                                TotalTimeUsed = reader["TotalTimeUsed"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalTimeUsed"])
                             };
                             list.Add(u);
                         }
