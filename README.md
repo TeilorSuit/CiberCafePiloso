@@ -63,7 +63,7 @@ Para ejecutar este proyecto en tu entorno local:
 Este proyecto fue desarrollado originalmente como parte de un curso universitario de 2do semestre.
 
 * **Última actualización:** Corrección crítica en el módulo de reportes (`UsageDao.cs`) para solucionar inconsistencias en el mapeo de columnas y cálculos de tiempo (`SQLException`).
-* **Mejoras pendientes:** Migración a Entity Framework, encriptación de contraseñas y modernización de UI.
+> **Nota de Arquitectura:** Este repositorio contiene únicamente el **Módulo de Servidor/Administración**. El software cliente (bloqueo de terminales) se maneja en una solución separada y se comunica vía sockets/TCP (no incluido en este repo).
 
 ---
 
