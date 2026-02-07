@@ -69,7 +69,6 @@ Este proyecto fue desarrollado originalmente como parte de un curso universitari
 
 ## ✒️ Autores
 
-* **[Tu Nombre]** - *Desarrollo y Mantenimiento*
-* **[Nombre de tu compañero]** - *Diseño de Base de Datos y Capa de Datos*
+* **Teilor** - *Desarrollo y Mantenimiento*
 
 ---
