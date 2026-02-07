@@ -27,7 +27,7 @@ namespace cibernopilosos.formularios_principales
         {
             InitializeComponent();
             actualizacionTimer = new System.Windows.Forms.Timer();
-            actualizacionTimer.Interval = 2000;
+            actualizacionTimer.Interval = 5000;
             actualizacionTimer.Tick += ActualizacionTimer_Tick;
 
             cuentaRegresivaTimer = new System.Windows.Forms.Timer();

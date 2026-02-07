@@ -3,95 +3,100 @@ using System.Windows.Forms;
 
 namespace cibernopilosos.formularios
 {
-    public partial class frmInformacionUsuario: Form
+    public partial class frmInformacionUsuario : Form
     {
         public frmInformacionUsuario()
         {
             InitializeComponent();
         }
+
         sqlConexion conexionsql = new sqlConexion();
         public string modo = "add";
+        public string AuxUserID; 
+
         private void btnConfirmacion_Click(object sender, EventArgs e)
         {
-            string username, password;
-            username = txtUsername.Text;
-            password = txtPassword.Text;
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-            if (ValidacionDatos(username) == false)//Validar casillas vacías
+            if (!ValidacionDatos(username))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene el campo Usuario");
                 return;
             }
-            if (ValidacionDatos(password) == false)
+            if (!ValidacionDatos(password))
             {
-                MessageBox.Show("Rellene todos los campos");
+                MessageBox.Show("Rellene el campo Contraseña");
                 return;
             }
+
+            username = username.Replace("'", "''");
+            password = password.Replace("'", "''");
 
             if (modo == "add")
             {
                 AgregarUsuario(username, password);
-                this.Close();
             }
             else
             {
                 ActualizarUsuario(username, password);
-                this.Close();
             }
+
+            this.Close();
         }
+
         private void AgregarUsuario(string username, string password)
         {
             int Admin = checkAdmin();
-            string consulta = $"Insert into Users (Username,Password,Admin) values ('{username}','{password}',{Admin})";
+
+            string consulta = $"INSERT INTO Users (Username, Password, Admin) VALUES ('{username}', '{password}', {Admin})";
+
             if (conexionsql.EjecutarAccion(consulta))
             {
+                string actor = frmLogin.UserActual;
+                string detalle = $"Creó el usuario: {username} (Admin: {Admin})";
+                string logQuery = $"INSERT INTO Auditoria (UsuarioActor, Accion, Detalle, Fecha) VALUES ('{actor}', 'CREAR USUARIO', '{detalle}', GETDATE())";
+                conexionsql.EjecutarAccion(logQuery);
+
                 MessageBox.Show("Usuario creado exitosamente");
             }
             else
             {
-                MessageBox.Show("Error al agregar usuario");
+                MessageBox.Show("Error al agregar usuario (probablemente el nombre ya existe)");
             }
         }
 
-        public string AuxUserID;
         private void ActualizarUsuario(string username, string password)
         {
             int Admin = checkAdmin();
-            string consulta = $"Update Users set Username='{username}', Password='{password}', Admin={Admin} where IdUser='{AuxUserID}'";
+
+            string consulta = $"UPDATE Users SET Username='{username}', Password='{password}', Admin={Admin} WHERE UserID={AuxUserID}";
+
             if (conexionsql.EjecutarAccion(consulta))
             {
-                MessageBox.Show("Cliente actualizado exitosamente");
+                string actor = frmLogin.UserActual;
+                string detalle = $"Editó al usuario ID {AuxUserID}. Nuevo nombre: {username}";
+                string logQuery = $"INSERT INTO Auditoria (UsuarioActor, Accion, Detalle, Fecha) VALUES ('{actor}', 'EDITAR USUARIO', '{detalle}', GETDATE())";
+                conexionsql.EjecutarAccion(logQuery);
+
+                MessageBox.Show("Usuario actualizado exitosamente");
             }
             else
             {
-                MessageBox.Show("Error al actualizar cliente");
+                MessageBox.Show("Error al actualizar usuario");
             }
         }
+
         private bool ValidacionDatos(string Dato)
         {
-            if (Dato.Length != 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !string.IsNullOrEmpty(Dato);
         }
 
         private int checkAdmin()
         {
-            int Admin;
-            if (chkAdmin.Checked)
-            {
-                Admin = 1;
-            }
-            else
-            {
-                Admin = 0;
-            }
-            return Admin;
+            return chkAdmin.Checked ? 1 : 0;
         }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

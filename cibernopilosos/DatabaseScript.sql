@@ -17,10 +17,9 @@ GO
 -- =============================================
 -- 1. CREACIÓN DE TABLAS (ESTRUCTURA)
 -- =============================================
-
 CREATE TABLE [dbo].[Users](
 	[Username] [varchar](20) NOT NULL PRIMARY KEY,
-	[Password] [varchar](40) NOT NULL, -- OJO: Aquí se guardará tal cual lo maneje tu app (texto plano o hash)
+	[Password] [varchar](40) NOT NULL, -- OJO: Aquí se guardará tal cual lo maneje tu app
 	[Admin] [bit] NOT NULL,
 	[UserID] [int] IDENTITY(1,1) NOT NULL UNIQUE
 )
@@ -78,10 +77,10 @@ GO
 
 CREATE TABLE [dbo].[ClientComputer](
 	[CC_ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	[CC_PcID] [int] NOT NULL, -- Nota: Tu app usa int, pero la tabla Computers usa IP. Ojo aquí en el código.
+	[CC_PcID] [int] NOT NULL, 
 	[CC_ClientID] [varchar](10) NOT NULL,
 	[CC_StartTime] [datetime] NOT NULL,
-	[CC_EndTime] [datetime] NULL, -- Lo puse NULLABLE por si la sesión está activa
+	[CC_EndTime] [datetime] NULL,
     FOREIGN KEY([CC_ClientID]) REFERENCES [dbo].[Clients] ([ClientID])
 )
 GO
@@ -103,17 +102,25 @@ CREATE TABLE [dbo].[Transactions](
 )
 GO
 
+-- ESTA ES LA NUEVA QUE AGREGAMOS
+CREATE TABLE [dbo].[Auditoria](
+	[IdLog] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[Fecha] [datetime] DEFAULT GETDATE(),
+	[UsuarioActor] [varchar](20),
+	[Accion] [varchar](50),
+	[Detalle] [varchar](200)
+)
+GO
+
 -- =============================================
 -- 2. SEED DATA (DATOS DE PRUEBA)
 -- =============================================
 
--- A. Usuario Administrador por Defecto
--- IMPORTANTE: Cambia '1234' por lo que tu sistema espere si usas encriptación.
--- Si es texto plano, esto funcionará directo.
-INSERT INTO [dbo].[Users] ([Username], [Password], [Admin])
+-- A. Usuarios
+INSERT INTO [dbo].[Users] ([Username], [Password], [Admin]) 
 VALUES ('admin', '1234', 1);
 
-INSERT INTO [dbo].[Users] ([Username], [Password], [Admin])
+INSERT INTO [dbo].[Users] ([Username], [Password], [Admin]) 
 VALUES ('empleado', '1234', 0);
 
 -- B. Servicios Básicos
@@ -126,8 +133,7 @@ VALUES
 ('Cola', 0.75),
 ('Snack', 0.50);
 
--- C. Computadoras (Simuladas)
--- Usamos IPs locales ficticias
+-- C. Computadoras
 INSERT INTO [dbo].[Computers] ([PcIp], [PcNumber], [PcStatus], [PcInfo])
 VALUES 
 ('192.168.1.101', '01', 'Disponible', 'Ryzen 5 - Cerca Ventana'),
@@ -135,14 +141,13 @@ VALUES
 ('192.168.1.103', '03', 'Mantenimiento', 'Sin Teclado'),
 ('192.168.1.104', '04', 'Ocupada', 'Gamer Zone');
 
--- D. Cliente "Público General" (Genérico) y uno real
+-- D. Clientes
 INSERT INTO [dbo].[Clients] ([ClientID], [ClientMemStatus], [ClientName], [ClientBirthDate], [ClientPhone], [ClientAddress])
 VALUES 
 ('9999999999', 0, 'CONSUMIDOR FINAL', '2000-01-01', NULL, NULL),
 ('1205487963', 1, 'Teilor Piloso', '2002-05-15', '0991234567', 'Centro');
 
--- E. Caja Inicial (Para que no de error al intentar vender)
--- Simulamos que se abrió la caja hoy con $20 de cambio
+-- E. Caja Inicial
 INSERT INTO [dbo].[Caja] ([FechaApertura], [MontoApertura], [IdUsuarioApertura], [Estado], [TotalIngresos], [TotalGastos])
 VALUES (GETDATE(), 20.00, 1, 1, 0, 0);
 

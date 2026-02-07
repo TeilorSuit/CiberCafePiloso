@@ -79,14 +79,16 @@ namespace cibernopilosos.formularios
             if (confirmacion == DialogResult.OK)
             {
                 sqlConexion ConexionSql = new sqlConexion();
+
                 string comando = $"delete from Users where UserID={dgvUsers.CurrentRow.Cells["UserID"].Value}";
                 if (ConexionSql.EjecutarAccion(comando))
                 {
+                    string actor = frmLogin.UserActual;
+                    string detalle = "Borró al ID " + dgvUsers.CurrentRow.Cells["UserID"].Value.ToString();
+                    string logQuery = $"INSERT INTO Auditoria (UsuarioActor, Accion, Detalle) VALUES ('{actor}', 'BORRAR USUARIO', '{detalle}')";
+                    ConexionSql.EjecutarAccion(logQuery);
+
                     MessageBox.Show("Cliente eliminado exitosamente");
-                }
-                else
-                {
-                    MessageBox.Show("Error al eliminar cliente");
                 }
             }
             llenarTabla(true);

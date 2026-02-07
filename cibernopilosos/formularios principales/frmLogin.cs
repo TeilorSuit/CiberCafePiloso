@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Configuration; // <--- AGREGA ESTO
 
 namespace cibernopilosos.formularios
 {
@@ -10,13 +11,16 @@ namespace cibernopilosos.formularios
         public static int UserIdActual;
         public static string UserActual;
 
-        // Ajusta esto si tu conexión está en App.config
-        private string connectionString = @"Data Source=.;Initial Catalog=CiberCafeDB;Integrated Security=True";
+        // CAMBIO: Ya no escribimos la conexión aquí. La leemos del archivo de configuración.
+        // Así, si cambia el servidor, solo cambias el archivo de texto y no el código.
+        private string connectionString = ConfigurationManager.ConnectionStrings["CiberCafeDB"].ConnectionString;
 
         public frmLogin()
         {
             InitializeComponent();
         }
+
+        // ... El resto de tu código sigue igual ...
 
         private void btnLogin_Click(object sender, EventArgs e)
         {

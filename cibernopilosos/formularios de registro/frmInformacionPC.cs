@@ -9,40 +9,59 @@ namespace cibernopilosos.formularios
 {
     public partial class frmInformacionPC : Form
     {
-        private TcpClient Tester;
+        private sqlConexion conexionsql = new sqlConexion();
         private IPAddress ipAddress;
         private int puerto = 12346;
+
+        public string modo = "add";
+        public string pcIPOG = ""; // IP Original para el WHERE
+
         public frmInformacionPC()
         {
             InitializeComponent();
         }
-        public string modo = "add", pcIPOG = "";
+
+        private void frmInformacionPC_Load(object sender, EventArgs e)
+        {
+            btnConfirmacion.Enabled = false;
+            btnConfirmacion.BackColor = Color.Red;
+            btnConfirmacion.FlatStyle = FlatStyle.Flat;
+            btnConfirmacion.ForeColor = Color.White;
+        }
 
         private void btnConfirmacion_Click(object sender, EventArgs e)
         {
-            string pcNumber = txtPcNumber.Text;
-            string pcInfo = txtPcInfo.Text;
-            string pciP = txtPcIP.Text;
-            if (!ValidacionDatos(pcNumber) || !ValidacionDatos(pcInfo))
+            string pcNumber = txtPcNumber.Text.Trim();
+            string pcInfo = txtPcInfo.Text.Trim();
+            string pcIp = txtPcIP.Text.Trim();
+
+            if (!ValidacionDatos(pcNumber) || !ValidacionDatos(pcInfo) || !ValidacionDatos(pcIp))
             {
                 MessageBox.Show("Rellene todos los campos");
                 return;
             }
 
+            // PEQUEÑO TRUCO DE SEGURIDAD (SANITIZACIÓN BÁSICA):
+            // Si el texto tiene una comilla simple ('), la duplicamos ('') para que SQL no explote.
+            // Ejemplo: "Teilor's PC" se convierte en "Teilor''s PC", y SQL lo guarda bien.
+            pcNumber = pcNumber.Replace("'", "''");
+            pcInfo = pcInfo.Replace("'", "''");
+            pcIp = pcIp.Replace("'", "''");
+
             if (modo == "add")
             {
-                AgregarPCs(pcNumber, pcInfo, pciP);
+                AgregarPCs(pcNumber, pcInfo, pcIp);
             }
-            else //modo edit
+            else
             {
-                ActualizarPC(pcNumber, pcInfo, pciP);
+                ActualizarPC(pcNumber, pcInfo, pcIp);
             }
         }
 
         private void AgregarPCs(string pcNumber, string pcInfo, string pcIp)
         {
-            sqlConexion conexionsql = new sqlConexion();
-            string consulta = $"Insert into Computers (PcNumber, PcStatus, PcInfo, PcIp) values ('{pcNumber}','Disponible','{pcInfo}','{pcIp}')";
+            // ADAPTADO A TU CLASE: Usamos interpolación de strings ($"...")
+            string consulta = $"INSERT INTO Computers (PcNumber, PcStatus, PcInfo, PcIp) VALUES ('{pcNumber}', 'Desconectado', '{pcInfo}', '{pcIp}')";
 
             if (conexionsql.EjecutarAccion(consulta))
             {
@@ -57,13 +76,13 @@ namespace cibernopilosos.formularios
 
         private void ActualizarPC(string pcNumber, string pcInfo, string pcIp)
         {
-            sqlConexion conexionsql = new sqlConexion();
-            string consulta = $"Update Computers set PcNumber='{pcNumber}', PcInfo='{pcInfo}', PcIp='{pcIp}' where PcIp='{pcIPOG}'";
-
+            // ADAPTADO A TU CLASE
+            string consulta = $"UPDATE Computers SET PcNumber='{pcNumber}', PcInfo='{pcInfo}', PcIp='{pcIp}' WHERE PcIp='{pcIPOG}'";
 
             if (conexionsql.EjecutarAccion(consulta))
             {
                 MessageBox.Show("PC actualizada exitosamente");
+                this.Close();
             }
             else
             {
@@ -76,48 +95,48 @@ namespace cibernopilosos.formularios
             return !string.IsNullOrEmpty(dato);
         }
 
-
-        //validar ip ingresada
         private void btnValidar_Click(object sender, EventArgs e)
         {
-            //validar conexión (textoIP, salida ipAddress con el valor de textoIp)
-            if (IPAddress.TryParse(txtPcIP.Text, out ipAddress))
+            string ipTexto = txtPcIP.Text.Trim();
+
+            if (IPAddress.TryParse(ipTexto, out ipAddress))
             {
+                TcpClient tester = null;
                 try
                 {
-                    Tester = new TcpClient();
-                    Tester.Connect(ipAddress, puerto);
-                    MessageBox.Show("Conexión exitosa");
+                    tester = new TcpClient();
+                    // Timeout manual de 2 segundos para no congelar la pantalla mucho tiempo
+                    var result = tester.BeginConnect(ipAddress, puerto, null, null);
+                    var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(2));
+
+                    if (!success)
+                    {
+                        throw new Exception("Tiempo de espera agotado.");
+                    }
+
+                    tester.EndConnect(result);
+
+                    MessageBox.Show("¡Conexión exitosa!");
+                    btnConfirmacion.Enabled = true;
+                    btnConfirmacion.BackColor = Color.Green;
+                    btnConfirmacion.FlatStyle = FlatStyle.Standard;
+                    btnConfirmacion.ForeColor = Color.Black;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al conectar: " + ex.Message);
+                    MessageBox.Show("No se pudo conectar: " + ex.Message);
+                    btnConfirmacion.Enabled = false;
+                    btnConfirmacion.BackColor = Color.Red;
                 }
                 finally
                 {
-                    if (Tester.Connected)
-                    {
-                        btnConfirmacion.Enabled = true;
-                        btnConfirmacion.BackColor = Color.White;
-                        btnConfirmacion.FlatStyle = FlatStyle.Standard;
-                        btnConfirmacion.ForeColor = Color.Black;
-                        Tester.Close();
-                    }
+                    if (tester != null) tester.Close();
                 }
             }
             else
             {
-                MessageBox.Show("Dirección IP no válida");
+                MessageBox.Show("IP no válida");
             }
-        }
-
-
-        private void frmInformacionPC_Load(object sender, EventArgs e)
-        {
-            btnConfirmacion.Enabled = false;
-            btnConfirmacion.BackColor = Color.Red;
-            btnConfirmacion.FlatStyle = FlatStyle.Flat;
-            btnConfirmacion.ForeColor = Color.White;
         }
 
         private void txtPcNumber_KeyPress(object sender, KeyPressEventArgs e)
