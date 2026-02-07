@@ -69,6 +69,8 @@ Este proyecto fue desarrollado originalmente como parte de un curso universitari
 
 ## ✒️ Autores
 
-* **Teilor** - *Desarrollo y Mantenimiento*
+* **Teilor** - *Líder del Proyecto, Arquitectura, Diseño de Base de Datos y Lógica del Servidor.*
+* **Ivan** - *Colaboración en el Módulo de Reportes.*
+* **Kenneth** - *Desarrollo del Software Cliente (Bloqueo de Terminales - Repositorio Externo).*
 
 ---
